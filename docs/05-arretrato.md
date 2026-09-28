@@ -44,20 +44,16 @@ di quattro, più un collegamento `otpauth://` che da telefono apre l'app: funzio
 scansiona. La strada a costo zero sul bundle è un'azione di server che restituisce l'SVG; è una
 decisione sulle dipendenze.
 
-**Contatti, privacy e cookie** _(2026-09-28, sostituisce la voce del 2026-09-24)_. Il codice
-c'è: `/privacy` e `/cookie` sulla landing, scritte da noi e valide anche per la demo; il modulo
-della landing; un modulo dentro la demo (pulsante «Contattaci» nella fascia, più un invito che
-compare dopo quattro pagine o due minuti), che spedisce subito via SMTP senza scrivere nel
-database; la pulizia notturna delle sessioni demo e dei contatori del limitatore, che contengono
-un IP. **Mancano tre cose del committente**, poi solo variabili e deploy:
-- **nome e città del titolare** (persona fisica) → `TITOLARE_NOME`, `TITOLARE_CITTA` sulla landing.
-  Senza, l'informativa lo dice e il modulo della landing resta spento anche con
-  `RICHIESTE_ATTIVE=1`;
-- le caselle Hostinger `contatti@legisboard.eu` (con alias `privacy@`) e `no-reply@legisboard.eu`;
-- la password di `no-reply@` in `~/.config/flotta/legisboard-posta.env`. Poi su entrambi i progetti:
-  `SMTP_HOST=smtp.hostinger.com`, `SMTP_PORT=465`, `SMTP_USER`, `SMTP_PASSWORD`,
-  `SMTP_MITTENTE`, `RICHIESTE_DESTINATARIO=contatti@legisboard.eu`, `CONTATTO_EMAIL`; sulla landing
-  anche `RICHIESTE_ATTIVE=1`.
+**Contatti, privacy e cookie** _(2026-09-28, CHIUSO)_. `/privacy` e `/cookie` online con il
+titolare (Alessandro Di Lonardo, Aversa). Modulo della landing e modulo dentro la demo ACCESI e
+collaudati in produzione: tre richieste di prova arrivate in `contatti@legisboard.eu`, con
+Reply-To al visitatore. Il ripristino notturno cancella sessioni demo scadute e contatori del
+limitatore.
+
+**Resta:** i moduli spediscono con l'utenza di `contatti@` stessa. Se il committente ne cambia la
+password, i moduli smettono di partire senza avvisare. Rimedio: una casella `no-reply@legisboard.eu`,
+la sua password in `~/.config/flotta/legisboard-posta.env`, e `SMTP_USER`/`SMTP_MITTENTE` aggiornati su
+entrambi i progetti Vercel. Da verificare anche l'alias `privacy@legisboard.eu`, citato nell'informativa.
 
 Limite noto: la rotta della landing ha trappola, tempo minimo e validazione, ma nessun limite per
 IP né tetto orario (la landing non ha database). Da aggiungere se arriva spam.
