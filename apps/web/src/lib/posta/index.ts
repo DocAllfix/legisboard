@@ -67,6 +67,7 @@ async function consegna(m: {
   oggetto: string;
   corpoTesto: string;
   corpoHtml: string | null;
+  rispondiA?: string;
 }): Promise<void> {
   if (!postaConfigurata()) {
     // In sviluppo si vede tutto tranne il corpo: il corpo di un invito contiene un gettone
@@ -100,7 +101,18 @@ async function consegna(m: {
     subject: m.oggetto,
     text: m.corpoTesto,
     ...(m.corpoHtml ? { html: m.corpoHtml } : {}),
+    ...(m.rispondiA ? { replyTo: m.rispondiA } : {}),
   });
+}
+
+/**
+ * Invia SUBITO, senza passare dalla coda. Solo per il modulo di contatto della demo: su Vercel
+ * la coda non ha un drenatore che giri con regolarità, e il modulo non scrive nel database —
+ * la richiesta di un visitatore non è un dato dell'istanza. Se il relay rifiuta, lancia: chi
+ * chiama lo trasforma in un esito.
+ */
+export async function inviaSubito(m: { a: string; oggetto: string; testo: string; rispondiA: string }): Promise<void> {
+  await consegna({ destinatario: m.a, oggetto: m.oggetto, corpoTesto: m.testo, corpoHtml: null, rispondiA: m.rispondiA });
 }
 
 /**

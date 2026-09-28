@@ -36,6 +36,16 @@ export function Piede() {
                 Entra nella demo
               </a>
             </li>
+            <li>
+              <a href="/privacy" className="hover:underline">
+                Informativa privacy
+              </a>
+            </li>
+            <li>
+              <a href="/cookie" className="hover:underline">
+                Cookie
+              </a>
+            </li>
           </ul>
         </div>
       </div>

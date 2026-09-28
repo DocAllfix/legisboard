@@ -1,4 +1,4 @@
-import { assicuraUtenteDemo, istanzaDemo, ripristinaDemo } from "@/lib/db/demo";
+import { assicuraUtenteDemo, istanzaDemo, pulisciTracceDemo, ripristinaDemo } from "@/lib/db/demo";
 import { env } from "@/lib/env";
 
 // IL RIPRISTINO NOTTURNO DELLA DEMO PUBBLICA _(docs/07 §5.3)_.
@@ -19,6 +19,7 @@ export async function GET(richiesta: Request) {
 
   const esito = await ripristinaDemo();
   const utente = await assicuraUtenteDemo();
+  const tracce = await pulisciTracceDemo();
   const riuscito = esito.stato === "ripristinata" || esito.stato === "creata";
-  return Response.json({ esito, utente }, { status: riuscito ? 200 : 500 });
+  return Response.json({ esito, utente, tracce }, { status: riuscito ? 200 : 500 });
 }

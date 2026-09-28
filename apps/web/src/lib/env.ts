@@ -157,6 +157,11 @@ const schema = z.object({
    * che porta dove non si può fare quello che promette.
    */
   CONTATTO_EMAIL: z.email().optional(),
+  /**
+   * Dove arrivano le richieste del modulo dentro la demo _(2026-09-28)_: la casella dei contatti,
+   * letta dal committente. Serve anche il relay `SMTP_*`: senza uno dei due il modulo non compare.
+   */
+  RICHIESTE_DESTINATARIO: z.email().optional(),
 });
 
 /**

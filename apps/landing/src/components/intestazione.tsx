@@ -4,12 +4,13 @@ import Link from "next/link";
 import { CONTATTO_POSSIBILE, INGRESSO_DEMO } from "@/lib/sito";
 import { PULSANTE_PIENO } from "./pulsanti";
 
+// Con la barra davanti: l'intestazione sta anche su /privacy e /cookie.
 export const ANCORE = [
-  ["#problema", "Il problema"],
-  ["#decreti", "I tre decreti"],
-  ["#come-funziona", "Come funziona"],
-  ["#distribuzione", "Distribuzione"],
-  ["#domande", "Domande"],
+  ["/#problema", "Il problema"],
+  ["/#decreti", "I tre decreti"],
+  ["/#come-funziona", "Come funziona"],
+  ["/#distribuzione", "Distribuzione"],
+  ["/#domande", "Domande"],
 ] as const;
 
 // Il menu da telefono è un <details>: si apre e si chiude senza una riga di JavaScript, ed è
@@ -42,9 +43,9 @@ export function Intestazione() {
 
         <div className="flex items-center gap-3">
           {CONTATTO_POSSIBILE ? (
-            <a href="#richiesta" className="hidden text-sm font-medium text-foreground hover:underline sm:inline">
+            <Link href="/#richiesta" className="hidden text-sm font-medium text-foreground hover:underline sm:inline">
               Richiedi una presentazione
-            </a>
+            </Link>
           ) : null}
           <a href={INGRESSO_DEMO} className={PULSANTE_PIENO}>
             Entra nella demo

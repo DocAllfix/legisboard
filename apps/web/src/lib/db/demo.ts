@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { CATALOGHI, CLIENTI_DIMOSTRATIVI, costruisciDemo, oggiA, type Dominio } from "@legisboard/engine";
-import { and, eq, inArray } from "drizzle-orm";
+import { and, eq, inArray, lt } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { db } from "./index";
@@ -13,6 +13,8 @@ import {
   member,
   obligationInstance,
   obligationTemplate,
+  rateLimit,
+  session,
   user,
 } from "./schema";
 import { seminaAziendaDimostrativa, type EsitoDemo } from "./seed-demo";
@@ -164,6 +166,32 @@ export async function assicuraUtenteDemo(): Promise<"creato" | "riparato" | "non
     .set({ twoFactorEnabled: false, mustChangePassword: false, tourVisti: {} })
     .where(eq(user.id, esistente.id));
   return "riparato";
+}
+
+/**
+ * Cancella le sessioni scadute dell'utente dimostrativo e i contatori vecchi del limitatore.
+ *
+ * Entrambi contengono un indirizzo IP, e l'informativa su legisboard.eu/privacy promette che
+ * spariscono al ripristino notturno dopo la scadenza. Prima di questa funzione restavano per
+ * sempre: ogni clic su «Entra nella demo» era una riga in più, mai tolta. Le sessioni ANCORA
+ * VALIDE non si toccano: il ripristino gira alle tre, e qualcuno può essere dentro.
+ */
+export async function pulisciTracceDemo(): Promise<{ sessioni: number; contatori: number }> {
+  if (!env.DEMO_EMAIL) return { sessioni: 0, contatori: 0 };
+  const u = await db.query.user.findFirst({ where: eq(user.email, env.DEMO_EMAIL), columns: { id: true } });
+  const sessioni = u
+    ? await db
+        .delete(session)
+        .where(and(eq(session.userId, u.id), lt(session.expiresAt, new Date())))
+        .returning({ id: session.id })
+    : [];
+  // Il limitatore conta per finestre di un minuto (cinque per il recupero password): un giorno
+  // è ampiamente oltre ogni finestra, quindi niente di ciò che si cancella sta ancora contando.
+  const contatori = await db
+    .delete(rateLimit)
+    .where(lt(rateLimit.lastRequest, Date.now() - 24 * 60 * 60 * 1000))
+    .returning({ id: rateLimit.id });
+  return { sessioni: sessioni.length, contatori: contatori.length };
 }
 
 /**

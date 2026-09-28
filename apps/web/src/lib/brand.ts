@@ -21,6 +21,8 @@ export const PRODOTTO = {
    * I sottodomini di `legisboard.it` restano per le istanze dei clienti.
    */
   dominio: "legisboard.it",
+  /** La landing: le informative privacy e cookie della demo stanno lì. */
+  sito: "https://legisboard.eu",
 } as const;
 
 /**

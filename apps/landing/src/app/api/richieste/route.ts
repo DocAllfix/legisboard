@@ -43,9 +43,12 @@ export async function POST(richiesta: Request) {
   }
   const d = esito.data;
 
+  const porta = Number(SMTP_PORT ?? 587);
   const trasporto = nodemailer.createTransport({
     host: SMTP_HOST,
-    port: Number(SMTP_PORT ?? 587),
+    port: porta,
+    // 465 è TLS implicito (Hostinger); 587 sale con STARTTLS. Come in `apps/web/src/lib/posta`.
+    secure: porta === 465,
     auth: SMTP_USER ? { user: SMTP_USER, pass: SMTP_PASSWORD } : undefined,
   });
 

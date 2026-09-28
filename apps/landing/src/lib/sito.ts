@@ -24,6 +24,24 @@ export const INDICIZZABILE =
   process.env.VERCEL_ENV === "production" && process.env.LANDING_INDICIZZABILE === "1";
 
 /**
+ * IL TITOLARE DEL TRATTAMENTO: una persona fisica _(decisione del 2026-09-28)_.
+ *
+ * L'art. 13 GDPR chiede l'identità del titolare e un suo contatto: senza, l'informativa non
+ * vale e il modulo non può raccogliere niente. Nome e città bastano; l'indirizzo completo e il
+ * codice fiscale non sono richiesti, e su una pagina pubblica sarebbero dati in più.
+ */
+const nomeTitolare = process.env.TITOLARE_NOME?.trim();
+export const TITOLARE = nomeTitolare
+  ? { nome: nomeTitolare, citta: process.env.TITOLARE_CITTA?.trim() || null }
+  : null;
+
+/** Dove scrivere per esercitare i diritti. Un alias che finisce nella casella dei contatti. */
+export const EMAIL_PRIVACY = process.env.EMAIL_PRIVACY ?? "privacy@legisboard.eu";
+
+/** L'ultima revisione delle due informative: si aggiorna a mano quando cambia il testo. */
+export const REVISIONE_INFORMATIVE = "28 settembre 2026";
+
+/**
  * IL MODULO ESISTE SOLO CON TITOLARE, INFORMATIVA E RELAY.
  *
  * Raccogliere nome ed email è un trattamento, e l'art. 13 GDPR vuole l'informativa al momento
@@ -31,7 +49,7 @@ export const INDICIZZABILE =
  * senza informativa è il primo difetto che un DPO troverebbe. Da spento, la sezione e il
  * pulsante che ci porta non esistono proprio.
  */
-export const RICHIESTE_ATTIVE = process.env.RICHIESTE_ATTIVE === "1";
+export const RICHIESTE_ATTIVE = process.env.RICHIESTE_ATTIVE === "1" && TITOLARE !== null;
 
 /**
  * L'indirizzo di contatto: il canale che funziona SENZA relay SMTP.
