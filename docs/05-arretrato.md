@@ -50,10 +50,10 @@ collaudati in produzione: tre richieste di prova arrivate in `contatti@legisboar
 Reply-To al visitatore. Il ripristino notturno cancella sessioni demo scadute e contatori del
 limitatore.
 
-**Resta:** i moduli spediscono con l'utenza di `contatti@` stessa. Se il committente ne cambia la
-password, i moduli smettono di partire senza avvisare. Rimedio: una casella `no-reply@legisboard.eu`,
-la sua password in `~/.config/flotta/legisboard-posta.env`, e `SMTP_USER`/`SMTP_MITTENTE` aggiornati su
-entrambi i progetti Vercel. Da verificare anche l'alias `privacy@legisboard.eu`, citato nell'informativa.
+**Deciso:** niente casella `no-reply@` _(2026-09-28)_: i moduli spediscono con l'utenza di `contatti@`.
+Conseguenza da ricordare: **ogni cambio della password di `contatti@` va riportato** in
+`~/.config/flotta/legisboard-posta.env` e in `SMTP_PASSWORD` su entrambi i progetti Vercel, con un
+nuovo deploy; altrimenti i moduli rispondono «il servizio di posta non ha accettato». Da verificare anche l'alias `privacy@legisboard.eu`, citato nell'informativa.
 
 Limite noto: la rotta della landing ha trappola, tempo minimo e validazione, ma nessun limite per
 IP né tetto orario (la landing non ha database). Da aggiungere se arriva spam.
