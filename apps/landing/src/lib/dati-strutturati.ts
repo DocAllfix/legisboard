@@ -1,6 +1,6 @@
 import { PER_DOMINIO, TOTALE } from "./dati";
 import { DOMANDE } from "./domande";
-import { SITO } from "./sito";
+import { CONTATTO_EMAIL, SITO, TITOLARE } from "./sito";
 
 // UN SOLO `@graph`, tre nodi. Due limiti detti prima di scoprirli (docs/07 §3.2):
 //
@@ -10,8 +10,25 @@ import { SITO } from "./sito";
 // - `FAQPage`: Google mostra quei risultati arricchiti solo a siti istituzionali e sanitari. Il
 //   markup resta utile alle risposte degli assistenti.
 //
-// `Organization` manca di proposito: il titolare non è ancora deciso, e un nome legale
-// inventato in un dato strutturato è peggio di nessun nome.
+// `Organization` _(2026-09-28)_: la ditta individuale che offre il servizio, con gli stessi dati
+// del piede. Esiste solo se il titolare è impostato: un nome legale inventato in un dato
+// strutturato è peggio di nessun nome.
+
+const ORGANIZZAZIONE = TITOLARE
+  ? [
+      {
+        "@type": "Organization",
+        "@id": `${SITO.url}/#titolare`,
+        name: SITO.nome,
+        legalName: TITOLARE.nome,
+        url: SITO.url,
+        ...(TITOLARE.partitaIva ? { vatID: TITOLARE.partitaIva } : {}),
+        ...(TITOLARE.indirizzo ? { address: TITOLARE.indirizzo } : {}),
+        ...(CONTATTO_EMAIL ? { email: CONTATTO_EMAIL } : {}),
+        ...(TITOLARE.telefono ? { telephone: TITOLARE.telefono } : {}),
+      },
+    ]
+  : [];
 
 export const DATI_STRUTTURATI = {
   "@context": "https://schema.org",
@@ -26,6 +43,7 @@ export const DATI_STRUTTURATI = {
     {
       "@type": "SoftwareApplication",
       "@id": `${SITO.url}/#applicazione`,
+      ...(TITOLARE ? { publisher: { "@id": `${SITO.url}/#titolare` } } : {}),
       name: SITO.nome,
       url: SITO.url,
       applicationCategory: "BusinessApplication",
@@ -51,5 +69,6 @@ export const DATI_STRUTTURATI = {
         acceptedAnswer: { "@type": "Answer", text: d.risposta },
       })),
     },
+    ...ORGANIZZAZIONE,
   ],
 } as const;
