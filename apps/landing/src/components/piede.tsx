@@ -1,10 +1,43 @@
 import { Logotipo } from "@legisboard/ui/marchio";
-import { INGRESSO_DEMO } from "@/lib/sito";
+import { CONTATTO_EMAIL, INGRESSO_DEMO, TITOLARE } from "@/lib/sito";
 import { ANCORE } from "./intestazione";
 
-// Nessuna ragione sociale e nessuna partita IVA: decisione del committente del 2026-09-24, che
-// le ha giudicate non necessarie per il lancio. La pagina entra comunque negli indici. Se un
-// giorno servissero, stanno qui, nella riga del copyright.
+// I DATI DEL PRESTATORE, su ogni pagina _(2026-09-28)_: nome, sede, email, telefono, partita
+// IVA ed eventuale REA, come chiedono il D.Lgs 70/2003 (art. 7) e il DPR 633/1972 (art. 35). Si
+// leggono da `TITOLARE` in `lib/sito.ts`: una voce senza valore semplicemente non compare, così
+// il piede non mostra mai un «da completare».
+function DatiPrestatore() {
+  if (!TITOLARE) return null;
+  const voci = [
+    TITOLARE.nome,
+    TITOLARE.indirizzo ?? TITOLARE.citta,
+    TITOLARE.partitaIva ? `P.IVA ${TITOLARE.partitaIva}` : null,
+    TITOLARE.codiceFiscale ? `C.F. ${TITOLARE.codiceFiscale}` : null,
+    TITOLARE.rea ? `REA ${TITOLARE.rea}` : null,
+  ].filter(Boolean);
+  return (
+    <p className="basis-full leading-relaxed">
+      Legisboard è un servizio di {voci.join(" · ")}
+      {CONTATTO_EMAIL ? (
+        <>
+          {" · "}
+          <a href={`mailto:${CONTATTO_EMAIL}`} className="underline underline-offset-2">
+            {CONTATTO_EMAIL}
+          </a>
+        </>
+      ) : null}
+      {TITOLARE.telefono ? (
+        <>
+          {" · "}
+          <a href={`tel:${TITOLARE.telefono.replace(/s/g, "")}`} className="underline underline-offset-2">
+            {TITOLARE.telefono}
+          </a>
+        </>
+      ) : null}
+    </p>
+  );
+}
+
 export function Piede() {
   return (
     <footer className="border-t bg-surface">
@@ -51,6 +84,7 @@ export function Piede() {
       </div>
       <div className="border-t">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-between gap-4 px-5 py-6 text-xs text-muted-foreground">
+          <DatiPrestatore />
           <p>© {new Date().getFullYear()} Legisboard</p>
           <p>La demo gira a Francoforte, con il database nell&apos;Unione europea.</p>
         </div>

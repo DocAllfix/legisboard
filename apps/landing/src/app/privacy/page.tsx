@@ -29,7 +29,8 @@ export default function Privacy() {
       {TITOLARE ? (
         <p>
           {TITOLARE.nome}
-          {TITOLARE.citta ? `, ${TITOLARE.citta}` : ""}. Per ogni questione sui vostri dati scrivete a{" "}
+          {TITOLARE.indirizzo ? `, ${TITOLARE.indirizzo}` : TITOLARE.citta ? `, ${TITOLARE.citta}` : ""}
+          {TITOLARE.partitaIva ? `, P.IVA ${TITOLARE.partitaIva}` : ""}. Per ogni questione sui vostri dati scrivete a{" "}
           <a href={`mailto:${EMAIL_PRIVACY}`}>{EMAIL_PRIVACY}</a>.
         </p>
       ) : (

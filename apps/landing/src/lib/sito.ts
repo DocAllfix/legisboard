@@ -24,15 +24,33 @@ export const INDICIZZABILE =
   process.env.VERCEL_ENV === "production" && process.env.LANDING_INDICIZZABILE === "1";
 
 /**
- * IL TITOLARE DEL TRATTAMENTO: una persona fisica _(decisione del 2026-09-28)_.
+ * IL TITOLARE: una ditta individuale _(2026-09-28)_. È insieme il titolare del trattamento
+ * (art. 13 GDPR) e il prestatore del servizio che il sito deve identificare.
  *
- * L'art. 13 GDPR chiede l'identità del titolare e un suo contatto: senza, l'informativa non
- * vale e il modulo non può raccogliere niente. Nome e città bastano; l'indirizzo completo e il
- * codice fiscale non sono richiesti, e su una pagina pubblica sarebbero dati in più.
+ * I DATI OBBLIGATORI SUL SITO, indicati dal committente e verificati sulle norme:
+ *   - nome, domicilio o sede, email: D.Lgs 70/2003, art. 7, lett. a-c;
+ *   - numero REA e registro, se c'è l'iscrizione: stesso articolo, lett. d;
+ *   - partita IVA: art. 7 lett. g, e art. 35 del DPR 633/1972, che la vuole sulla home;
+ *   - telefono: la legge chiede un contatto «rapido e diretto», e il committente lo mette.
+ * Il codice fiscale non è richiesto: compare solo se la variabile esiste. La PEC non è
+ * obbligatoria e non si pubblica, perché attirerebbe spam.
+ *
+ * Tutto da variabili d'ambiente lette in build: cambiare un dato non richiede un commit.
  */
-const nomeTitolare = process.env.TITOLARE_NOME?.trim();
+const v = (k: string) => process.env[k]?.trim() || null;
+const nomeTitolare = v("TITOLARE_NOME");
 export const TITOLARE = nomeTitolare
-  ? { nome: nomeTitolare, citta: process.env.TITOLARE_CITTA?.trim() || null }
+  ? {
+      nome: nomeTitolare,
+      citta: v("TITOLARE_CITTA"),
+      /** Domicilio o sede: via, numero, CAP, comune e provincia. */
+      indirizzo: v("TITOLARE_INDIRIZZO"),
+      telefono: v("TITOLARE_TELEFONO"),
+      partitaIva: v("TITOLARE_PIVA"),
+      codiceFiscale: v("TITOLARE_CF"),
+      /** Già nella forma da pubblicare, per esempio «CE-123456». */
+      rea: v("TITOLARE_REA"),
+    }
   : null;
 
 /** Dove scrivere per esercitare i diritti. Un alias che finisce nella casella dei contatti. */
