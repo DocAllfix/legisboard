@@ -23,8 +23,12 @@ import { ADEMPIMENTI_GDPR, OGGI_ISO, SETTIMANA, TESI } from "@/lib/dati";
 // - niente scala in `em`: i componenti dei due assi sono in `rem` e non la seguirebbero. Le
 //   carte si sovrappongono solo da `lg`; sotto si impilano, leggibili, senza tagli.
 // - niente alone sfocato dietro al mazzo: è decorazione, e DESIGN.md la esclude.
-// - la rotazione è ferma: sono fogli su una scrivania, la metafora del tema chiaro. Al
-//   passaggio si muove solo `transform`.
+// - IL MOVIMENTO RACCONTA LA TESI _(2026-09-29)_. All'apertura le carte si posano una dopo
+//   l'altra, e la data scaduta della carta davanti arriva per ultima, come un timbro: prima si
+//   legge «Completata», poi che il ciclo è finito. Al passaggio il mazzo si apre a ventaglio, e
+//   la carta sotto il puntatore si raddrizza e sale in cima. Solo `translate`, `rotate`,
+//   `opacity` e `transform`; niente con `prefers-reduced-motion`. L'eroe resta LCP-sicuro: si
+//   anima il mazzo, mai il titolo.
 //
 // `aria-hidden`: ripete in forma di oggetto ciò che il testo accanto dice in parole, e la
 // matrice più in basso dice in forma accessibile. Letto due volte sarebbe rumore.
@@ -32,13 +36,18 @@ import { ADEMPIMENTI_GDPR, OGGI_ISO, SETTIMANA, TESI } from "@/lib/dati";
 // `text-foreground` dichiarato: sul fondo oliva dell'eroe le carte ereditavano l'avorio della
 // sezione, e il testo scuro diventava avorio su bianco. Invisibile, non sbagliato di poco.
 const CARTA =
-  "rounded-lg border bg-surface text-foreground shadow-md motion-safe:transition-transform motion-safe:duration-500";
+  "mazzo-carta rounded-lg border bg-surface text-foreground shadow-md " +
+  "motion-safe:transition-[translate,rotate,border-color] motion-safe:duration-300 motion-safe:ease-out " +
+  "lg:hover:z-20 lg:hover:rotate-0! lg:hover:border-border-strong";
 
 export function Mazzo() {
   return (
     <div aria-hidden className="group relative mx-auto w-full max-w-md space-y-4 lg:h-[38rem] lg:max-w-lg lg:space-y-0">
       {/* Dietro — le prossime scadenze */}
-      <div className={`${CARTA} p-5 lg:absolute lg:top-0 lg:right-0 lg:w-72 lg:rotate-2 lg:group-hover:translate-x-1`}>
+      <div
+        style={{ animationDelay: "80ms" }}
+        className={`${CARTA} p-5 lg:absolute lg:top-0 lg:right-0 lg:w-72 lg:rotate-2 lg:group-hover:translate-x-4 lg:group-hover:-translate-y-3 lg:group-hover:rotate-3`}
+      >
         <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">{SETTIMANA.titolo}</p>
         <ul className="mt-3 space-y-2.5">
           {SETTIMANA.righe.map((r) => (
@@ -54,7 +63,10 @@ export function Mazzo() {
       </div>
 
       {/* In mezzo — la copertina del fascicolo ispettivo */}
-      <div className={`${CARTA} p-6 lg:absolute lg:top-44 lg:left-0 lg:w-80 lg:-rotate-1`}>
+      <div
+        style={{ animationDelay: "220ms" }}
+        className={`${CARTA} p-6 lg:absolute lg:top-44 lg:left-0 lg:w-80 lg:-rotate-1 lg:group-hover:-translate-x-4 lg:group-hover:-rotate-3`}
+      >
         <div className="flex items-baseline justify-between gap-3 border-b-2 border-foreground pb-2">
           <span className="text-micro font-semibold tracking-widest uppercase">Studio Dimostrativo</span>
           <span className="text-micro text-muted-foreground">Fascicolo ispettivo</span>
@@ -75,7 +87,10 @@ export function Mazzo() {
 
       {/* Davanti — la tesi */}
       {TESI ? (
-        <div className={`${CARTA} p-5 lg:absolute lg:right-0 lg:bottom-0 lg:w-72 lg:group-hover:-translate-y-1`}>
+        <div
+          style={{ animationDelay: "360ms" }}
+          className={`${CARTA} p-5 lg:absolute lg:right-0 lg:bottom-0 lg:w-72 lg:group-hover:translate-x-2 lg:group-hover:translate-y-3 lg:group-hover:-rotate-1`}
+        >
           <div className="flex items-center gap-2">
             <PastigliaDominio dominio={TESI.dominio} />
             <Codice codice={TESI.codice} />
@@ -88,7 +103,10 @@ export function Mazzo() {
             </dd>
             <dt className="text-muted-foreground">Scadenza</dt>
             <dd>
-              <Scadenza data={TESI.scadenza} giorni={TESI.giorni} statoScadenza={TESI.statoScadenza} />
+              {/* Arriva per ultima, come un timbro sul foglio: vedi `.timbro` in globals.css. */}
+              <span className="timbro inline-block">
+                <Scadenza data={TESI.scadenza} giorni={TESI.giorni} statoScadenza={TESI.statoScadenza} />
+              </span>
             </dd>
           </dl>
           <p className="mt-4 border-t pt-3 text-xs text-muted-foreground">Il documento c&apos;è. Il ciclo no.</p>

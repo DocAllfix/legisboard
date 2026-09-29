@@ -9,7 +9,7 @@ import { Matrice } from "@/components/matrice";
 import { Mazzo } from "@/components/mazzo";
 import { ModuloRichiesta } from "@/components/modulo-richiesta";
 import { Piede } from "@/components/piede";
-import { PULSANTE_PIENO, PULSANTE_PIENO_SU_OLIVA, PULSANTE_VUOTO_SU_OLIVA } from "@/components/pulsanti";
+import { COLLEGAMENTO_SU_OLIVA, FRECCIA_CTA, PULSANTE_PIENO, PULSANTE_PIENO_SU_OLIVA } from "@/components/pulsanti";
 import { ENTRO_90, ESEMPIO_ASSESSMENT, INCROCIO, TOTALE } from "@/lib/dati";
 import { DATI_STRUTTURATI } from "@/lib/dati-strutturati";
 import { DOMANDE } from "@/lib/domande";
@@ -146,11 +146,11 @@ export default function Pagina() {
                 decide una persona, la scadenza la decide la data. Un documento redatto a marzo e scaduto a settembre
                 smette di sembrare a posto.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-3">
+              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
                 <a href={INGRESSO_DEMO} className={PULSANTE_PIENO_SU_OLIVA}>
-                  Entra nella demo <ArrowRight className="size-4" aria-hidden />
+                  Entra nella demo <ArrowRight className={FRECCIA_CTA} aria-hidden />
                 </a>
-                <a href={CONTATTO_POSSIBILE ? "#richiesta" : "#problema"} className={PULSANTE_VUOTO_SU_OLIVA}>
+                <a href={CONTATTO_POSSIBILE ? "#richiesta" : "#problema"} className={COLLEGAMENTO_SU_OLIVA}>
                   {CONTATTO_POSSIBILE ? "Richiedi una presentazione" : "Guarda il problema"}
                 </a>
               </div>
@@ -325,7 +325,7 @@ export default function Pagina() {
               Il modo più rapido per capirlo è entrarci.
             </h2>
             <a href={INGRESSO_DEMO} className={PULSANTE_PIENO_SU_OLIVA}>
-              Entra nella demo <ArrowRight className="size-4" aria-hidden />
+              Entra nella demo <ArrowRight className={FRECCIA_CTA} aria-hidden />
             </a>
           </div>
         </section>
