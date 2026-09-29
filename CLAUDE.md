@@ -62,6 +62,7 @@ Ovviamente man mano che definirai il progetto potrai modificare e aggiornare que
   già stato deciso sulla forma e con quale metodo, i divieti, il vincolo della CSP sulle
   librerie, il cancello visivo
 - `docs/07-landing-e-demo.md` — landing su legisboard.eu e demo pubblica: architettura, SEO, pipeline di rilascio
+- `docs/08-contenuti-e-seo.md` — pilastri per decreto, blog in MDX, cancello editoriale, redazione automatica con 48 ore di revisione
 - `deploy/GUASTI.md` — registro dei guasti incontrati davvero, con sintomo, causa e rimedio
 - `deploy/PLAYBOOK-DEPLOY.md` — la sequenza per attivare un'istanza, comando per comando
 - `docs/politica-scoring.md` — ogni numero e ogni scostamento dai prototipi, con l'aritmetica

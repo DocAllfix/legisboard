@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@legisboard/engine", "@legisboard/ui"],
   poweredByHeader: false,
 
+  // Gli articoli si leggono dal disco anche alla rigenerazione notturna, che gira su una funzione
+  // e non sulla macchina di build: senza questa riga la funzione non avrebbe la cartella, e un
+  // articolo programmato non comparirebbe mai.
+  outputFileTracingIncludes: { "/**": ["./content/**/*"] },
+
   async headers() {
     // In sviluppo React ha bisogno di `eval` per il ricaricamento a caldo: la CSP si prova su
     // `next build && next start`, che è ciò che gira in produzione.

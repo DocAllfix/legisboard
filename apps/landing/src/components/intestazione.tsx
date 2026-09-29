@@ -4,13 +4,15 @@ import Link from "next/link";
 import { CONTATTO_POSSIBILE, INGRESSO_DEMO } from "@/lib/sito";
 import { PULSANTE_PIENO } from "./pulsanti";
 
-// Con la barra davanti: l'intestazione sta anche su /privacy e /cookie.
+// Con la barra davanti: l'intestazione sta anche su /privacy, /cookie, sulle guide e sui pilastri.
+// «Guide» al posto di «Domande» _(2026-09-29)_: le domande restano in fondo alla home, le guide
+// sono la parte del sito che cresce.
 export const ANCORE = [
   ["/#problema", "Il problema"],
   ["/#decreti", "I tre decreti"],
   ["/#come-funziona", "Come funziona"],
   ["/#distribuzione", "Distribuzione"],
-  ["/#domande", "Domande"],
+  ["/blog", "Guide"],
 ] as const;
 
 // Il menu da telefono è un <details>: si apre e si chiude senza una riga di JavaScript, ed è

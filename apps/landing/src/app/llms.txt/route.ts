@@ -1,13 +1,23 @@
+import { DOMINI } from "@legisboard/engine";
+import { articoliPubblicati } from "@/lib/blog";
 import { PER_DOMINIO, TOTALE } from "@/lib/dati";
+import { PILASTRI } from "@/lib/pilastri";
 import { INGRESSO_DEMO, SITO } from "@/lib/sito";
 
 // `llms.txt` generato e non scritto: i numeri vengono dal motore come nel resto della pagina.
 // La prima versione era un file statico con 171, 42, 65 e 64 battuti a mano — esattamente ciò
 // che questa landing esiste per non fare.
-export const dynamic = "force-static";
+// Rigenerato ogni notte come le guide che elenca.
+export const revalidate = 86400;
 
 export function GET() {
   const perDecreto = PER_DOMINIO.map((d) => `${d.quanti} ${d.etichetta.norma}`).join(", ");
+  const articoli = articoliPubblicati();
+  const riga = "\n";
+  const guide = articoli.length
+    ? `${riga}## Guide${riga}${riga}${articoli.map((a) => `- [${a.titolo}](${SITO.url}/blog/${a.slug}): ${a.descrizione}`).join(riga)}${riga}`
+    : "";
+  const pilastri = DOMINI.map((d) => `- [${PILASTRI[d].titolo}](${SITO.url}${PILASTRI[d].url}): ${PILASTRI[d].descrizione}`).join(riga);
   const testo = `# ${SITO.nome}
 
 > Registro unico degli adempimenti GDPR (Reg. UE 2016/679), D.Lgs 231/2001 e D.Lgs 81/2008, per DPO, studi legali, organismi di vigilanza e RSPP. Ogni adempimento ha due stati distinti: lo stato del lavoro, deciso da una persona, e lo stato della scadenza, deciso dalla data.
@@ -24,6 +34,10 @@ Il caso che il prodotto esiste per mostrare è «Completata e scaduta»: il docu
 
 - [Pagina del prodotto](${SITO.url}/)
 - [Demo pubblica, ingresso con un clic](${INGRESSO_DEMO})
-`;
+
+## Adempimenti per decreto
+
+${pilastri}
+${guide}`;
   return new Response(testo, { headers: { "content-type": "text/plain; charset=utf-8" } });
 }

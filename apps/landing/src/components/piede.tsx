@@ -1,4 +1,7 @@
 import { Logotipo } from "@legisboard/ui/marchio";
+import { DOMINI } from "@legisboard/engine";
+import Link from "next/link";
+import { PILASTRI } from "@/lib/pilastri";
 import { CONTATTO_EMAIL, INGRESSO_DEMO, TITOLARE } from "@/lib/sito";
 import { ANCORE } from "./intestazione";
 
@@ -41,7 +44,7 @@ function DatiPrestatore() {
 export function Piede() {
   return (
     <footer className="border-t bg-surface">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Logotipo className="h-6 w-auto" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -59,6 +62,23 @@ export function Piede() {
                 </a>
               </li>
             ))}
+          </ul>
+        </nav>
+        <nav aria-label="Adempimenti">
+          <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">Adempimenti</p>
+          <ul className="mt-4 space-y-2 text-sm">
+            {DOMINI.map((d) => (
+              <li key={d}>
+                <Link href={PILASTRI[d].url} className="hover:underline">
+                  {PILASTRI[d].titoloBreve}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/blog" className="hover:underline">
+                Tutte le guide
+              </Link>
+            </li>
           </ul>
         </nav>
         <div>
