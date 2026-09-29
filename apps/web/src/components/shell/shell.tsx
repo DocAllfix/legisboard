@@ -226,7 +226,7 @@ export function Shell({
           <div className="w-full">{navigazione(true)}</div>
 
           <div className="mt-auto flex flex-col items-center gap-2">
-            <Guida visti={tourVisti} />
+            <Guida visti={tourVisti} dove="binario" />
             <SelettoreTema />
             <span
               className="grid size-7 place-items-center rounded-full bg-sidebar-selected text-micro font-semibold"
@@ -292,7 +292,7 @@ export function Shell({
             </div>
             <div className="flex items-center justify-between px-1.5">
               <span className="flex items-center gap-1">
-                <Guida visti={tourVisti} />
+                <Guida visti={tourVisti} dove="cassetto" />
                 <SelettoreTema />
               </span>
               <button

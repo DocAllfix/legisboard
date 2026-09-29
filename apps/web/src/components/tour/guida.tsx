@@ -32,7 +32,15 @@ function tourDelPercorso(percorso: string): Tour | undefined {
   return undefined;
 }
 
-export function Guida({ visti }: { visti: Record<string, number> }) {
+/**
+ * LA GUIDA È MONTATA DUE VOLTE: nel binario da `lg` in su e nel cassetto sotto. Entrambe le copie
+ * si aprivano da sole, e il giro partiva due volte, con due riquadri sovrapposti e due veli —
+ * trovato il 2026-09-29 da una prova sul sito vero, su ogni schermata con un giro. Ora si apre da
+ * sola solo la copia che sta nella parte visibile a questa larghezza; il pulsante resta in tutte e due.
+ */
+const LG = "(min-width: 64rem)";
+
+export function Guida({ visti, dove }: { visti: Record<string, number>; dove: "binario" | "cassetto" }) {
   const percorso = usePathname();
   const [inCorso, setInCorso] = useState(false);
   // Ciò che si è già aperto in QUESTA sessione di pagina: senza, tornando indietro il tour
@@ -105,13 +113,14 @@ export function Guida({ visti }: { visti: Record<string, number> }) {
   // schermata è cambiata, chi l'aveva già visto lo rivede una volta sola.
   useEffect(() => {
     if (!tour) return;
+    if (window.matchMedia(LG).matches !== (dove === "binario")) return;
     if ((visti[tour.chiave] ?? 0) >= tour.versione) return;
     if (apertiOra.current.has(tour.chiave)) return;
     // Un istante di attesa: la schermata deve aver finito di disegnarsi, altrimenti gli
     // ancoraggi non ci sono ancora e il tour si apre monco.
     const t = setTimeout(() => void avvia(tour), 900);
     return () => clearTimeout(t);
-  }, [tour, visti, avvia]);
+  }, [tour, visti, avvia, dove]);
 
   const disponibili = TOUR.filter((t) => t.chiave === tour?.chiave);
 
