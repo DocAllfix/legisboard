@@ -34,6 +34,46 @@ export type Tour = {
 
 export const TOUR: readonly Tour[] = [
   {
+    // IL PRIMO GIRO DELLA DEMO PUBBLICA _(2026-09-29)_: chi arriva dalla landing entra qui, e
+    // prima di toccare un adempimento deve capire che cosa sta guardando. Vale anche per i
+    // clienti veri: il cruscotto è la prima schermata dopo l'accesso.
+    chiave: "cruscotto",
+    nome: "Il cruscotto",
+    percorso: "/cruscotto",
+    versione: 1,
+    passi: [
+      {
+        titolo: "Come stanno tutte le aziende, in una schermata",
+        testo:
+          "Il cruscotto risponde a «come stiamo» prima di «cosa devo fare»: GDPR, 231 e sicurezza sul lavoro letti insieme, su tutte le aziende che seguite.",
+      },
+      {
+        ancora: "cruscotto-decreti",
+        titolo: "Un decreto per colonna",
+        testo:
+          "La percentuale è la conformità effettiva: adempimenti fatti E ancora validi, non quelli spuntati. Un documento redatto a marzo e scaduto a settembre qui non conta come fatto. Un clic sulla colonna apre le scadenze di quel decreto.",
+      },
+      {
+        ancora: "cruscotto-complessivo",
+        titolo: "Il quadro d'insieme non è una media",
+        testo:
+          "Si calcola sull'insieme unito dei tre decreti: una media peserebbe uguale un modulo da 42 adempimenti e uno da 65, e basterebbe spegnerne uno per migliorare il numero. L'esposizione misura quanto rischio resta scoperto, da 0 a 100.",
+      },
+      {
+        ancora: "cruscotto-dettaglio",
+        titolo: "Ogni numero dice da dove viene",
+        testo:
+          "L'orizzonte conta cosa scade nei prossimi 7, 30 e 90 giorni; la matrice incrocia rischio e priorità; l'esposizione si scompone nelle sue tre parti. Sono numeri che si possono difendere davanti a un'autorità, perché ognuno dichiara il proprio denominatore.",
+      },
+      {
+        ancora: "cruscotto-scadenzario",
+        titolo: "Da qui si passa al lavoro",
+        testo:
+          "«Cosa scade adesso» apre lo scadenzario unico dei tre decreti. Dalla barra a sinistra si raggiungono il portafoglio delle aziende e ogni assessment: ogni schermata ha la sua guida, dal punto interrogativo.",
+      },
+    ],
+  },
+  {
     chiave: "portafoglio",
     nome: "Il portafoglio",
     percorso: "/portafoglio",

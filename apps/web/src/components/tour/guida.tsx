@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 
 /** Quale tour appartiene alla schermata corrente. */
 function tourDelPercorso(percorso: string): Tour | undefined {
+  if (percorso.startsWith("/cruscotto")) return tourPerChiave("cruscotto");
   if (percorso.startsWith("/scadenzario")) return tourPerChiave("scadenzario");
   if (percorso.startsWith("/portafoglio")) return tourPerChiave("portafoglio");
   if (/^\/azienda\/[^/]+\/relazioni/.test(percorso)) return tourPerChiave("relazioni");

@@ -65,6 +65,7 @@ export default async function PaginaCruscotto() {
         </div>
         <Link
           href="/scadenzario"
+          data-tour="cruscotto-scadenzario"
           className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1.5 text-sm hover:bg-accent"
         >
           Cosa scade adesso
@@ -87,7 +88,7 @@ export default async function PaginaCruscotto() {
           natura diversa: non è un quarto decreto, è la lettura dei tre insieme. Tenerlo in
           fila con gli altri lo faceva sembrare uno di loro. */}
       <section className="mt-6 grid gap-3 lg:grid-cols-[1fr_340px]">
-        <div className="pannello overflow-clip">
+        <div data-tour="cruscotto-decreti" className="pannello overflow-clip">
           <div className="grid md:grid-cols-3">
             {d.perDominio.map((m, i) => (
               <Link
@@ -191,7 +192,7 @@ export default async function PaginaCruscotto() {
             numeri diversi (conformità ed esposizione) e fa da ancora visiva a un oggetto che
             altrimenti sarebbe solo testo. La superficie sale di un gradino invece di alzare
             la voce con un bordo: nella forma «quieto» il rilievo si fa così. */}
-        <div className="pannello entra bg-surface-raised p-5" style={{ animationDelay: "180ms" }}>
+        <div data-tour="cruscotto-complessivo" className="pannello entra bg-surface-raised p-5" style={{ animationDelay: "180ms" }}>
           <p className="text-sm font-semibold">Complessivo</p>
           <p className="text-xs text-muted-foreground">sull&apos;insieme unito dei tre decreti</p>
           <div className="mt-4 flex items-center gap-4">
@@ -222,7 +223,7 @@ export default async function PaginaCruscotto() {
       </section>
 
       {/* --- Seconda fascia: orizzonte, matrice, esposizione ---------------------------- */}
-      <section className="mt-3 grid gap-3 lg:grid-cols-3">
+      <section data-tour="cruscotto-dettaglio" className="mt-3 grid gap-3 lg:grid-cols-3">
         <Riquadro
           titolo="Orizzonte"
           nota="Le quattro finestre che un consulente usa davvero. Sono cumulative."

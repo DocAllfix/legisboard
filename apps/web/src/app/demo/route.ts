@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { aziendaDemoId, istanzaDemo, sessioniDemoRecenti } from "@/lib/db/demo";
+import { istanzaDemo, sessioniDemoRecenti } from "@/lib/db/demo";
 import { env } from "@/lib/env";
 
 // L'INGRESSO CON UN CLIC NELLA DEMO PUBBLICA _(docs/07 §5)_.
@@ -45,12 +45,10 @@ export async function GET(richiesta: Request) {
     });
   }
 
-  // DRITTI NELL'ASSESSMENT 81/08 dell'azienda d'esempio, non nel cruscotto: è lì che stanno i
-  // casi «Completata e Scaduta» che la landing ha appena promesso, ed è una delle schermate con
-  // un giro guidato che parte da solo. Il cruscotto non ne ha uno — la prima versione portava lì,
-  // con un '?giro=1' che nessun componente leggeva.
-  const azienda = await aziendaDemoId();
-  const destinazione = new URL(azienda ? `/azienda/${azienda}/d81` : "/portafoglio", richiesta.url);
+  // SUL CRUSCOTTO, dove parte il giro guidato _(2026-09-29, decisione dell'utente)_. Prima si
+  // entrava nell'assessment 81/08, dove stanno i casi «Completata e Scaduta»: ma chi arriva
+  // dalla landing deve prima vedere il quadro d'insieme, e il cruscotto ora ha un giro suo.
+  const destinazione = new URL("/cruscotto", richiesta.url);
   const uscita = new Response(null, { status: 303, headers: { location: destinazione.toString() } });
   for (const cookie of risposta.headers.getSetCookie()) uscita.headers.append("set-cookie", cookie);
   return uscita;

@@ -321,7 +321,7 @@ demo.legisboard.eu/demo         ── mode ≠ demo ──► 404
 sessione aperta sull'utente dimostrativo (credenziali solo in env, mai mostrate)
    │
    ▼
-/cruscotto?giro=1   ──► giro guidato driver.js (data-tour già previsti)
+/cruscotto          ──► giro guidato «Il cruscotto», parte da solo (2026-09-29)
    │
    ▼
 fascia fissa nella shell: «Stai guardando una demo · dati fittizi · ripristinati ogni notte»
