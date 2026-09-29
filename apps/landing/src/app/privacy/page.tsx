@@ -15,6 +15,15 @@ export const metadata: Metadata = {
   title: "Informativa privacy · Legisboard",
   description: "Chi tratta i vostri dati su legisboard.eu e nella demo pubblica, perché, per quanto tempo e con quali fornitori.",
   alternates: { canonical: "/privacy" },
+  // Senza, l'anteprima condivisa ereditava titolo e indirizzo della home dal layout.
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    siteName: "Legisboard",
+    title: "Informativa privacy · Legisboard",
+    description: "Chi tratta i vostri dati su legisboard.eu e nella demo pubblica, perché, per quanto tempo e con quali fornitori.",
+    url: "/privacy",
+  },
 };
 
 export default function Privacy() {

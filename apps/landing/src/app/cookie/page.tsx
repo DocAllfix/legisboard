@@ -14,6 +14,15 @@ export const metadata: Metadata = {
   title: "Cookie · Legisboard",
   description: "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
   alternates: { canonical: "/cookie" },
+  // Senza, l'anteprima condivisa ereditava titolo e indirizzo della home dal layout.
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    siteName: "Legisboard",
+    title: "Cookie · Legisboard",
+    description: "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
+    url: "/cookie",
+  },
 };
 
 export default function Cookie() {
