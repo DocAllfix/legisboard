@@ -6,6 +6,7 @@ import {
   DOMINI,
   FAMIGLIE_REATO,
   TUTTI_I_TEMPLATES,
+  VERSIONE_CATALOGO,
   type Dominio,
 } from "@legisboard/engine";
 import { db } from "./index";
@@ -29,8 +30,8 @@ import {
 //
 // Uso:  pnpm --filter web db:seed
 
-/** Cambiare questa etichetta a ogni modifica del contenuto del catalogo. */
-const ETICHETTA = "Legisboard 2026.1";
+/** Si cambia nel motore, a ogni modifica del contenuto del catalogo. */
+const ETICHETTA = VERSIONE_CATALOGO;
 const VERSIONE_APP = "0.1.0";
 
 async function main() {

@@ -194,3 +194,58 @@
     transform: none;
   }
 }
+
+/* ============================================================================
+   IL PRIMO PASSO DI «COME FUNZIONA»: il gesto e la risposta del motore.
+
+   Mentre la riga entra nello schermo, «Da fare» lascia il posto a «Completata» e compare la
+   scadenza calcolata. Legato allo scorrimento, non al tempo: chi scorre piano lo vede accadere.
+   Senza `animation-timeline`, o con il movimento ridotto, la riga è già nello stato finale:
+   `passo-prima` nascosto, `passo-dopo` visibile.
+   ========================================================================= */
+.passo-prima {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .passo-riga {
+      view-timeline-name: --passo;
+    }
+    .passo-prima,
+    .passo-dopo {
+      animation-timeline: --passo;
+      /* Finisce quando la carta è entrata tutta: chi smette di scorrere lì vede lo stato finale. */
+      animation-range: entry 20% entry 100%;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+    .passo-prima {
+      animation-name: passo-esce;
+    }
+    .passo-dopo {
+      animation-name: passo-entra;
+    }
+  }
+}
+@keyframes passo-esce {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes passo-entra {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+  75%,
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -191,6 +191,22 @@ export const SETTIMANA = (() => {
   return { titolo: "Prossime scadenze · una per decreto", righe };
 })();
 
+/**
+ * Un'agenda breve per «Come funziona»: le prossime scadenze, AL MASSIMO DUE PER DECRETO, per
+ * data. Prese le cinque più vicine in assoluto sarebbero state tutte 231 — lo stesso difetto
+ * già trovato nella carta delle scadenze — e non mostrerebbero la cosa da dimostrare: tre
+ * decreti in un elenco solo.
+ */
+export const AGENDA: readonly Riga[] = (() => {
+  const future = agenda(TUTTI)
+    .filter((a) => a.giorniAllaScadenza !== null && a.giorniAllaScadenza >= 0)
+    .map(riga)
+    .sort(perUrgenza);
+  return DOMINI.flatMap((d) => future.filter((r) => r.dominio === d).slice(0, 2))
+    .sort(perUrgenza)
+    .slice(0, 5);
+})();
+
 export const ADEMPIMENTI_GDPR = CATALOGHI.gdpr.length;
 export const OGGI_ISO = OGGI;
 

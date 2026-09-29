@@ -1,16 +1,18 @@
-import { formattaIt } from "@legisboard/engine";
 import { Codice, PastigliaDominio, Scadenza } from "@legisboard/ui/stato";
 import { ArrowRight } from "lucide-react";
+import { ComeFunziona } from "@/components/come-funziona";
 import { Confronto } from "@/components/confronto";
 import { Contatti } from "@/components/contatti";
 import { Intestazione } from "@/components/intestazione";
 import { Mappa } from "@/components/mappa";
 import { Matrice } from "@/components/matrice";
 import { Mazzo } from "@/components/mazzo";
+import { Metodo } from "@/components/metodo";
 import { ModuloRichiesta } from "@/components/modulo-richiesta";
 import { Piede } from "@/components/piede";
+import { SchedaInstallazione } from "@/components/scheda-installazione";
 import { COLLEGAMENTO_SU_OLIVA, FRECCIA_CTA, PULSANTE_PIENO, PULSANTE_PIENO_SU_OLIVA } from "@/components/pulsanti";
-import { ENTRO_90, ESEMPIO_ASSESSMENT, INCROCIO, TOTALE } from "@/lib/dati";
+import { INCROCIO, TOTALE } from "@/lib/dati";
 import { DATI_STRUTTURATI } from "@/lib/dati-strutturati";
 import { DOMANDE } from "@/lib/domande";
 import { CONTATTO_POSSIBILE, INGRESSO_DEMO, RICHIESTE_ATTIVE } from "@/lib/sito";
@@ -61,64 +63,6 @@ function TitoloSezione({ id, occhiello, titolo, sotto }: { id: string; occhiello
     </div>
   );
 }
-
-const PASSI = [
-  {
-    n: "01",
-    titolo: "Segnate lo stato del lavoro",
-    testo:
-      "Decreto per decreto, adempimento per adempimento. La scadenza non la scrivete: si calcola dalla periodicità e dall'ultima esecuzione.",
-    esempio: ESEMPIO_ASSESSMENT
-      ? `${ESEMPIO_ASSESSMENT.codice} · ${ESEMPIO_ASSESSMENT.periodicita} → ${ESEMPIO_ASSESSMENT.scadenza ? formattaIt(ESEMPIO_ASSESSMENT.scadenza) : "da programmare"}`
-      : null,
-  },
-  {
-    n: "02",
-    titolo: "Leggete un'agenda sola",
-    testo: "Le scadenze dei tre decreti in un elenco unico, ordinato per data. Non tre calendari da tenere allineati.",
-    esempio: `${ENTRO_90} scadenze nei prossimi 90 giorni, nell'azienda d'esempio`,
-  },
-  {
-    n: "03",
-    titolo: "Preparate il fascicolo per l'ispezione",
-    testo:
-      "Uno per organo (Garante privacy, Ispettorato del Lavoro, ASL, Organismo di Vigilanza), con il nome dello studio in copertina e lo stato di ogni adempimento alla data.",
-    esempio: "Fascicolo ispettivo in PDF",
-  },
-] as const;
-
-// Quattro principi, ognuno verificato: PRODUCT.md §1 e §2, l'etichetta di versione del
-// catalogo in Impostazioni, e la regola del proprietario in `packages/ui/src/stato.tsx`.
-const PRINCIPI = [
-  {
-    titolo: "Due assi, sempre distinti",
-    testo:
-      "Lo stato del lavoro e lo stato della scadenza non si fondono mai in un campo solo. Un campo solo, su «Completata e scaduta», mente.",
-  },
-  {
-    titolo: "Il colore è un dato",
-    testo:
-      "Rosso, ambra e verde dicono soltanto lo stato della scadenza. Non decorano niente: quando li vedete, significano qualcosa.",
-  },
-  {
-    titolo: "Un catalogo con una versione",
-    testo: "L'elenco degli adempimenti ha un'etichetta di versione, e ogni installazione dichiara su quale sta lavorando.",
-  },
-  {
-    titolo: "Un proprietario per adempimento",
-    testo:
-      "Se un adempimento serve a più decreti, lo possiede uno solo. Gli altri lo leggono con il codice e il colore del proprietario, e non possono modificarlo.",
-  },
-] as const;
-
-const SCHEDA = [
-  ["Installazione", "Dedicata allo studio, con il suo database. Non un servizio condiviso a cui ci si iscrive."],
-  ["Accessi", "Le utenze le crea lo studio, per invito, con ruoli distinti. Nessuna registrazione pubblica."],
-  ["Autenticazione", "Secondo fattore con un'app di autenticazione, più codici di recupero."],
-  ["Intestazione", "Il nome dello studio nella barra laterale, in copertina e a piè di pagina di ogni fascicolo."],
-  ["Dove gira", "Su un nostro server o su una macchina vostra: si decide insieme, prima di cominciare."],
-  ["Acquisto", "Nessun listino online e nessun pagamento dal sito: ogni installazione si concorda."],
-] as const;
 
 export default function Pagina() {
   // Una costante locale resta ristretta anche dentro `map`; quella del modulo no.
@@ -231,42 +175,28 @@ export default function Pagina() {
         <section id="come-funziona" aria-labelledby="come-titolo">
           <div className="mx-auto w-full max-w-6xl px-5 py-24 md:py-32">
             <TitoloSezione id="come-titolo" occhiello="Come funziona" titolo="Tre gesti. Le date le calcola il motore." />
-            <ol className="mt-16 grid gap-14 md:grid-cols-3 md:gap-10">
-              {PASSI.map((p) => (
-                <li key={p.n} className="affiora">
-                  <span className="block text-display leading-none font-extrabold tracking-tight text-primary tabular-nums">
-                    {p.n}
-                  </span>
-                  <h3 className="mt-6 text-xl font-bold tracking-tight">{p.titolo}</h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">{p.testo}</p>
-                  {p.esempio ? <p className="mt-5 font-mono text-sm text-foreground">{p.esempio}</p> : null}
-                </li>
-              ))}
-            </ol>
+            <ComeFunziona />
           </div>
         </section>
 
         {/* ============================================================ IL METODO */}
         <section id="metodo" aria-labelledby="metodo-titolo" className="bg-surface-sunken">
-          <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.5fr]">
-            <TitoloSezione id="metodo-titolo" occhiello="Il metodo" titolo="Quattro regole che il prodotto non piega." />
-            <ol className="grid gap-x-10 gap-y-12 sm:grid-cols-2">
-              {PRINCIPI.map((p, i) => (
-                <li key={p.titolo} className="affiora">
-                  <span className="text-sm font-bold text-primary tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-2 text-lg font-bold tracking-tight">{p.titolo}</h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">{p.testo}</p>
-                </li>
-              ))}
-            </ol>
+          <div className="mx-auto w-full max-w-6xl px-5 py-24 md:py-32">
+            <TitoloSezione
+              id="metodo-titolo"
+              occhiello="Il metodo"
+              titolo="Quattro regole che il prodotto non piega."
+              sotto="Ognuna con la sua prova, presa dall'azienda d'esempio."
+            />
+            <Metodo />
           </div>
         </section>
 
         {/* ========================================================= DISTRIBUZIONE */}
-        {/* Nessun prezzo: decisione del committente del 2026-09-24. Una scheda tecnica, non una
-            griglia di riquadri: chi compra per uno studio legale vuole i dati, in fila. */}
+        {/* Nessun prezzo: decisione del committente del 2026-09-24. La scheda è un foglio da
+            firmare: vedi `components/scheda-installazione.tsx`. */}
         <section id="distribuzione" aria-labelledby="distribuzione-titolo">
-          <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.5fr]">
+          <div className="mx-auto grid w-full max-w-6xl items-start gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.5fr]">
             <div>
               <TitoloSezione
                 id="distribuzione-titolo"
@@ -280,14 +210,7 @@ export default function Pagina() {
                 </a>
               </div>
             </div>
-            <dl className="affiora">
-              {SCHEDA.map(([voce, valore]) => (
-                <div key={voce} className="grid gap-1 border-t border-border-strong py-5 sm:grid-cols-[10rem_1fr] sm:gap-6">
-                  <dt className="font-bold">{voce}</dt>
-                  <dd className="leading-relaxed text-muted-foreground">{valore}</dd>
-                </div>
-              ))}
-            </dl>
+            <SchedaInstallazione />
           </div>
         </section>
 

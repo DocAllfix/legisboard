@@ -73,6 +73,12 @@ export const PRESIDI_CHIAVE: Readonly<Record<Dominio, readonly string[]>> = {
 };
 
 /** I cataloghi dei tre domini, indicizzati. 42 + 65 + 64 = 171 adempimenti. */
+/**
+ * L'etichetta di versione del catalogo. Cambia a ogni modifica del contenuto dei cataloghi: il
+ * seme del database la usa per creare la versione, la landing la mostra. Una fonte sola.
+ */
+export const VERSIONE_CATALOGO = "Legisboard 2026.1";
+
 export const CATALOGHI: Readonly<Record<Dominio, readonly AdempimentoTemplate[]>> = {
   gdpr: GDPR_TEMPLATES,
   d231: D231_TEMPLATES,
