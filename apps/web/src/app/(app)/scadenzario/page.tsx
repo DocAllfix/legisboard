@@ -196,8 +196,8 @@ function VuotoScadenzario() {
         </Link>
       }
     >
-      Lo scadenzario raccoglie le scadenze dei tre decreti di tutte le aziende: si popola quando
-      almeno una ha un modulo attivo con adempimenti censiti.
+      Lo scadenzario raccoglie le scadenze dei tre decreti di tutte le aziende: si popola quando almeno una ha
+      un modulo attivo con adempimenti censiti.
     </Vuoto>
   );
 }

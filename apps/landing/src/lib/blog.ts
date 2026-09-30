@@ -56,7 +56,9 @@ function leggi(file: string): Articolo {
   );
   const esito = Intestazione.safeParse(normalizzato);
   if (!esito.success) {
-    throw new Error(`Intestazione non valida in content/blog/${file}: ${esito.error.issues.map((i) => `${i.path.join(".")} ${i.message}`).join("; ")}`);
+    throw new Error(
+      `Intestazione non valida in content/blog/${file}: ${esito.error.issues.map((i) => `${i.path.join(".")} ${i.message}`).join("; ")}`,
+    );
   }
   const parole = content.split(/\s+/).filter(Boolean).length;
   // Un generatore per articolo e in ordine di documento: `rehype-slug` numera i doppioni allo stesso modo.
@@ -111,7 +113,10 @@ export function correlati(a: Articolo): readonly Articolo[] {
 
 /** «6 ottobre 2026». */
 export function dataEstesa(iso: string): string {
-  return new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
-    new Date(`${iso}T00:00:00Z`),
-  );
+  return new Intl.DateTimeFormat("it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${iso}T00:00:00Z`));
 }

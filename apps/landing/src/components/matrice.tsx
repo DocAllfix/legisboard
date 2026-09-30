@@ -24,7 +24,9 @@ export function Matrice() {
           fino alla tabella e rende inutile il contenitore scorrevole che ha dentro. Misurato: 421 px
           su un telefono da 390. */}
       <fieldset className="min-w-0">
-        <legend className="sr-only">Scegli una combinazione di stato del lavoro e stato della scadenza</legend>
+        <legend className="sr-only">
+          Scegli una combinazione di stato del lavoro e stato della scadenza
+        </legend>
         <div className="overflow-x-auto rounded-lg border bg-surface">
           <table className="w-full text-sm">
             <thead>
@@ -37,7 +39,11 @@ export function Matrice() {
                   Lavoro ↓ · Scadenza →
                 </th>
                 {SCADENZE.map((s) => (
-                  <th key={s} scope="col" className={`px-2 py-2.5 text-right text-xs font-semibold ${COLORE_SCADENZA[s]}`}>
+                  <th
+                    key={s}
+                    scope="col"
+                    className={`px-2 py-2.5 text-right text-xs font-semibold ${COLORE_SCADENZA[s]}`}
+                  >
                     {s}
                   </th>
                 ))}
@@ -54,7 +60,8 @@ export function Matrice() {
                       {c.quanti > 0 ? (
                         <label
                           /* `relative`: il pulsante nascosto è `sr-only`, cioè assoluto. Senza un antenato posizionato il suo blocco contenitore è la pagina, sfugge al taglio del contenitore scorrevole e allarga il documento: misurato, 425 px su 390. */
-                          className="cella relative inline-flex min-h-11 min-w-11 items-center justify-end rounded-sm px-3 font-mono tabular-nums">
+                          className="cella relative inline-flex min-h-11 min-w-11 items-center justify-end rounded-sm px-3 font-mono tabular-nums"
+                        >
                           <input
                             type="radio"
                             name="cella"
@@ -66,7 +73,9 @@ export function Matrice() {
                           />
                           <span
                             className={
-                              c.lavoro === "Completata" && c.scadenza === "Scaduta" ? "font-semibold text-scaduta" : ""
+                              c.lavoro === "Completata" && c.scadenza === "Scaduta"
+                                ? "font-semibold text-scaduta"
+                                : ""
                             }
                           >
                             {c.quanti}
@@ -93,8 +102,11 @@ export function Matrice() {
             <div key={c.id} data-cella={c.id}>
               <p className="text-sm">
                 <span className="font-mono font-semibold tabular-nums">{c.quanti}</span>{" "}
-                {c.quanti === 1 ? "adempimento" : "adempimenti"} · <strong className="font-semibold">{c.lavoro}</strong> e{" "}
-                <strong className={`font-semibold ${COLORE_SCADENZA[c.scadenza]}`}>{c.scadenza.toLowerCase()}</strong>
+                {c.quanti === 1 ? "adempimento" : "adempimenti"} ·{" "}
+                <strong className="font-semibold">{c.lavoro}</strong> e{" "}
+                <strong className={`font-semibold ${COLORE_SCADENZA[c.scadenza]}`}>
+                  {c.scadenza.toLowerCase()}
+                </strong>
                 {c.quanti > c.righe.length ? (
                   <span className="text-muted-foreground">, i {c.righe.length} più urgenti</span>
                 ) : null}

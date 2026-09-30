@@ -58,8 +58,8 @@ nuovo deploy; altrimenti i moduli rispondono «il servizio di posta non ha accet
 Limite noto: la rotta della landing ha trappola, tempo minimo e validazione, ma nessun limite per
 IP né tetto orario (la landing non ha database). Da aggiungere se arriva spam.
 
-**Una connessione a Neon caduta a metà query, e il risultato è una pagina 500** *(misurato il
-2026-09-22)*. In un giro completo del cancello — 1676 richieste in quaranta minuti — la
+**Una connessione a Neon caduta a metà query, e il risultato è una pagina 500** _(misurato il
+2026-09-22)_. In un giro completo del cancello — 1676 richieste in quaranta minuti — la
 connessione è caduta **una volta**, alle 16:57:28, producendo due 500 (`/scadenzario` e
 `/azienda/:id/d81?q=S03`). La causa sotto è `Connection terminated unexpectedly`; l'errore
 arriva da `requireSessione`, cioè dalla **lettura della sessione**, che sta su ogni pagina
@@ -78,14 +78,14 @@ database, che è lavoro di un'altra sessione.
 
 ### Lavoro sulla forma — chiuso, con due voci decise in senso contrario al piano
 
-| Cosa | Esito |
-| --- | --- |
-| **Aggiornamento ottimistico sul cambio di stato**, con ricevuta | **Fatto.** La riga cambia prima della risposta del server, si blocca solo lei, le altre restano azionabili. E un difetto trovato strada facendo: **l'esito di `cambiaStato` era ignorato** — un rifiuto del server faceva tornare la riga al valore vecchio senza una parola. Ora si legge e compare. |
-| **Ordinamento** | **Fatto sullo scadenzario** (azienda, priorità, scadenza; nell'indirizzo). **Non sull'assessment**, di proposito: lì le righe sono raggruppate per categoria, e ordinare per colonna romperebbe il raggruppamento che organizza la pagina. Se serve, va progettato — non aggiunto. |
-| **Filtri del portafoglio nell'indirizzo** | **Fatto**, filtro e ordinamento. |
-| `.cresce` sulle barre | **Fatto**, e corretto: animava `flex-basis`, cioè la geometria che DESIGN.md vieta di animare. Ora anima `transform`. |
-| `.tocca` sulle schede del cruscotto | **Deciso di no.** Le tre schede sono le parti di UNA lastra; `.tocca` solleva ciò che tocca con ombra e anello, e sollevarne una la staccherebbe dalla superficie — il contrario di «un fatto in tre parti». L'effetto fatto a mano, senza ombra, è quello giusto per una parte di lastra. |
-| `Tooltip` al posto di `title=` | **Deciso di no per la conversione di massa.** Sono undici, quasi tutti su elementi che hanno già un nome accessibile; `stato.tsx` sta in ogni riga di ogni tabella e diventerebbe un componente client in sessantaquattro celle. **Chiuso invece l'unico buco vero**: il trattino «nessuna scadenza» portava il significato solo nel `title`, che i lettori di schermo non annunciano in modo affidabile. |
+| Cosa                                                            | Esito                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Aggiornamento ottimistico sul cambio di stato**, con ricevuta | **Fatto.** La riga cambia prima della risposta del server, si blocca solo lei, le altre restano azionabili. E un difetto trovato strada facendo: **l'esito di `cambiaStato` era ignorato** — un rifiuto del server faceva tornare la riga al valore vecchio senza una parola. Ora si legge e compare.                                                                                                     |
+| **Ordinamento**                                                 | **Fatto sullo scadenzario** (azienda, priorità, scadenza; nell'indirizzo). **Non sull'assessment**, di proposito: lì le righe sono raggruppate per categoria, e ordinare per colonna romperebbe il raggruppamento che organizza la pagina. Se serve, va progettato — non aggiunto.                                                                                                                        |
+| **Filtri del portafoglio nell'indirizzo**                       | **Fatto**, filtro e ordinamento.                                                                                                                                                                                                                                                                                                                                                                          |
+| `.cresce` sulle barre                                           | **Fatto**, e corretto: animava `flex-basis`, cioè la geometria che DESIGN.md vieta di animare. Ora anima `transform`.                                                                                                                                                                                                                                                                                     |
+| `.tocca` sulle schede del cruscotto                             | **Deciso di no.** Le tre schede sono le parti di UNA lastra; `.tocca` solleva ciò che tocca con ombra e anello, e sollevarne una la staccherebbe dalla superficie — il contrario di «un fatto in tre parti». L'effetto fatto a mano, senza ombra, è quello giusto per una parte di lastra.                                                                                                                |
+| `Tooltip` al posto di `title=`                                  | **Deciso di no per la conversione di massa.** Sono undici, quasi tutti su elementi che hanno già un nome accessibile; `stato.tsx` sta in ogni riga di ogni tabella e diventerebbe un componente client in sessantaquattro celle. **Chiuso invece l'unico buco vero**: il trattino «nessuna scadenza» portava il significato solo nel `title`, che i lettori di schermo non annunciano in modo affidabile. |
 
 ---
 
@@ -93,7 +93,7 @@ database, che è lavoro di un'altra sessione.
 
 ### 1.1 Attivazione del secondo fattore — **c'è, manca solo il QR**
 
-*Riscritta il 2026-09-22: questa voce dichiarava «manca la schermata», e non è più vero.*
+_Riscritta il 2026-09-22: questa voce dichiarava «manca la schermata», e non è più vero._
 
 `components/impostazioni/secondo-fattore.tsx` attiva il secondo fattore in tre passi
 dichiarati: password, verifica di un codice, codici di recupero. Il segreto si presenta in
@@ -108,7 +108,7 @@ dipendenze. Chi attiva oggi digita il base32: funziona, ed è più lento.
 
 ### 1.2 Inviti — **chiuso**
 
-*Riscritta il 2026-09-22: questa voce dichiarava «manca l'interfaccia», e non è più vero.*
+_Riscritta il 2026-09-22: questa voce dichiarava «manca l'interfaccia», e non è più vero._
 
 Il giro è completo in tutte e tre le parti: `invitaCollega` in `features/utenti/azioni.ts`,
 il modulo «Invita un collega» in `components/impostazioni/utenti.tsx`, e la pagina di
@@ -161,7 +161,7 @@ M07…»). La strada tecnica è già aperta — `d231-demo.json` conserva `stato
 
 ### 2.2 Nome e dominio — **deciso**
 
-*Chiusa il 2026-09-23.* Il nome è **Legisboard**, i domini sono `legisboard.it` e
+_Chiusa il 2026-09-23._ Il nome è **Legisboard**, i domini sono `legisboard.it` e
 `legisboard.eu`, registrati dal committente il 14 settembre. La raccomandazione di questa
 voce — `compliancedesk.it` — non è stata seguita e non è mai stata comprata.
 

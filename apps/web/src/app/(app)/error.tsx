@@ -43,13 +43,12 @@ export default function ErroreApplicazione({
       <div className="pannello entra mt-6 max-w-2xl p-6">
         <TriangleAlert className="size-5 text-imminente" aria-hidden />
         <p className="mt-3 text-sm leading-relaxed">
-          Il guasto è stato registrato. <strong>Nessun dato è stato toccato</strong>: la schermata
-          compare prima che qualunque scrittura venga confermata.
+          Il guasto è stato registrato. <strong>Nessun dato è stato toccato</strong>: la schermata compare
+          prima che qualunque scrittura venga confermata.
         </p>
         <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-          Il resto dell&apos;applicazione continua a funzionare — la barra qui a fianco porta ovunque.
-          Se riprovando succede di nuovo, il riferimento qui sotto ci dice esattamente cosa è
-          successo.
+          Il resto dell&apos;applicazione continua a funzionare — la barra qui a fianco porta ovunque. Se
+          riprovando succede di nuovo, il riferimento qui sotto ci dice esattamente cosa è successo.
         </p>
 
         {/* IL RIFERIMENTO SÌ, IL MESSAGGIO NO. Il `digest` identifica l'errore nei nostri

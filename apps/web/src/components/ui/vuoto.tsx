@@ -67,9 +67,7 @@ export function Vuoto({
           stare nel tono più tenue, che sul testo invece non passa. */}
       <Icona className="mx-auto size-6 text-faint-foreground" aria-hidden />
       <Titolo className="mt-3 text-sm font-semibold">{titolo}</Titolo>
-      <div className="mx-auto mt-1.5 max-w-md text-sm leading-relaxed text-muted-foreground">
-        {children}
-      </div>
+      <div className="mx-auto mt-1.5 max-w-md text-sm leading-relaxed text-muted-foreground">{children}</div>
       {azione ? <div className="mt-5 flex flex-wrap justify-center gap-2">{azione}</div> : null}
     </div>
   );

@@ -90,7 +90,9 @@ export default async function PaginaArticolo({ params }: Props) {
         url,
         image: `${url}/opengraph-image`,
         author: { "@type": "Person", name: autore.nome, url: `${SITO.url}/autore/${a.autore}` },
-        publisher: TITOLARE ? { "@id": `${SITO.url}/#titolare` } : { "@type": "Organization", name: SITO.nome },
+        publisher: TITOLARE
+          ? { "@id": `${SITO.url}/#titolare` }
+          : { "@type": "Organization", name: SITO.nome },
         keywords: a.parola_chiave,
         about: ETICHETTE_DOMINIO[a.decreto].esteso,
       },
@@ -107,7 +109,10 @@ export default async function PaginaArticolo({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datiStrutturati) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datiStrutturati) }}
+      />
       <Intestazione />
       <main>
         <article className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-16 md:py-20 lg:grid-cols-[minmax(0,42rem)_1fr] lg:gap-16">
@@ -121,7 +126,9 @@ export default async function PaginaArticolo({ params }: Props) {
                 {ETICHETTE_DOMINIO[a.decreto].breve}
               </Link>
             </nav>
-            <h1 className="mt-6 text-display-sm leading-tight font-extrabold tracking-tight text-balance">{a.titolo}</h1>
+            <h1 className="mt-6 text-display-sm leading-tight font-extrabold tracking-tight text-balance">
+              {a.titolo}
+            </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{a.descrizione}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-y py-4 text-sm">
               <PastigliaDominio dominio={a.decreto} />
@@ -158,7 +165,9 @@ export default async function PaginaArticolo({ params }: Props) {
           {a.titoli.length > 2 ? (
             <aside className="hidden lg:block">
               <nav aria-label="In questa guida" className="sticky top-24 border-l pl-5 text-sm">
-                <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">In questa guida</p>
+                <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">
+                  In questa guida
+                </p>
                 <ol className="mt-4 space-y-2.5">
                   {a.titoli.map((t) => (
                     <li key={t.id}>

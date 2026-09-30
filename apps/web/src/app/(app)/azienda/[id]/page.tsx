@@ -170,15 +170,15 @@ export default async function PaginaAzienda({ params }: { params: Promise<{ id: 
 
         {attivi.length === 0 ? (
           <Vuoto icona={ToggleLeft} titolo="Nessun modulo attivo">
-            Attivane uno qui sopra: gli adempimenti del catalogo per quel decreto vengono creati
-            subito, e da lì in poi questa pagina mostra le loro scadenze.
+            Attivane uno qui sopra: gli adempimenti del catalogo per quel decreto vengono creati subito, e da
+            lì in poi questa pagina mostra le loro scadenze.
           </Vuoto>
         ) : righe.length === 0 ? (
           // IL TESTO DICEVA «che arriva con la fase successiva», che era copy di sviluppo
           // rimasto in produzione: l'assessment c'è da tempo, e ora questo vuoto ci porta.
           <Vuoto icona={CalendarClock} titolo="Niente in agenda">
-            Nessun adempimento ha una scadenza da presidiare. I presidi continui e quelli mai
-            programmati non compaiono qui: si lavorano nell&apos;assessment di ciascun modulo.
+            Nessun adempimento ha una scadenza da presidiare. I presidi continui e quelli mai programmati non
+            compaiono qui: si lavorano nell&apos;assessment di ciascun modulo.
           </Vuoto>
         ) : (
           <TabellaAdempimenti righe={righe} mostraDominio={attivi.length > 1} />

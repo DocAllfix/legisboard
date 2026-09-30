@@ -1,6 +1,6 @@
 # Legisboard — Product Landing Master Plan & Launch Blueprint
 
-*2026-09-24 · piano, nessun codice ancora · da approvare prima dell'esecuzione*
+_2026-09-24 · piano, nessun codice ancora · da approvare prima dell'esecuzione_
 
 ## 0. Contesto
 
@@ -16,14 +16,14 @@ senza una prova sociale inventata, senza un solo numero scritto a mano.
 
 ### 0.1 Decisioni prese dal committente
 
-| Data | Decisione |
-| --- | --- |
-| 2026-09-23 | Nome **Legisboard**, domini `legisboard.eu` e `legisboard.it` (già in `src/lib/brand.ts`, in produzione) |
-| 2026-09-24 | Landing su **`legisboard.eu`**. `legisboard.it` e i `www` → redirect permanente al `.eu`. Demo su **`demo.legisboard.eu`** |
-| 2026-09-24 | **Nessun prezzo** sulla landing |
+| Data       | Decisione                                                                                                                                                         |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-23 | Nome **Legisboard**, domini `legisboard.eu` e `legisboard.it` (già in `src/lib/brand.ts`, in produzione)                                                          |
+| 2026-09-24 | Landing su **`legisboard.eu`**. `legisboard.it` e i `www` → redirect permanente al `.eu`. Demo su **`demo.legisboard.eu`**                                        |
+| 2026-09-24 | **Nessun prezzo** sulla landing                                                                                                                                   |
 | 2026-09-24 | **Blocchi demo confermati**: demo pubblica con un clic, che poi porta a «Fissa un appuntamento» o «Richiedi l'acquisto». È la conferma che `CLAUDE.md` richiedeva |
-| 2026-09-24 | Contatto tramite **modulo sulla pagina** |
-| 2026-09-24 | Titolare legale: **per ora niente** in footer e dati strutturati |
+| 2026-09-24 | Contatto tramite **modulo sulla pagina**                                                                                                                          |
+| 2026-09-24 | Titolare legale: **per ora niente** in footer e dati strutturati                                                                                                  |
 
 ### 0.2 Premesse del brief corrette dai fatti
 
@@ -56,11 +56,11 @@ senza una prova sociale inventata, senza un solo numero scritto a mano.
 
 Il vincolo decisivo, verificato:
 
-| | `apps/web` (gdprhub) | evalisdeck |
-| --- | --- | --- |
-| Layout radice | `export const dynamic = "force-dynamic"` | statico |
-| CSP | `middleware.ts` con **nonce per richiesta** | nessun middleware |
-| Conseguenza | ogni pagina è resa per richiesta: nessuna cache CDN, TTFB serverless sull'LCP | le pagine di marketing sono statiche |
+|               | `apps/web` (gdprhub)                                                          | evalisdeck                           |
+| ------------- | ----------------------------------------------------------------------------- | ------------------------------------ |
+| Layout radice | `export const dynamic = "force-dynamic"`                                      | statico                              |
+| CSP           | `middleware.ts` con **nonce per richiesta**                                   | nessun middleware                    |
+| Conseguenza   | ogni pagina è resa per richiesta: nessuna cache CDN, TTFB serverless sull'LCP | le pagine di marketing sono statiche |
 
 Una landing dentro `apps/web` sarebbe dinamica per costruzione. Per renderla statica bisognerebbe
 toccare `middleware.ts`, che è **fuori perimetro**. Inoltre landing e prodotto stanno su domini
@@ -100,19 +100,19 @@ Il ritmo è preso dal benchmark, depurato dalla copia: fasce chiare e **una fasc
 (`bg-sidebar`) che interrompe per scandire, artefatti veri del prodotto al posto delle
 illustrazioni, passi numerati con un esempio concreto in mono.
 
-| # | Sezione | Titolo | Contenuto | Da evalisdeck | Diverso da evalisdeck |
-| --- | --- | --- | --- | --- | --- |
-| S0 | Intestazione | — | logotipo, 5 ancore, «Entra nella demo», «Richiedi una presentazione» (solo con modulo acceso) | struttura | menu mobile con `<details>`: zero JS |
-| S1 | Eroe | `h1` | occhiello «GDPR · D.Lgs 231/2001 · D.Lgs 81/2008», promessa, sottotitolo con i numeri del motore, due CTA, microcopy «Dati fittizi · nessuna registrazione · si entra con un clic». A destra **`EstrattoRegistro`**: 6 righe vere del catalogo, resa server, con una riga «Completata · 23/06/2026 −52gg» | `HeroDeck`: un artefatto vero, non un'illustrazione | LCP = il testo dell'`h1`, **mai** dentro un'animazione |
-| S2 | Prova per specificità | fascia oliva | 171 adempimenti · 3 decreti · 42 / 65 / 64 per decreto · 1 registro. **Tutti dal motore**, al valore finale nell'HTML. Uno spazio per una credenziale vera, vuoto finché non esiste | fascia numeri | **nessun contatore animato**: niente zeri per i crawler |
-| S3 | Il problema: i due assi | `h2` | tesi di PRODUCT.md §1: «Completata **e** Scaduta». A destra la **matrice 4×4 interattiva** con i conteggi veri della demo: una cella filtra l'elenco sotto. Stato predefinito resto dal server = Completata × Scaduta, così anche senza JS si vede l'essenziale | le schede interattive | è l'**Interactive Preview**: il prodotto, non un mockup |
-| S4 | Tre decreti, un registro | `h2` | tre colonne con conteggio, copertura e tre codici veri ciascuna. Un esempio vero di lettura incrociata (`lettoDa`): il codice porta la tinta del modulo proprietario | «14 percorsi, un solo archivio» | il grafo è il **secondo** tema, non il primo |
-| S5 | Come funziona | fascia oliva | 01 Assessment per decreto → 02 Scadenzario unificato → 03 Relazione **con la carta intestata dello studio**. Una riga d'esempio in mono per passo | tre passi numerati su fascia scura | il passo 3 porta il white-label, che è un vantaggio vero per uno studio |
-| S6 | Il metodo | `h2` | 5-6 principi numerati, **ognuno rintracciato in codice o in PRODUCT.md prima di scriverlo** | «Il metodo incorporato» | nessuna frase che il prodotto non mantiene |
-| S7 | Distribuzione | `h2` | un'istanza per studio, dati nel suo perimetro, marchio dello studio, nessuna registrazione pubblica, secondo fattore. **Nessun prezzo.** CTA «Fissa un appuntamento» | sostituisce «Come si acquista» | niente listino, per decisione del committente |
-| S8 | Domande | `h2` | 6-8 `<details>` fattuali. Il JSON-LD `FAQPage` si genera **dallo stesso array** | FAQ | fonte unica per testo e dati strutturati |
-| S9 | Richiesta | `h2`, `#richiesta` | modulo (§6). Assente finché l'interruttore è spento | — | vincolo art. 13 |
-| S10 | Piè di pagina | — | logotipo, ancore, «Entra nella demo», collegamenti legali quando esistono, «© 2026 Legisboard», «Funzioni e database a Francoforte (UE)» | struttura | nessuna ragione sociale finché il committente non la dà |
+| #   | Sezione                  | Titolo             | Contenuto                                                                                                                                                                                                                                                                                                 | Da evalisdeck                                       | Diverso da evalisdeck                                                   |
+| --- | ------------------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
+| S0  | Intestazione             | —                  | logotipo, 5 ancore, «Entra nella demo», «Richiedi una presentazione» (solo con modulo acceso)                                                                                                                                                                                                             | struttura                                           | menu mobile con `<details>`: zero JS                                    |
+| S1  | Eroe                     | `h1`               | occhiello «GDPR · D.Lgs 231/2001 · D.Lgs 81/2008», promessa, sottotitolo con i numeri del motore, due CTA, microcopy «Dati fittizi · nessuna registrazione · si entra con un clic». A destra **`EstrattoRegistro`**: 6 righe vere del catalogo, resa server, con una riga «Completata · 23/06/2026 −52gg» | `HeroDeck`: un artefatto vero, non un'illustrazione | LCP = il testo dell'`h1`, **mai** dentro un'animazione                  |
+| S2  | Prova per specificità    | fascia oliva       | 171 adempimenti · 3 decreti · 42 / 65 / 64 per decreto · 1 registro. **Tutti dal motore**, al valore finale nell'HTML. Uno spazio per una credenziale vera, vuoto finché non esiste                                                                                                                       | fascia numeri                                       | **nessun contatore animato**: niente zeri per i crawler                 |
+| S3  | Il problema: i due assi  | `h2`               | tesi di PRODUCT.md §1: «Completata **e** Scaduta». A destra la **matrice 4×4 interattiva** con i conteggi veri della demo: una cella filtra l'elenco sotto. Stato predefinito resto dal server = Completata × Scaduta, così anche senza JS si vede l'essenziale                                           | le schede interattive                               | è l'**Interactive Preview**: il prodotto, non un mockup                 |
+| S4  | Tre decreti, un registro | `h2`               | tre colonne con conteggio, copertura e tre codici veri ciascuna. Un esempio vero di lettura incrociata (`lettoDa`): il codice porta la tinta del modulo proprietario                                                                                                                                      | «14 percorsi, un solo archivio»                     | il grafo è il **secondo** tema, non il primo                            |
+| S5  | Come funziona            | fascia oliva       | 01 Assessment per decreto → 02 Scadenzario unificato → 03 Relazione **con la carta intestata dello studio**. Una riga d'esempio in mono per passo                                                                                                                                                         | tre passi numerati su fascia scura                  | il passo 3 porta il white-label, che è un vantaggio vero per uno studio |
+| S6  | Il metodo                | `h2`               | 5-6 principi numerati, **ognuno rintracciato in codice o in PRODUCT.md prima di scriverlo**                                                                                                                                                                                                               | «Il metodo incorporato»                             | nessuna frase che il prodotto non mantiene                              |
+| S7  | Distribuzione            | `h2`               | un'istanza per studio, dati nel suo perimetro, marchio dello studio, nessuna registrazione pubblica, secondo fattore. **Nessun prezzo.** CTA «Fissa un appuntamento»                                                                                                                                      | sostituisce «Come si acquista»                      | niente listino, per decisione del committente                           |
+| S8  | Domande                  | `h2`               | 6-8 `<details>` fattuali. Il JSON-LD `FAQPage` si genera **dallo stesso array**                                                                                                                                                                                                                           | FAQ                                                 | fonte unica per testo e dati strutturati                                |
+| S9  | Richiesta                | `h2`, `#richiesta` | modulo (§6). Assente finché l'interruttore è spento                                                                                                                                                                                                                                                       | —                                                   | vincolo art. 13                                                         |
+| S10 | Piè di pagina            | —                  | logotipo, ancore, «Entra nella demo», collegamenti legali quando esistono, «© 2026 Legisboard», «Funzioni e database a Francoforte (UE)»                                                                                                                                                                  | struttura                                           | nessuna ragione sociale finché il committente non la dà                 |
 
 **Pagine al lancio:** solo `/`. `/privacy` e `/cookie` nascono con il titolare.
 
@@ -136,16 +136,16 @@ verifica con la tabella delle rotte identica e il cancello verde.
 
 ### 2.2 Scelte
 
-| Asse | Scelta | Motivo |
-| --- | --- | --- |
-| Carattere | Geist e Geist Mono dal pacchetto npm **`geist`** (`next/font/local`) | nessuna richiesta a Google in fase di build: toglie la fragilità già in `docs/05` |
-| Tema | **solo chiaro** | DESIGN.md: chiaro predefinito, scrivania e foglio. Niente script inline del tema: CSP più stretta |
-| Scala | token del prodotto più due soli token di landing, `--text-display` e `--text-display-sm`, con `clamp()` | l'`h1` di una landing non sta in `--text-titolo` (1.7rem) |
-| Griglia | spaziature di layout **solo multipli di 8 px**; 4 px ammessi solo per lo spazio interno di riga | guardia: si estende `token-puri.test.ts` ad `apps/landing` |
-| Colore | oliva per marchio, CTA e fasce. **Rosso, ambra e verde compaiono solo dentro gli estratti veri del prodotto**, dove significano ciò che significano | DESIGN.md: il colore è dato, non decorazione |
-| Contrasto | AA misurato con la sonda a pixel su canvas | `getComputedStyle` restituisce `lab()` e fa leggere LAB come RGB: trappola già caduta |
-| Terzo livello | `--faint-foreground` **solo su icone** | regola già adottata: non passa 4,5:1 sul testo |
-| Icone | `lucide-react`, come il prodotto | nessun set nuovo |
+| Asse          | Scelta                                                                                                                                              | Motivo                                                                                            |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Carattere     | Geist e Geist Mono dal pacchetto npm **`geist`** (`next/font/local`)                                                                                | nessuna richiesta a Google in fase di build: toglie la fragilità già in `docs/05`                 |
+| Tema          | **solo chiaro**                                                                                                                                     | DESIGN.md: chiaro predefinito, scrivania e foglio. Niente script inline del tema: CSP più stretta |
+| Scala         | token del prodotto più due soli token di landing, `--text-display` e `--text-display-sm`, con `clamp()`                                             | l'`h1` di una landing non sta in `--text-titolo` (1.7rem)                                         |
+| Griglia       | spaziature di layout **solo multipli di 8 px**; 4 px ammessi solo per lo spazio interno di riga                                                     | guardia: si estende `token-puri.test.ts` ad `apps/landing`                                        |
+| Colore        | oliva per marchio, CTA e fasce. **Rosso, ambra e verde compaiono solo dentro gli estratti veri del prodotto**, dove significano ciò che significano | DESIGN.md: il colore è dato, non decorazione                                                      |
+| Contrasto     | AA misurato con la sonda a pixel su canvas                                                                                                          | `getComputedStyle` restituisce `lab()` e fa leggere LAB come RGB: trappola già caduta             |
+| Terzo livello | `--faint-foreground` **solo su icone**                                                                                                              | regola già adottata: non passa 4,5:1 sul testo                                                    |
+| Icone         | `lucide-react`, come il prodotto                                                                                                                    | nessun set nuovo                                                                                  |
 
 ### 2.3 Movimento
 
@@ -168,27 +168,27 @@ Scudi, lucchetti, spunte verdi · illustrazioni di persone o 3D · gradienti vio
 
 ### 3.1 Metadati
 
-| Campo | Valore | Note |
-| --- | --- | --- |
-| `<html lang>` | `it` | un'unica lingua: **niente hreflang**. Il `.it` è un redirect, non un'alternativa |
-| `title` | «Legisboard · adempimenti GDPR, 231 e 81/08 in un registro» | ≤ 60 caratteri, da confermare sulla copia |
-| `description` | una frase con i numeri presi dal motore | ≤ 155 caratteri |
-| `metadataBase` / canonical | `https://legisboard.eu/` | un solo host canonico |
-| `robots` | `index,follow` **solo se** `VERCEL_ENV=production` e `LANDING_INDICIZZABILE=1`, altrimenti `noindex,nofollow` | anteprime mai indicizzate |
-| `og:type` · `og:site_name` · `og:locale` | `website` · `Legisboard` · `it_IT` | |
-| `og:image` | `app/opengraph-image.tsx` con `next/og`, 1200×630, più `alt` | generata, mai statica (§4.3) |
-| `twitter:card` | `summary_large_image`, stessa immagine | |
-| `themeColor` | oliva del token `--sidebar` | nell'export `viewport` |
-| Icone | `app/icon.svg` dal simbolo, `app/apple-icon.tsx` 180×180 generata | |
+| Campo                                    | Valore                                                                                                        | Note                                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `<html lang>`                            | `it`                                                                                                          | un'unica lingua: **niente hreflang**. Il `.it` è un redirect, non un'alternativa |
+| `title`                                  | «Legisboard · adempimenti GDPR, 231 e 81/08 in un registro»                                                   | ≤ 60 caratteri, da confermare sulla copia                                        |
+| `description`                            | una frase con i numeri presi dal motore                                                                       | ≤ 155 caratteri                                                                  |
+| `metadataBase` / canonical               | `https://legisboard.eu/`                                                                                      | un solo host canonico                                                            |
+| `robots`                                 | `index,follow` **solo se** `VERCEL_ENV=production` e `LANDING_INDICIZZABILE=1`, altrimenti `noindex,nofollow` | anteprime mai indicizzate                                                        |
+| `og:type` · `og:site_name` · `og:locale` | `website` · `Legisboard` · `it_IT`                                                                            |                                                                                  |
+| `og:image`                               | `app/opengraph-image.tsx` con `next/og`, 1200×630, più `alt`                                                  | generata, mai statica (§4.3)                                                     |
+| `twitter:card`                           | `summary_large_image`, stessa immagine                                                                        |                                                                                  |
+| `themeColor`                             | oliva del token `--sidebar`                                                                                   | nell'export `viewport`                                                           |
+| Icone                                    | `app/icon.svg` dal simbolo, `app/apple-icon.tsx` 180×180 generata                                             |                                                                                  |
 
 ### 3.2 Dati strutturati (JSON-LD, un solo `@graph`)
 
-| Tipo | Campi | Stato |
-| --- | --- | --- |
-| `WebSite` | `name`, `url`, `inLanguage: "it"` | al lancio |
-| `SoftwareApplication` | `name`, `applicationCategory: "BusinessApplication"`, `operatingSystem: "Web"`, `inLanguage`, `description`, `url`, `featureList` | al lancio, **senza `offers`** |
-| `FAQPage` | generata dallo stesso array delle domande in S8 | al lancio |
-| `Organization` | nome legale, indirizzo, P.IVA | **rinviata**: decisione del committente sul titolare |
+| Tipo                  | Campi                                                                                                                             | Stato                                                |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `WebSite`             | `name`, `url`, `inLanguage: "it"`                                                                                                 | al lancio                                            |
+| `SoftwareApplication` | `name`, `applicationCategory: "BusinessApplication"`, `operatingSystem: "Web"`, `inLanguage`, `description`, `url`, `featureList` | al lancio, **senza `offers`**                        |
+| `FAQPage`             | generata dallo stesso array delle domande in S8                                                                                   | al lancio                                            |
+| `Organization`        | nome legale, indirizzo, P.IVA                                                                                                     | **rinviata**: decisione del committente sul titolare |
 
 Due limiti, detti prima di scoprirli:
 
@@ -218,12 +218,12 @@ controllo è semantica falsa.
 
 ### 3.5 Core Web Vitals: bersagli e strumenti
 
-| Metrica | Bersaglio (mobile, Slow 4G) | Mezzo |
-| --- | --- | --- |
-| LCP | < 1,8 s | l'elemento LCP è testo; font con fallback regolato da `next/font` |
-| CLS | < 0,05 | dimensioni esplicite ovunque; font senza spostamento |
-| INP | < 100 ms | un solo componente client (la matrice), stato locale |
-| JS al primo carico | < 90 KB gzip | tutto il resto è componente server |
+| Metrica            | Bersaglio (mobile, Slow 4G) | Mezzo                                                             |
+| ------------------ | --------------------------- | ----------------------------------------------------------------- |
+| LCP                | < 1,8 s                     | l'elemento LCP è testo; font con fallback regolato da `next/font` |
+| CLS                | < 0,05                      | dimensioni esplicite ovunque; font senza spostamento              |
+| INP                | < 100 ms                    | un solo componente client (la matrice), stato locale              |
+| JS al primo carico | < 90 KB gzip                | tutto il resto è componente server                                |
 
 Misura: **Lighthouse CI** con asserzioni sui bersagli, la sonda CLS del cancello già falsificata,
 e un controllo **senza JavaScript**: `curl` dell'HTML deve contenere l'`h1`, i numeri 171 · 42 ·
@@ -236,6 +236,7 @@ sull'indirizzo provvisorio.
 
 Due bersagli di questa tabella erano sbagliati, e lo scrivo invece di fingere di averli
 raggiunti:
+
 - **JS < 90 KB** non è raggiungibile con l'App Router: il runtime di React e del router pesa
   circa 143 KB anche con **zero** componenti client nostri, che è il caso di questa pagina.
 - **LCP < 1,8 s** in quella simulazione non è stato raggiunto. Non precaricare il carattere mono
@@ -254,8 +255,8 @@ di Next contengono script inline, che portano il payload RSC.
 - **Prova tecnica (spike) come primo passo della Fase C**: verificare se le pagine prerese
   permettono una CSP a hash (`'sha256-…'`) calcolata in build.
 - **Se no**: `script-src 'self' 'unsafe-inline'` e **tutto il resto stretto**: `default-src
-  'self'`, `object-src 'none'`, `base-uri 'self'`, `frame-ancestors 'none'`, `form-action
-  'self'`. Più HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. Il rischio residuo va
+'self'`, `object-src 'none'`, `base-uri 'self'`, `frame-ancestors 'none'`, `form-action
+'self'`. Più HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. Il rischio residuo va
   scritto: nessun contenuto utente viene reso, nessuna sessione, nessun cookie.
 
 ---
@@ -264,11 +265,11 @@ di Next contengono script inline, che portano il payload RSC.
 
 ### 4.1 Cosa chiedo a Social-Studio (specifica già inviata il 2026-09-24)
 
-| File | Cosa | Formato | Ingombri |
-| --- | --- | --- | --- |
-| `legisboard-simbolo.svg` | il simbolo da solo | `viewBox` quadrato `0 0 64 64`; solo `<path>` e `<g>`; `fill="currentColor"`; **vietati** `<text>`, `<style>`, `<script>`, `<image>`, riferimenti esterni, gradienti, filtri | leggibile a **16 px**; provato a 16 · 24 · 32 · 48 |
-| `legisboard-logotipo.svg` | simbolo più «Legisboard» affiancati | testo **convertito in tracciati** (un font nell'SVG è una richiesta esterna, bloccata dalla CSP); `currentColor`; `viewBox` stretto sull'inchiostro | altezza di riferimento **24 px** nell'intestazione, larghezza dichiarata; spazio di rispetto dichiarato |
-| `legisboard-simbolo-16.svg` *(facoltativo)* | variante ottica per la favicon | come sopra; qui un `<style>` interno con `prefers-color-scheme` è ammesso | 16 px |
+| File                                        | Cosa                                | Formato                                                                                                                                                                      | Ingombri                                                                                                |
+| ------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `legisboard-simbolo.svg`                    | il simbolo da solo                  | `viewBox` quadrato `0 0 64 64`; solo `<path>` e `<g>`; `fill="currentColor"`; **vietati** `<text>`, `<style>`, `<script>`, `<image>`, riferimenti esterni, gradienti, filtri | leggibile a **16 px**; provato a 16 · 24 · 32 · 48                                                      |
+| `legisboard-logotipo.svg`                   | simbolo più «Legisboard» affiancati | testo **convertito in tracciati** (un font nell'SVG è una richiesta esterna, bloccata dalla CSP); `currentColor`; `viewBox` stretto sull'inchiostro                          | altezza di riferimento **24 px** nell'intestazione, larghezza dichiarata; spazio di rispetto dichiarato |
+| `legisboard-simbolo-16.svg` _(facoltativo)_ | variante ottica per la favicon      | come sopra; qui un `<style>` interno con `prefers-color-scheme` è ammesso                                                                                                    | 16 px                                                                                                   |
 
 **Tre candidati, non uno.** Consegna in `C:\Users\user\Desktop\Social-Studio\workspace\output\legisboard\`.
 
@@ -279,13 +280,13 @@ indipendenti** — non una scala, non una croce da mirino.
 
 ### 4.2 Cosa non chiedo, e perché
 
-| Non serve | Perché |
-| --- | --- |
-| PNG di favicon e apple-icon | si rasterizzano in build dall'SVG |
-| varianti di colore | `currentColor`: oliva sull'avorio, inchiostro dove serve |
-| immagine Open Graph | generata nel codice (§4.3) |
-| illustrazioni per l'eroe | l'eroe mostra il prodotto vero |
-| set di icone | resta `lucide-react` |
+| Non serve                   | Perché                                                   |
+| --------------------------- | -------------------------------------------------------- |
+| PNG di favicon e apple-icon | si rasterizzano in build dall'SVG                        |
+| varianti di colore          | `currentColor`: oliva sull'avorio, inchiostro dove serve |
+| immagine Open Graph         | generata nel codice (§4.3)                               |
+| illustrazioni per l'eroe    | l'eroe mostra il prodotto vero                           |
+| set di icone                | resta `lucide-react`                                     |
 
 ### 4.3 Come si integra
 
@@ -362,16 +363,16 @@ il dominio diventa attivo** (G5), poi si rifà il deploy e si prova l'accesso su
 
 ## 6. Modulo delle richieste
 
-| Aspetto | Scelta |
-| --- | --- |
-| Campi | nome, email, studio od organizzazione, ruolo (DPO · avvocato · OdV · RSPP · consulente · altro), motivo (presentazione · appuntamento · richiesta d'acquisto, preselezionato da `?motivo=`), messaggio facoltativo |
-| Base giuridica | misure precontrattuali (art. 6.1.b): **nessuna casella di consenso**. Nessun consenso marketing raccolto |
-| Informativa | breve informativa art. 13 accanto al pulsante, più il collegamento a `/privacy` |
-| Invio | route handler `POST /api/richieste` → validazione zod → SMTP con la **stessa convenzione `SMTP_*` del prodotto**: un relay solo per inviti e richieste |
-| Antispam | campo trappola, tempo minimo di compilazione, rifiuto di collegamenti nel messaggio, regola di limite del firewall Vercel se il piano la consente (verificato in esecuzione). **Niente reCAPTCHA**: cookie e trasferimento verso gli USA, su un prodotto che vende GDPR |
-| Senza relay | risposta 503 e messaggio onesto. Non si finge mai l'invio |
-| Interruttore | `RICHIESTE_ATTIVE=1` solo quando esistono **titolare, informativa e SMTP**. Da spento, la sezione S9 e la CTA secondaria non esistono |
-| Calendario | nessun calendario incorporato (cookie di terzi, buchi nella CSP). Se il committente fornisce un collegamento di prenotazione, diventa un collegamento esterno |
+| Aspetto        | Scelta                                                                                                                                                                                                                                                                  |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Campi          | nome, email, studio od organizzazione, ruolo (DPO · avvocato · OdV · RSPP · consulente · altro), motivo (presentazione · appuntamento · richiesta d'acquisto, preselezionato da `?motivo=`), messaggio facoltativo                                                      |
+| Base giuridica | misure precontrattuali (art. 6.1.b): **nessuna casella di consenso**. Nessun consenso marketing raccolto                                                                                                                                                                |
+| Informativa    | breve informativa art. 13 accanto al pulsante, più il collegamento a `/privacy`                                                                                                                                                                                         |
+| Invio          | route handler `POST /api/richieste` → validazione zod → SMTP con la **stessa convenzione `SMTP_*` del prodotto**: un relay solo per inviti e richieste                                                                                                                  |
+| Antispam       | campo trappola, tempo minimo di compilazione, rifiuto di collegamenti nel messaggio, regola di limite del firewall Vercel se il piano la consente (verificato in esecuzione). **Niente reCAPTCHA**: cookie e trasferimento verso gli USA, su un prodotto che vende GDPR |
+| Senza relay    | risposta 503 e messaggio onesto. Non si finge mai l'invio                                                                                                                                                                                                               |
+| Interruttore   | `RICHIESTE_ATTIVE=1` solo quando esistono **titolare, informativa e SMTP**. Da spento, la sezione S9 e la CTA secondaria non esistono                                                                                                                                   |
+| Calendario     | nessun calendario incorporato (cookie di terzi, buchi nella CSP). Se il committente fornisce un collegamento di prenotazione, diventa un collegamento esterno                                                                                                           |
 
 ---
 
@@ -409,15 +410,18 @@ prodotto, e viceversa.
 ### 7.2 Checklist
 
 **Fase A — Registro**
+
 - [ ] A1 `docs/07-landing-e-demo.md` = questo piano; `PRODUCT.md` registra landing e demo pubblica come direzione nuova, con data e fonte; `CLAUDE.md`: blocchi demo confermati il 2026-09-24; `docs/05` aggiornato
 - [ ] A2 P1 fatto (ramo Neon `sviluppo`); P2 fatto
 
 **Fase B — Sistema condiviso**
+
 - [ ] B1 `packages/ui` con `tokens.css` e `stato.tsx`; re-export in `apps/web`; `@source`
 - [ ] B2 `token-puri.test.ts` legge `tokens.css` e scansiona anche `apps/landing`
 - [ ] B3 build di `apps/web` con **tabella delle rotte identica**, cancello verde
 
 **Fase C — Landing**
+
 - [ ] C0 spike CSP a hash → decisione scritta
 - [ ] C1 impalcatura `apps/landing`: Next 16.3.5 come `web`, Tailwind v4, `geist`, `@legisboard/engine`, `@legisboard/ui`, `lucide-react`, `vercel.json` con `fra1`
 - [ ] C2 sezioni S0–S10, modulo dietro interruttore
@@ -425,6 +429,7 @@ prodotto, e viceversa.
 - [ ] C4 intestazione con la scritta in Geist, in attesa del marchio
 
 **Fase D — Demo pubblica (`apps/web`)**
+
 - [ ] D1 utente dimostrativo nel seme; `DEMO_EMAIL` e `DEMO_PASSWORD` in env
 - [ ] D2 ingresso `/demo` con limite di frequenza
 - [ ] D3 copertura `assertNotDemo` (§5.2) e un test per capacità
@@ -434,6 +439,7 @@ prodotto, e viceversa.
 - [ ] D7 `instance_config.mode = 'demo'` sulla vetrina — **solo dopo P1**
 
 **Fase E — Build e verifica di Core Web Vitals (in locale)**
+
 - [ ] E1 typecheck, lint e test di `web` e `landing`
 - [ ] E2 `next build` della landing: tutte le rotte `○` statiche tranne `/api/richieste` `ƒ`
 - [ ] E3 controllo senza JS con `curl`: `h1`, 171 · 42 · 65 · 64, JSON-LD valido, testo delle domande
@@ -443,26 +449,29 @@ prodotto, e viceversa.
 - [ ] E7 cancello di `apps/web` verde **anche in modalità demo**
 
 **Fase F — Deploy Vercel**
+
 - [ ] F1 progetto `legisboard-landing`: root `apps/landing`, collegamento `DocAllfix/gdprhub`, env, Ignored Build Step (e lo stesso su `gdprhub`)
 - [ ] F2 push → build automatica → verifica sull'indirizzo `*.vercel.app` (noindex)
 - [ ] F3 `gdprhub`: cron, `DEMO_*`, `CRON_SECRET`
 
 **Fase G — Domini e DNS**
+
 - [ ] G1 su Vercel: `legisboard.eu` (primario), `www.legisboard.eu`, `legisboard.it`, `www.legisboard.it` (redirect 308) su `legisboard-landing`; `demo.legisboard.eu` su `gdprhub`
 - [ ] G2 valori DNS letti da Vercel (`GET /v6/domains/{dominio}/config`), **non scritti a mano**
 - [ ] G3 Hostinger: TTL a 300, poi **aggiornamento per singolo record, mai `overwrite: true` sulla zona** (su `axialoop.com` cancellerebbe MX, SPF, DKIM e DMARC)
 - [ ] G4 verifica: certificati emessi, `curl -I` su ogni host, redirect 308 corretti
 - [ ] G5 `APP_URL` di `gdprhub` = `https://demo.legisboard.eu`, deploy, accesso provato sul nuovo host; aggiornati cancello e memoria
 
-| Host | Tipo | Oggi | Dopo |
-| --- | --- | --- | --- |
-| `legisboard.eu` | A | `2.57.91.91` (parcheggio) | valore Vercel (atteso `216.198.79.1`, lo stesso di `axialoop.com`) |
-| `www.legisboard.eu` | CNAME | `legisboard.eu.` | valore Vercel |
-| `demo.legisboard.eu` | CNAME | — | valore Vercel |
-| `legisboard.it` | A | `2.57.91.91` | valore Vercel |
-| `www.legisboard.it` | CNAME | `legisboard.it.` | valore Vercel |
+| Host                 | Tipo  | Oggi                      | Dopo                                                               |
+| -------------------- | ----- | ------------------------- | ------------------------------------------------------------------ |
+| `legisboard.eu`      | A     | `2.57.91.91` (parcheggio) | valore Vercel (atteso `216.198.79.1`, lo stesso di `axialoop.com`) |
+| `www.legisboard.eu`  | CNAME | `legisboard.eu.`          | valore Vercel                                                      |
+| `demo.legisboard.eu` | CNAME | —                         | valore Vercel                                                      |
+| `legisboard.it`      | A     | `2.57.91.91`              | valore Vercel                                                      |
+| `www.legisboard.it`  | CNAME | `legisboard.it.`          | valore Vercel                                                      |
 
 **Fase H — Dopo il cambio**
+
 - [ ] H1 cancello contro `https://legisboard.eu` e `https://demo.legisboard.eu`, poi ripristino della demo
 - [ ] H2 Search Console: verifica di dominio con record TXT via Hostinger. Serve il tuo account Google, quindi è un passo tuo
 - [ ] H3 `LANDING_INDICIZZABILE=1` quando il footer ha i dati legali. In Italia la partita IVA va sulla home del sito d'impresa (art. 35 DPR 633/1972): **da confermare con il vostro consulente**. Poi invio della sitemap
@@ -472,17 +481,17 @@ prodotto, e viceversa.
 
 ## 8. Riuso
 
-| Cosa | Dove |
-| --- | --- |
-| Catalogo e conteggi 42 / 65 / 64 | `CATALOGHI` in `packages/engine/src/index.ts` |
-| Dati della demo per estratto e matrice | `CLIENTI_DIMOSTRATIVI`, `lettoDa`, `ETICHETTE_DOMINIO`, `formattaIt` (`@legisboard/engine`) |
-| I due assi resi come nel prodotto | `Scadenza`, `StatoLavoroEtichetta`, `PastigliaDominio`, `Codice` da `components/stato.tsx` → `@legisboard/ui` |
-| Nome e dominio | `PRODOTTO` in `apps/web/src/lib/brand.ts` |
-| Blocchi demo | `assertNotDemo` in `features/auth/guards.ts`, `instance_config.mode` in `lib/db/schema/tenancy.ts` |
-| Ripristino | `lib/db/demo-reset-cli.ts`, `seed-demo.ts` |
-| Relay di posta | `lib/posta` (convenzione `SMTP_*`) |
-| Cancello, sonde CLS e contrasto | `apps/web/scripts/gate-visivo.mjs` |
-| Schemi da evalisdeck, metodo e non aspetto | `robots.ts`, `sitemap.ts`, `opengraph-image.tsx`, `components/seo/dati-strutturati.tsx` |
+| Cosa                                       | Dove                                                                                                          |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Catalogo e conteggi 42 / 65 / 64           | `CATALOGHI` in `packages/engine/src/index.ts`                                                                 |
+| Dati della demo per estratto e matrice     | `CLIENTI_DIMOSTRATIVI`, `lettoDa`, `ETICHETTE_DOMINIO`, `formattaIt` (`@legisboard/engine`)                   |
+| I due assi resi come nel prodotto          | `Scadenza`, `StatoLavoroEtichetta`, `PastigliaDominio`, `Codice` da `components/stato.tsx` → `@legisboard/ui` |
+| Nome e dominio                             | `PRODOTTO` in `apps/web/src/lib/brand.ts`                                                                     |
+| Blocchi demo                               | `assertNotDemo` in `features/auth/guards.ts`, `instance_config.mode` in `lib/db/schema/tenancy.ts`            |
+| Ripristino                                 | `lib/db/demo-reset-cli.ts`, `seed-demo.ts`                                                                    |
+| Relay di posta                             | `lib/posta` (convenzione `SMTP_*`)                                                                            |
+| Cancello, sonde CLS e contrasto            | `apps/web/scripts/gate-visivo.mjs`                                                                            |
+| Schemi da evalisdeck, metodo e non aspetto | `robots.ts`, `sitemap.ts`, `opengraph-image.tsx`, `components/seo/dati-strutturati.tsx`                       |
 
 ## 9. Verifica end-to-end
 

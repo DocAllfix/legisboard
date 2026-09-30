@@ -23,7 +23,9 @@ export function PaginaLegale({
       <Intestazione />
       <main className="border-b">
         <article className="mx-auto w-full max-w-3xl px-5 py-20 md:py-24">
-          <h1 className="text-display-sm leading-tight font-semibold tracking-tight text-balance">{titolo}</h1>
+          <h1 className="text-display-sm leading-tight font-semibold tracking-tight text-balance">
+            {titolo}
+          </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{sotto}</p>
           <p className="mt-3 text-sm text-muted-foreground">Ultima revisione: {revisione}.</p>
           <div

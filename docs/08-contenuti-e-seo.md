@@ -10,18 +10,18 @@ annuale odv»). Il traffico organico lo portano pagine che rispondono a quelle d
 
 ## Architettura: pilastri e satelliti
 
-| Pagina | URL | Cosa è |
-|---|---|---|
-| Pilastro GDPR | `/adempimenti-gdpr` | testo scritto a mano + catalogo intero (42) + domande |
-| Pilastro 231 | `/adempimenti-231` | idem (65) |
-| Pilastro 81/08 | `/adempimenti-sicurezza-sul-lavoro` | idem (64) |
-| Indice guide | `/blog` | tutte le guide, dalla più recente |
-| Guida | `/blog/<slug>` | un articolo; punta sempre al suo pilastro |
-| Autore | `/autore/alessandro-di-lonardo` | chi firma; fuori dagli indici finché è vuota |
-| Feed | `/blog/feed.xml` | RSS |
+| Pagina         | URL                                 | Cosa è                                                |
+| -------------- | ----------------------------------- | ----------------------------------------------------- |
+| Pilastro GDPR  | `/adempimenti-gdpr`                 | testo scritto a mano + catalogo intero (42) + domande |
+| Pilastro 231   | `/adempimenti-231`                  | idem (65)                                             |
+| Pilastro 81/08 | `/adempimenti-sicurezza-sul-lavoro` | idem (64)                                             |
+| Indice guide   | `/blog`                             | tutte le guide, dalla più recente                     |
+| Guida          | `/blog/<slug>`                      | un articolo; punta sempre al suo pilastro             |
+| Autore         | `/autore/alessandro-di-lonardo`     | chi firma; fuori dagli indici finché è vuota          |
+| Feed           | `/blog/feed.xml`                    | RSS                                                   |
 
 Scartato: una pagina per ciascuno dei 171 adempimenti. Pagine quasi uguali generate in massa sono
-ciò che Google sanziona come *scaled content abuse*. Pagine per figura professionale e glossario:
+ciò che Google sanziona come _scaled content abuse_. Pagine per figura professionale e glossario:
 solo quando Search Console mostra domanda misurata.
 
 Codice: `apps/landing/src/lib/{blog,cancello,pilastri,autori,mdx}.ts(x)`,
@@ -32,6 +32,7 @@ Codice: `apps/landing/src/lib/{blog,cancello,pilastri,autori,mdx}.ts(x)`,
 La periodicità del catalogo è la cadenza con cui il registro ripropone un adempimento, **non sempre
 un termine di legge**. Pilastri, schede `<Adempimento>` e skill lo dicono esplicitamente. Due
 differenze già note fra catalogo e norma, da portare al committente:
+
 - DVR «ogni 3 anni»: l'art. 29 c.3 D.Lgs 81/08 non fissa una scadenza;
 - formazione: il catalogo cita l'Accordo Stato-Regioni del 21/12/2011, superato dall'Accordo del
   17/04/2025.
@@ -51,14 +52,15 @@ differenze già note fra catalogo e norma, da portare al committente:
 Due routine cloud di Claude Code sul repository `DocAllfix/legisboard`, che seguono la skill di
 progetto `.claude/skills/articolo-legisboard/SKILL.md`:
 
-| Routine | Quando | Cosa fa |
-|---|---|---|
-| Scrittura | lunedì e giovedì mattina | prende la prima voce `da-scrivere` di `content/piano-editoriale.json`, studia le fonti, scrive, esegue la build, apre una PR `claude/articolo-<slug>` con etichetta `articolo` |
-| Pubblicazione | ogni mattina | unisce le PR `articolo` ferme da 48 ore con build verde e senza blocco; applica le modifiche chieste nei commenti |
+| Routine       | Quando                   | Cosa fa                                                                                                                                                                        |
+| ------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Scrittura     | lunedì e giovedì mattina | prende la prima voce `da-scrivere` di `content/piano-editoriale.json`, studia le fonti, scrive, esegue la build, apre una PR `claude/articolo-<slug>` con etichetta `articolo` |
+| Pubblicazione | ogni mattina             | unisce le PR `articolo` ferme da 48 ore con build verde e senza blocco; applica le modifiche chieste nei commenti                                                              |
 
 ### Come si blocca o si corregge un articolo
 
 Dalla PR su GitHub, anche da telefono:
+
 - **fermarlo per sempre**: chiudere la PR;
 - **fermarlo per ora**: etichetta `blocca`, o un commento che contiene «blocca»;
 - **correggerlo**: scrivere cosa cambiare in un commento. La routine lo applica, e le 48 ore
@@ -68,7 +70,7 @@ L'articolo esce firmato da Alessandro Di Lonardo: le 48 ore sono la sua revision
 
 ## Search Console
 
-Proprietà *Dominio* `legisboard.eu`, verificata con un record TXT sulla zona Hostinger (aggiunto
+Proprietà _Dominio_ `legisboard.eu`, verificata con un record TXT sulla zona Hostinger (aggiunto
 come record singolo, mai `overwrite`). Sitemap: `https://legisboard.eu/sitemap.xml`. Bing
 Webmaster Tools importa da Search Console.
 

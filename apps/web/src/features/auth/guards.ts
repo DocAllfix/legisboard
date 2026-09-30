@@ -159,7 +159,9 @@ export async function assertNotDemo(capability: string): Promise<void> {
  * «qualcosa non ha funzionato» — in produzione Next ne nasconde perfino il messaggio. Un blocco
  * deve spiegarsi nella stessa ricevuta di ogni altro errore. `assertNotDemo` resta per le rotte.
  */
-export async function bloccoDemo(capability: string): Promise<{ readonly ok: false; readonly errore: string } | null> {
+export async function bloccoDemo(
+  capability: string,
+): Promise<{ readonly ok: false; readonly errore: string } | null> {
   const ctx = await requireStudio();
   if (ctx.mode === "full") return null;
   return {

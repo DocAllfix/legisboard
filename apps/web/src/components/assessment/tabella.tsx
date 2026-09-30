@@ -188,10 +188,7 @@ export function TabellaAssessment({
 
           MISURATO, non supposto: con la scatola di scorrimento si vedevano 14 righe
           sull'assessment e 10 sullo scadenzario; così se ne vedono 24. DESIGN.md ne chiede 22. */}
-      <div
-        className="pannello entra overflow-x-auto lg:overflow-x-visible"
-        data-tour="tabella-assessment"
-      >
+      <div className="pannello entra overflow-x-auto lg:overflow-x-visible" data-tour="tabella-assessment">
         <Table>
           <TableHeader className="bg-surface-sunken lg:sticky lg:top-0 lg:z-10 lg:[&_th]:bg-surface-sunken">
             <TableRow className="border-b border-border-strong hover:bg-transparent">

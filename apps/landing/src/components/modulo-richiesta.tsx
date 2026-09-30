@@ -21,7 +21,8 @@ const MOTIVI = [
 
 const RUOLI = ["DPO", "Avvocato", "Organismo di Vigilanza", "RSPP", "Consulente", "Altro"] as const;
 
-type Esito = { stato: "inattivo" } | { stato: "invio" } | { stato: "fatto" } | { stato: "errore"; messaggio: string };
+type Esito =
+  { stato: "inattivo" } | { stato: "invio" } | { stato: "fatto" } | { stato: "errore"; messaggio: string };
 
 const CAMPO =
   "mt-1.5 block w-full rounded-md border border-border-strong bg-surface px-3 py-2.5 text-sm " +
@@ -53,7 +54,10 @@ export function ModuloRichiesta() {
       });
       if (r.ok) return setEsito({ stato: "fatto" });
       const corpo = (await r.json().catch(() => null)) as { errore?: string } | null;
-      setEsito({ stato: "errore", messaggio: corpo?.errore ?? "La richiesta non è partita. Riprovate fra qualche minuto." });
+      setEsito({
+        stato: "errore",
+        messaggio: corpo?.errore ?? "La richiesta non è partita. Riprovate fra qualche minuto.",
+      });
     } catch {
       setEsito({ stato: "errore", messaggio: "La richiesta non è partita: la connessione si è interrotta." });
     }
@@ -67,8 +71,8 @@ export function ModuloRichiesta() {
             Parliamone.
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Vi rispondiamo per email entro due giorni lavorativi. Nessuna newsletter, nessun uso diverso da questa
-            richiesta.
+            Vi rispondiamo per email entro due giorni lavorativi. Nessuna newsletter, nessun uso diverso da
+            questa richiesta.
           </p>
         </div>
 
@@ -138,8 +142,8 @@ export function ModuloRichiesta() {
 
             {/* Art. 13 GDPR: l'informativa al momento della raccolta, non un collegamento sepolto. */}
             <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-              Usiamo questi dati solo per rispondere alla vostra richiesta, come misura precontrattuale (art. 6.1.b GDPR),
-              e li conserviamo per il tempo necessario a darvi seguito.{" "}
+              Usiamo questi dati solo per rispondere alla vostra richiesta, come misura precontrattuale (art.
+              6.1.b GDPR), e li conserviamo per il tempo necessario a darvi seguito.{" "}
               <a href="/privacy" className="underline underline-offset-2">
                 Informativa completa
               </a>
@@ -147,7 +151,10 @@ export function ModuloRichiesta() {
             </p>
 
             {esito.stato === "errore" ? (
-              <p role="alert" className="mt-4 rounded-md border border-scaduta-border bg-scaduta-surface px-3 py-2 text-sm text-scaduta">
+              <p
+                role="alert"
+                className="mt-4 rounded-md border border-scaduta-border bg-scaduta-surface px-3 py-2 text-sm text-scaduta"
+              >
                 {esito.messaggio}
               </p>
             ) : null}

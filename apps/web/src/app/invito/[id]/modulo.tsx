@@ -58,8 +58,8 @@ export function ModuloInvito({ id }: { id: string }) {
           autoComplete="new-password"
         />
         <p className="text-xs text-muted-foreground">
-          Almeno dodici caratteri. La scegli tu e non l&apos;ha mai vista nessuno: non c&apos;è
-          niente da cambiare al primo accesso.
+          Almeno dodici caratteri. La scegli tu e non l&apos;ha mai vista nessuno: non c&apos;è niente da
+          cambiare al primo accesso.
         </p>
       </div>
 

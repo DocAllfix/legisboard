@@ -28,7 +28,8 @@ export const PULSANTE_PIENO_SU_OLIVA =
   "focus-visible:ring-offset-sidebar";
 
 /** La freccia del pulsante pieno: da mettere dentro, scivola quando il pulsante è sotto il puntatore. */
-export const FRECCIA_CTA = "size-4 motion-safe:transition-transform motion-safe:duration-200 group-hover/cta:translate-x-1";
+export const FRECCIA_CTA =
+  "size-4 motion-safe:transition-transform motion-safe:duration-200 group-hover/cta:translate-x-1";
 
 export const COLLEGAMENTO_SU_OLIVA =
   "inline-flex h-12 items-center gap-1.5 rounded-sm px-1 text-[0.9375rem] font-medium text-sidebar-foreground " +

@@ -23,7 +23,10 @@ export function Intestazione() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-5">
         {/* 24 px d'altezza: il logotipo è largo 139 px a questa misura (rapporto fisso dichiarato
             nel file consegnato), quindi il browser conosce l'ingombro prima di disegnarlo. */}
-        <Link href="/" className="shrink-0 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+        <Link
+          href="/"
+          className="shrink-0 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+        >
           {/* Sotto `sm` il logotipo intero non ci sta accanto al pulsante e al menu: misurato,
               l'intestazione arrivava a 389 px su un telefono da 320. Il simbolo da solo è
               disegnato per essere leggibile a 24 px, ed è il suo uso. */}
@@ -45,7 +48,10 @@ export function Intestazione() {
 
         <div className="flex items-center gap-3">
           {CONTATTO_POSSIBILE ? (
-            <Link href="/#richiesta" className="hidden text-sm font-medium text-foreground hover:underline sm:inline">
+            <Link
+              href="/#richiesta"
+              className="hidden text-sm font-medium text-foreground hover:underline sm:inline"
+            >
               Richiedi una presentazione
             </Link>
           ) : null}
@@ -57,7 +63,10 @@ export function Intestazione() {
               <Menu className="size-5" aria-hidden />
               <span className="sr-only">Menu</span>
             </summary>
-            <nav aria-label="Sezioni" className="absolute right-0 mt-2 w-56 rounded-md border bg-surface p-2 shadow-md">
+            <nav
+              aria-label="Sezioni"
+              className="absolute right-0 mt-2 w-56 rounded-md border bg-surface p-2 shadow-md"
+            >
               <ul className="flex flex-col">
                 {ANCORE.map(([href, testo]) => (
                   <li key={href}>

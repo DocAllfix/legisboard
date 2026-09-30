@@ -229,14 +229,16 @@ export function TabellaScadenzario({
 
           MISURATO, non supposto: con la scatola di scorrimento si vedevano 14 righe
           sull'assessment e 10 sullo scadenzario; così se ne vedono 24. DESIGN.md ne chiede 22. */}
-      <div
-        className="pannello entra overflow-x-auto lg:overflow-x-visible"
-        data-tour="tabella-scadenzario"
-      >
+      <div className="pannello entra overflow-x-auto lg:overflow-x-visible" data-tour="tabella-scadenzario">
         <Table>
           <TableHeader className="bg-surface-sunken lg:sticky lg:top-0 lg:z-10 lg:[&_th]:bg-surface-sunken">
             <TableRow className="border-b border-border-strong hover:bg-transparent">
-              <TableHead className="h-8 px-3" aria-sort={f.ordina === "azienda" ? (f.verso === "desc" ? "descending" : "ascending") : "none"}>
+              <TableHead
+                className="h-8 px-3"
+                aria-sort={
+                  f.ordina === "azienda" ? (f.verso === "desc" ? "descending" : "ascending") : "none"
+                }
+              >
                 <button
                   type="button"
                   onClick={() => ordina("azienda")}
@@ -244,7 +246,11 @@ export function TabellaScadenzario({
                 >
                   Azienda
                   {f.ordina === "azienda" ? (
-                    f.verso === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />
+                    f.verso === "desc" ? (
+                      <ArrowDown className="size-3" aria-hidden />
+                    ) : (
+                      <ArrowUp className="size-3" aria-hidden />
+                    )
                   ) : (
                     <ChevronsUpDown className="size-3 opacity-40" aria-hidden />
                   )}
@@ -254,7 +260,12 @@ export function TabellaScadenzario({
               <TableHead className="h-8 px-3">Cod.</TableHead>
               <TableHead className="h-8 px-3">Adempimento</TableHead>
               <TableHead className="h-8 px-3">Responsabile</TableHead>
-              <TableHead className="h-8 px-3" aria-sort={f.ordina === "priorita" ? (f.verso === "desc" ? "descending" : "ascending") : "none"}>
+              <TableHead
+                className="h-8 px-3"
+                aria-sort={
+                  f.ordina === "priorita" ? (f.verso === "desc" ? "descending" : "ascending") : "none"
+                }
+              >
                 <button
                   type="button"
                   onClick={() => ordina("priorita")}
@@ -262,14 +273,23 @@ export function TabellaScadenzario({
                 >
                   Priorità
                   {f.ordina === "priorita" ? (
-                    f.verso === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />
+                    f.verso === "desc" ? (
+                      <ArrowDown className="size-3" aria-hidden />
+                    ) : (
+                      <ArrowUp className="size-3" aria-hidden />
+                    )
                   ) : (
                     <ChevronsUpDown className="size-3 opacity-40" aria-hidden />
                   )}
                 </button>
               </TableHead>
               <TableHead className="h-8 px-3">Lavoro</TableHead>
-              <TableHead className="h-8 px-3" aria-sort={f.ordina === "scadenza" ? (f.verso === "desc" ? "descending" : "ascending") : "none"}>
+              <TableHead
+                className="h-8 px-3"
+                aria-sort={
+                  f.ordina === "scadenza" ? (f.verso === "desc" ? "descending" : "ascending") : "none"
+                }
+              >
                 <button
                   type="button"
                   onClick={() => ordina("scadenza")}
@@ -277,7 +297,11 @@ export function TabellaScadenzario({
                 >
                   Scadenza
                   {f.ordina === "scadenza" ? (
-                    f.verso === "desc" ? <ArrowDown className="size-3" aria-hidden /> : <ArrowUp className="size-3" aria-hidden />
+                    f.verso === "desc" ? (
+                      <ArrowDown className="size-3" aria-hidden />
+                    ) : (
+                      <ArrowUp className="size-3" aria-hidden />
+                    )
                   ) : (
                     <ChevronsUpDown className="size-3 opacity-40" aria-hidden />
                   )}
@@ -295,8 +319,8 @@ export function TabellaScadenzario({
                       dice COSA sta escludendo e offre di smettere. */}
                   {voci.length === 0 ? (
                     <Vuoto icona={CalendarClock} titolo="Nessuna scadenza da presidiare" variante="riga">
-                      In tutto il portafoglio non c&apos;è un adempimento con una scadenza: succede
-                      quando le aziende non hanno ancora moduli attivi con adempimenti censiti.
+                      In tutto il portafoglio non c&apos;è un adempimento con una scadenza: succede quando le
+                      aziende non hanno ancora moduli attivi con adempimenti censiti.
                     </Vuoto>
                   ) : (
                     <VuotoFiltro

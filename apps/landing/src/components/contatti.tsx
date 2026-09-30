@@ -21,7 +21,10 @@ export function Contatti() {
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Scriveteci a{" "}
-            <a href={`mailto:${CONTATTO_EMAIL}`} className="font-medium text-foreground underline underline-offset-2">
+            <a
+              href={`mailto:${CONTATTO_EMAIL}`}
+              className="font-medium text-foreground underline underline-offset-2"
+            >
               {CONTATTO_EMAIL}
             </a>
             . Vi rispondiamo entro due giorni lavorativi.

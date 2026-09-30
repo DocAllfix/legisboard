@@ -5,7 +5,8 @@ import { SITO } from "@/lib/sito";
 // Il feed RSS delle guide. Statico e rigenerato ogni notte, come l'indice.
 export const revalidate = 86400;
 
-const x = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const x = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 export function GET() {
   const voci = articoliPubblicati()

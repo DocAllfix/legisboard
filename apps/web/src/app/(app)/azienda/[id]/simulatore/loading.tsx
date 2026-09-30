@@ -48,7 +48,10 @@ export default function Caricamento() {
             <Scheletro className="mt-2 h-3 w-80 max-w-full" />
           </div>
           {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="flex items-center gap-3 border-b border-border-subtle px-5 py-2.5 last:border-0">
+            <div
+              key={i}
+              className="flex items-center gap-3 border-b border-border-subtle px-5 py-2.5 last:border-0"
+            >
               <Scheletro className="size-4 shrink-0 rounded-xs" />
               <Scheletro className="h-3 w-12 shrink-0" />
               <Scheletro className="h-3 min-w-0 flex-1" style={{ maxWidth: `${54 - i * 5}%` }} />

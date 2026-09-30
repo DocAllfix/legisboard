@@ -193,9 +193,7 @@ export function Palette() {
                     <I className="size-4 shrink-0 text-muted-foreground" aria-hidden />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm">{r.titolo}</span>
-                      <span className="block truncate text-nota text-muted-foreground">
-                        {r.sottotitolo}
-                      </span>
+                      <span className="block truncate text-nota text-muted-foreground">{r.sottotitolo}</span>
                     </span>
                     <span className="shrink-0 text-micro tracking-[0.09em] text-muted-foreground uppercase">
                       {ETICHETTA_TIPO[r.tipo]}

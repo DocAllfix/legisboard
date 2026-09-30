@@ -27,7 +27,10 @@ export default function CaricamentoInvito() {
           <Scheletro className="mt-2 h-3 w-4/5 bg-sidebar-border" />
           <div className="mt-8 border-t border-sidebar-border">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="flex items-center justify-between gap-4 border-b border-sidebar-border/60 py-2.5">
+              <div
+                key={i}
+                className="flex items-center justify-between gap-4 border-b border-sidebar-border/60 py-2.5"
+              >
                 <Scheletro className="h-3 w-56 max-w-[60%] bg-sidebar-border" />
                 <Scheletro className="h-3 w-8 bg-sidebar-border" />
               </div>

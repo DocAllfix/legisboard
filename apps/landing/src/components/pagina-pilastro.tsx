@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CATALOGHI, ETICHETTE_DOMINIO, categorieDi, descriviPeriodicita, templatesPerCategoria, type Dominio } from "@legisboard/engine";
+import {
+  CATALOGHI,
+  ETICHETTE_DOMINIO,
+  categorieDi,
+  descriviPeriodicita,
+  templatesPerCategoria,
+  type Dominio,
+} from "@legisboard/engine";
 import { Codice } from "@legisboard/ui/stato";
 import { InvitoDemo } from "./mdx";
 import { Intestazione } from "./intestazione";
@@ -22,7 +29,14 @@ export function metadatiPilastro(dominio: Dominio): Metadata {
     title: `${p.titolo} · Legisboard`,
     description: p.descrizione,
     alternates: { canonical: p.url },
-    openGraph: { type: "website", locale: "it_IT", siteName: SITO.nome, title: p.titolo, description: p.descrizione, url: p.url },
+    openGraph: {
+      type: "website",
+      locale: "it_IT",
+      siteName: SITO.nome,
+      title: p.titolo,
+      description: p.descrizione,
+      url: p.url,
+    },
   };
 }
 
@@ -64,7 +78,10 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datiStrutturati) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datiStrutturati) }}
+      />
       <Intestazione />
       <main>
         <section aria-labelledby="pilastro-titolo" className="border-b">
@@ -74,7 +91,10 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
                 <span aria-hidden className="h-px w-8 bg-primary" />
                 {p.occhiello}
               </p>
-              <h1 id="pilastro-titolo" className="mt-5 text-display-sm leading-tight font-extrabold tracking-tight text-balance">
+              <h1
+                id="pilastro-titolo"
+                className="mt-5 text-display-sm leading-tight font-extrabold tracking-tight text-balance"
+              >
                 {p.titolo}
               </h1>
               <div className="mt-8 space-y-5 text-lettura leading-[1.75]">
@@ -86,7 +106,9 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
             <aside className="lg:pt-16">
               <dl className="rounded-lg border bg-surface p-6 text-sm shadow-sm">
                 <dt className="text-muted-foreground">Adempimenti nel catalogo</dt>
-                <dd className="font-mono text-cifra-sm leading-tight tabular-nums">{CATALOGHI[dominio].length}</dd>
+                <dd className="font-mono text-cifra-sm leading-tight tabular-nums">
+                  {CATALOGHI[dominio].length}
+                </dd>
                 <dt className="mt-4 text-muted-foreground">Categorie</dt>
                 <dd className="font-mono text-cifra-sm leading-tight tabular-nums">{categorie.length}</dd>
                 <dt className="mt-4 text-muted-foreground">Norma</dt>
@@ -102,8 +124,8 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
               Il catalogo, categoria per categoria
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              La cadenza è quella con cui il registro ripropone l&apos;adempimento. Dove la legge fissa un termine, lo
-              indica il riferimento.
+              La cadenza è quella con cui il registro ripropone l&apos;adempimento. Dove la legge fissa un
+              termine, lo indica il riferimento.
             </p>
             <div className="mt-10 space-y-12">
               {categorie.map((c) => (
@@ -116,11 +138,21 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
                     <table className="w-full min-w-[40rem] text-sm">
                       <thead className="text-left text-xs text-muted-foreground">
                         <tr>
-                          <th scope="col" className="px-4 py-3 font-medium">Codice</th>
-                          <th scope="col" className="px-4 py-3 font-medium">Adempimento</th>
-                          <th scope="col" className="px-4 py-3 font-medium">Riferimento</th>
-                          <th scope="col" className="px-4 py-3 font-medium">Chi risponde</th>
-                          <th scope="col" className="px-4 py-3 font-medium">Cadenza</th>
+                          <th scope="col" className="px-4 py-3 font-medium">
+                            Codice
+                          </th>
+                          <th scope="col" className="px-4 py-3 font-medium">
+                            Adempimento
+                          </th>
+                          <th scope="col" className="px-4 py-3 font-medium">
+                            Riferimento
+                          </th>
+                          <th scope="col" className="px-4 py-3 font-medium">
+                            Chi risponde
+                          </th>
+                          <th scope="col" className="px-4 py-3 font-medium">
+                            Cadenza
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -132,7 +164,9 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
                             <td className="px-4 py-3 font-medium">{t.titolo}</td>
                             <td className="px-4 py-3 text-muted-foreground">{t.riferimento}</td>
                             <td className="px-4 py-3 text-muted-foreground">{t.ruolo}</td>
-                            <td className="px-4 py-3 whitespace-nowrap">{descriviPeriodicita(t.periodicita)}</td>
+                            <td className="px-4 py-3 whitespace-nowrap">
+                              {descriviPeriodicita(t.periodicita)}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -154,7 +188,10 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
                 <details key={d.domanda} className="group">
                   <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-semibold">
                     {d.domanda}
-                    <span aria-hidden className="text-2xl leading-none text-primary motion-safe:transition-transform group-open:rotate-45">
+                    <span
+                      aria-hidden
+                      className="text-2xl leading-none text-primary motion-safe:transition-transform group-open:rotate-45"
+                    >
                       +
                     </span>
                   </summary>
@@ -174,7 +211,10 @@ export function PaginaPilastro({ dominio }: { dominio: Dominio }) {
               <ul className="mt-6 divide-y border-y">
                 {guide.map((g) => (
                   <li key={g.slug}>
-                    <Link href={`/blog/${g.slug}`} className="group flex flex-wrap items-baseline justify-between gap-2 py-4">
+                    <Link
+                      href={`/blog/${g.slug}`}
+                      className="group flex flex-wrap items-baseline justify-between gap-2 py-4"
+                    >
                       <span className="font-semibold group-hover:underline">{g.titolo}</span>
                       <time dateTime={g.pubblicazione} className="text-sm text-muted-foreground">
                         {dataEstesa(g.pubblicazione)}

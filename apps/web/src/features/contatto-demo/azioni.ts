@@ -39,7 +39,10 @@ export async function contattoDisponibile(): Promise<boolean> {
   return Boolean(env.RICHIESTE_DESTINATARIO) && postaConfigurata();
 }
 
-export async function inviaContattoDemo(_precedente: EsitoContatto | null, dati: FormData): Promise<EsitoContatto> {
+export async function inviaContattoDemo(
+  _precedente: EsitoContatto | null,
+  dati: FormData,
+): Promise<EsitoContatto> {
   const ctx = await requireStudio();
   if (ctx.mode !== "demo") return { ok: false, errore: "Il modulo esiste solo nella demo." };
   if (!(await contattoDisponibile())) {
@@ -84,7 +87,10 @@ export async function inviaContattoDemo(_precedente: EsitoContatto | null, dati:
     });
   } catch {
     // Il messaggio del relay può contenere indirizzi e nomi di host: non si restituisce.
-    return { ok: false, errore: "Il servizio di posta non ha accettato la richiesta. Riprovate fra qualche minuto." };
+    return {
+      ok: false,
+      errore: "Il servizio di posta non ha accettato la richiesta. Riprovate fra qualche minuto.",
+    };
   }
   return { ok: true };
 }

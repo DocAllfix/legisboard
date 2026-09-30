@@ -21,13 +21,7 @@ import { Button } from "@/components/ui/button";
 // L'errore lato server è già stato registrato da `instrumentation.ts`. Questo `useEffect`
 // copre il guasto nato nel browser, dove quel gancio non arriva.
 
-export default function Errore({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Errore({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Solo il riferimento: il messaggio può contenere dati, e la console del browser è un
     // posto da cui si copiano e si incollano schermate.
@@ -40,9 +34,9 @@ export default function Errore({
         <TriangleAlert className="size-5 text-imminente" aria-hidden />
         <h1 className="titolo mt-3 text-xl">Questa pagina non si è caricata</h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Il guasto è stato registrato e <strong className="text-foreground">nessun dato è stato
-          toccato</strong>. Puoi riprovare: se succede di nuovo, il riferimento qui sotto ci dice cosa
-          è andato storto.
+          Il guasto è stato registrato e{" "}
+          <strong className="text-foreground">nessun dato è stato toccato</strong>. Puoi riprovare: se succede
+          di nuovo, il riferimento qui sotto ci dice cosa è andato storto.
         </p>
 
         {error.digest ? (

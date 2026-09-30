@@ -43,7 +43,9 @@ export function Confronto() {
       </figure>
 
       <figure className="flex min-w-0 flex-col justify-between gap-8 rounded-lg border-2 border-foreground bg-surface p-6 lg:-ml-px lg:rounded-l-none lg:p-8">
-        <figcaption className="text-micro font-semibold tracking-widest text-primary uppercase">Due assi</figcaption>
+        <figcaption className="text-micro font-semibold tracking-widest text-primary uppercase">
+          Due assi
+        </figcaption>
         <div>
           <div className="flex items-center gap-3">
             <PastigliaDominio dominio={TESI.dominio} />
@@ -56,8 +58,8 @@ export function Confronto() {
           </div>
         </div>
         <p className="text-sm leading-relaxed">
-          Il lavoro è completato, e la scadenza è passata da {giorni} giorni. Due fatti, due posti: nessuno dei due copre
-          l&apos;altro.
+          Il lavoro è completato, e la scadenza è passata da {giorni} giorni. Due fatti, due posti: nessuno
+          dei due copre l&apos;altro.
         </p>
       </figure>
     </div>

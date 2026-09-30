@@ -31,55 +31,58 @@ export default function Anteprima() {
   const residuo = TESI?.giorni != null ? `−${Math.abs(TESI.giorni)}gg` : "";
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
-          background: fondo,
-          color: inchiostro,
-          fontFamily: "Geist",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <svg width="48" height="48" viewBox="0 0 64 64">
-            <path fill={oliva} fillRule="evenodd" d="M8 8H22V42H56V56H8ZM42 8H56V22H42Z" />
-          </svg>
-          <span style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>Legisboard</span>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-          <span style={{ fontSize: 68, fontWeight: 600, lineHeight: 1.08, letterSpacing: -1.5, maxWidth: 960 }}>
-            Fatto e in regola non sono la stessa cosa.
-          </span>
-          {TESI?.scadenza ? (
-            <div style={{ display: "flex", gap: 20, fontFamily: "Geist Mono", fontSize: 30 }}>
-              <span style={{ color: tenue }}>{TESI.codice}</span>
-              <span>{TESI.stato}</span>
-              <span style={{ color: tenue }}>·</span>
-              <span style={{ color: scaduta }}>
-                {formattaIt(TESI.scadenza)} {residuo}
-              </span>
-            </div>
-          ) : null}
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: tenue }}>
-          <span>GDPR · D.Lgs 231/2001 · D.Lgs 81/2008</span>
-          <span style={{ color: oliva, fontWeight: 600 }}>legisboard.eu</span>
-        </div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "72px 80px",
+        background: fondo,
+        color: inchiostro,
+        fontFamily: "Geist",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+        <svg width="48" height="48" viewBox="0 0 64 64">
+          <path fill={oliva} fillRule="evenodd" d="M8 8H22V42H56V56H8ZM42 8H56V22H42Z" />
+        </svg>
+        <span style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>Legisboard</span>
       </div>
-    ),
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        <span style={{ fontSize: 68, fontWeight: 600, lineHeight: 1.08, letterSpacing: -1.5, maxWidth: 960 }}>
+          Fatto e in regola non sono la stessa cosa.
+        </span>
+        {TESI?.scadenza ? (
+          <div style={{ display: "flex", gap: 20, fontFamily: "Geist Mono", fontSize: 30 }}>
+            <span style={{ color: tenue }}>{TESI.codice}</span>
+            <span>{TESI.stato}</span>
+            <span style={{ color: tenue }}>·</span>
+            <span style={{ color: scaduta }}>
+              {formattaIt(TESI.scadenza)} {residuo}
+            </span>
+          </div>
+        ) : null}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: tenue }}>
+        <span>GDPR · D.Lgs 231/2001 · D.Lgs 81/2008</span>
+        <span style={{ color: oliva, fontWeight: 600 }}>legisboard.eu</span>
+      </div>
+    </div>,
     {
       ...size,
       fonts: [
         { name: "Geist", data: carattere("geist-sans/Geist-Regular.ttf"), weight: 400, style: "normal" },
         { name: "Geist", data: carattere("geist-sans/Geist-SemiBold.ttf"), weight: 600, style: "normal" },
-        { name: "Geist Mono", data: carattere("geist-mono/GeistMono-Medium.ttf"), weight: 500, style: "normal" },
+        {
+          name: "Geist Mono",
+          data: carattere("geist-mono/GeistMono-Medium.ttf"),
+          weight: 500,
+          style: "normal",
+        },
       ],
     },
   );

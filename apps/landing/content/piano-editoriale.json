@@ -7,29 +7,321 @@
     "d81": "/adempimenti-sicurezza-sul-lavoro"
   },
   "voci": [
-    { "priorita": 1, "slug": "dvr-quando-va-aggiornato", "titolo": "DVR: quando va aggiornato davvero", "parola_chiave": "dvr quando va aggiornato", "secondarie": ["aggiornamento dvr ogni quanto", "dvr quando scade", "aggiornamento dvr entro 30 giorni"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S01"], "stato": "in-revisione" },
-    { "priorita": 2, "slug": "relazione-annuale-odv", "titolo": "La relazione annuale dell'OdV: cosa deve contenere", "parola_chiave": "relazione annuale odv", "secondarie": ["relazione odv al cda", "relazione semestrale odv", "relazione annuale odv 231"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M08", "M09"], "stato": "da-scrivere" },
-    { "priorita": 3, "slug": "dpia-quando-e-obbligatoria", "titolo": "DPIA: quando è obbligatoria e chi deve farla", "parola_chiave": "dpia quando è obbligatoria", "secondarie": ["dpia cos'è", "dpia quando farla", "valutazione d'impatto art. 35 gdpr"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T03", "D02"], "stato": "da-scrivere" },
-    { "priorita": 4, "slug": "scadenze-formazione-lavoratori", "titolo": "Formazione dei lavoratori: le scadenze, figura per figura", "parola_chiave": "formazione lavoratori scadenza", "secondarie": ["aggiornamento formazione lavoratori ogni quanto", "formazione preposti aggiornamento", "aggiornamento formazione rls"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S30", "S31", "S32", "S34"], "stato": "da-scrivere" },
-    { "priorita": 5, "slug": "registro-dei-trattamenti-esempio", "titolo": "Registro dei trattamenti: un esempio compilato, riga per riga", "parola_chiave": "registro dei trattamenti esempio", "secondarie": ["registro dei trattamenti art 30 gdpr", "registro dei trattamenti semplificato", "registro trattamenti responsabile art 30.2"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T01", "R01", "D09"], "stato": "da-scrivere" },
-    { "priorita": 6, "slug": "modello-231-obbligatorio", "titolo": "Il modello 231 è obbligatorio? Chi deve adottarlo e perché conviene", "parola_chiave": "modello 231 obbligatorio", "secondarie": ["modello 231 per chi è obbligatorio", "modello organizzativo 231 a cosa serve", "modello 231 cos'è"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M11", "M14"], "stato": "da-scrivere" },
-    { "priorita": 7, "slug": "visite-mediche-lavoro-ogni-quanto", "titolo": "Visite mediche sul lavoro: ogni quanto, e chi lo decide", "parola_chiave": "visite mediche lavoro ogni quanto", "secondarie": ["visite mediche periodiche ogni quanto", "visite mediche impiegati ogni quanto", "giudizio di idoneità"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S47", "S48", "S49", "S24"], "stato": "da-scrivere" },
-    { "priorita": 8, "slug": "data-breach-cosa-fare", "titolo": "Data breach: cosa fare nelle prime 72 ore", "parola_chiave": "data breach gdpr", "secondarie": ["data breach cos'è", "notifica data breach garante", "registro data breach"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T04", "T17", "R04"], "stato": "da-scrivere" },
-    { "priorita": 9, "slug": "compiti-odv-231", "titolo": "OdV 231: compiti, riunioni e verbali in un anno di lavoro", "parola_chiave": "odv 231 compiti", "secondarie": ["odv 231 cosa fa", "odv 231 composizione", "odv 231 requisiti"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M01", "M02", "M05", "M06", "M07"], "stato": "da-scrivere" },
-    { "priorita": 10, "slug": "scadenziario-sicurezza-sul-lavoro", "titolo": "Scadenziario della sicurezza sul lavoro: oltre il foglio Excel", "parola_chiave": "scadenziario adempimenti sicurezza sul lavoro", "secondarie": ["scadenziario sicurezza excel", "gestionale scadenze sicurezza sul lavoro", "scadenziario formazione sicurezza"], "intento": "commerciale", "decreto": "d81", "codici_catalogo": ["S01", "S30", "S47", "S64"], "stato": "da-scrivere" },
-    { "priorita": 11, "slug": "nomina-dpo-quando-e-obbligatoria", "titolo": "Nomina del DPO: quando è obbligatoria e come si comunica", "parola_chiave": "nomina dpo quando è obbligatoria", "secondarie": ["nomina dpo garante", "nomina dpo obbligatoria", "responsabile della protezione dei dati compiti"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T12", "D01", "D05"], "stato": "da-scrivere" },
-    { "priorita": 12, "slug": "whistleblowing-modello-231", "titolo": "Whistleblowing e modello 231: cosa è cambiato con il D.Lgs 24/2023", "parola_chiave": "whistleblowing 231", "secondarie": ["procedura whistleblowing 231", "whistleblowing mog 231", "segnalazione whistleblowing 231"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M36", "M37", "M38", "M39", "M40"], "stato": "da-scrivere" },
-    { "priorita": 13, "slug": "prova-di-evacuazione-ogni-quanto", "titolo": "Prova di evacuazione: ogni quanto va fatta e come si documenta", "parola_chiave": "prova evacuazione ogni quanto", "secondarie": ["prova evacuazione obbligatoria", "piano di emergenza ed evacuazione", "registro controlli antincendio"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S06", "S26", "S64"], "stato": "da-scrivere" },
-    { "priorita": 14, "slug": "adempimenti-gdpr-piccole-imprese", "titolo": "Adempimenti GDPR per le piccole imprese: il minimo che non si può saltare", "parola_chiave": "adempimenti gdpr piccole imprese", "secondarie": ["gdpr adempimenti per le aziende", "adempimenti privacy gdpr", "checklist gdpr italiano"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T01", "T05", "T08", "T14"], "stato": "da-scrivere" },
-    { "priorita": 15, "slug": "reati-presupposto-231-aggiornati", "titolo": "Reati presupposto 231: come si aggiorna il modello quando cambia l'elenco", "parola_chiave": "reati presupposto 231 aggiornato", "secondarie": ["reati presupposto 231 elenco", "aggiornamento mog 231", "mappatura rischi reato"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M11", "M12", "M61"], "stato": "da-scrivere" },
-    { "priorita": 16, "slug": "aggiornamento-formazione-antincendio", "titolo": "Aggiornamento della formazione antincendio: rischio basso, medio e alto", "parola_chiave": "aggiornamento formazione antincendio", "secondarie": ["addetti antincendio aggiornamento", "dm 2 settembre 2021 formazione", "corso antincendio rischio medio aggiornamento"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S26", "S35", "S36", "S37"], "stato": "da-scrivere" },
-    { "priorita": 17, "slug": "checklist-audit-gdpr", "titolo": "Audit GDPR: una checklist per l'audit interno", "parola_chiave": "checklist audit gdpr", "secondarie": ["audit gdpr", "audit privacy interno", "piano audit privacy dpo"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T13", "D12", "R10"], "stato": "da-scrivere" },
-    { "priorita": 18, "slug": "flussi-informativi-odv", "titolo": "Flussi informativi verso l'OdV: quali, con che cadenza, da chi", "parola_chiave": "flussi informativi odv", "secondarie": ["flussi informativi 231", "informazioni all'organismo di vigilanza", "flussi informativi odv esempio"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M21", "M22", "M23", "M31"], "stato": "da-scrivere" },
-    { "priorita": 19, "slug": "nomina-rspp-quanto-dura", "titolo": "Nomina dell'RSPP: quanto dura e quando va rinnovata", "parola_chiave": "nomina rspp quanto dura", "secondarie": ["nomina rspp esterno", "rspp datore di lavoro", "nomina rspp datore di lavoro"], "intento": "informativo", "decreto": "d81", "codici_catalogo": ["S22", "S33"], "stato": "da-scrivere" },
-    { "priorita": 20, "slug": "privacy-studio-legale", "titolo": "Privacy nello studio legale: gli adempimenti dello studio stesso", "parola_chiave": "privacy studio legale", "secondarie": ["privacy studio professionale", "gdpr avvocati", "registro trattamenti studio legale"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T01", "T05", "T09"], "stato": "da-scrivere" },
-    { "priorita": 21, "slug": "completato-non-vuol-dire-in-regola", "titolo": "«Completato» non vuol dire «in regola»: il difetto degli scadenzari", "parola_chiave": "scadenzario adempimenti compliance", "secondarie": ["gestione scadenze compliance", "scadenzario adempimenti", "stato adempimenti scaduti"], "intento": "commerciale", "decreto": "d81", "codici_catalogo": ["S01", "M08", "T05"], "stato": "da-scrivere" },
-    { "priorita": 22, "slug": "modello-231-sicurezza-sul-lavoro", "titolo": "231 e 81/08: dove il modello organizzativo incontra la sicurezza", "parola_chiave": "art 30 d.lgs 81/08 modello 231", "secondarie": ["modello organizzativo sicurezza lavoro", "reati sicurezza lavoro 231", "audit sicurezza 231"], "intento": "informativo", "decreto": "d231", "codici_catalogo": ["M47", "M53", "M55"], "stato": "da-scrivere" },
-    { "priorita": 23, "slug": "ispezione-garante-privacy", "titolo": "Ispezione del Garante privacy: cosa chiedono e come prepararsi", "parola_chiave": "ispezione garante privacy", "secondarie": ["ispezione garante", "controlli garante privacy aziende", "documenti ispezione privacy"], "intento": "informativo", "decreto": "gdpr", "codici_catalogo": ["T01", "T07", "T08"], "stato": "da-scrivere" },
-    { "priorita": 24, "slug": "software-adempimenti-per-consulenti", "titolo": "Un software per gli adempimenti di più clienti: cosa deve fare davvero", "parola_chiave": "software gdpr per consulenti", "secondarie": ["software odv 231", "gestionale sicurezza sul lavoro", "software gestione 231"], "intento": "commerciale", "decreto": "gdpr", "codici_catalogo": ["T01", "M08", "S01"], "stato": "da-scrivere" }
+    {
+      "priorita": 1,
+      "slug": "dvr-quando-va-aggiornato",
+      "titolo": "DVR: quando va aggiornato davvero",
+      "parola_chiave": "dvr quando va aggiornato",
+      "secondarie": [
+        "aggiornamento dvr ogni quanto",
+        "dvr quando scade",
+        "aggiornamento dvr entro 30 giorni"
+      ],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S01"],
+      "stato": "in-revisione"
+    },
+    {
+      "priorita": 2,
+      "slug": "relazione-annuale-odv",
+      "titolo": "La relazione annuale dell'OdV: cosa deve contenere",
+      "parola_chiave": "relazione annuale odv",
+      "secondarie": ["relazione odv al cda", "relazione semestrale odv", "relazione annuale odv 231"],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M08", "M09"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 3,
+      "slug": "dpia-quando-e-obbligatoria",
+      "titolo": "DPIA: quando è obbligatoria e chi deve farla",
+      "parola_chiave": "dpia quando è obbligatoria",
+      "secondarie": ["dpia cos'è", "dpia quando farla", "valutazione d'impatto art. 35 gdpr"],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T03", "D02"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 4,
+      "slug": "scadenze-formazione-lavoratori",
+      "titolo": "Formazione dei lavoratori: le scadenze, figura per figura",
+      "parola_chiave": "formazione lavoratori scadenza",
+      "secondarie": [
+        "aggiornamento formazione lavoratori ogni quanto",
+        "formazione preposti aggiornamento",
+        "aggiornamento formazione rls"
+      ],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S30", "S31", "S32", "S34"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 5,
+      "slug": "registro-dei-trattamenti-esempio",
+      "titolo": "Registro dei trattamenti: un esempio compilato, riga per riga",
+      "parola_chiave": "registro dei trattamenti esempio",
+      "secondarie": [
+        "registro dei trattamenti art 30 gdpr",
+        "registro dei trattamenti semplificato",
+        "registro trattamenti responsabile art 30.2"
+      ],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T01", "R01", "D09"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 6,
+      "slug": "modello-231-obbligatorio",
+      "titolo": "Il modello 231 è obbligatorio? Chi deve adottarlo e perché conviene",
+      "parola_chiave": "modello 231 obbligatorio",
+      "secondarie": [
+        "modello 231 per chi è obbligatorio",
+        "modello organizzativo 231 a cosa serve",
+        "modello 231 cos'è"
+      ],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M11", "M14"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 7,
+      "slug": "visite-mediche-lavoro-ogni-quanto",
+      "titolo": "Visite mediche sul lavoro: ogni quanto, e chi lo decide",
+      "parola_chiave": "visite mediche lavoro ogni quanto",
+      "secondarie": [
+        "visite mediche periodiche ogni quanto",
+        "visite mediche impiegati ogni quanto",
+        "giudizio di idoneità"
+      ],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S47", "S48", "S49", "S24"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 8,
+      "slug": "data-breach-cosa-fare",
+      "titolo": "Data breach: cosa fare nelle prime 72 ore",
+      "parola_chiave": "data breach gdpr",
+      "secondarie": ["data breach cos'è", "notifica data breach garante", "registro data breach"],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T04", "T17", "R04"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 9,
+      "slug": "compiti-odv-231",
+      "titolo": "OdV 231: compiti, riunioni e verbali in un anno di lavoro",
+      "parola_chiave": "odv 231 compiti",
+      "secondarie": ["odv 231 cosa fa", "odv 231 composizione", "odv 231 requisiti"],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M01", "M02", "M05", "M06", "M07"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 10,
+      "slug": "scadenziario-sicurezza-sul-lavoro",
+      "titolo": "Scadenziario della sicurezza sul lavoro: oltre il foglio Excel",
+      "parola_chiave": "scadenziario adempimenti sicurezza sul lavoro",
+      "secondarie": [
+        "scadenziario sicurezza excel",
+        "gestionale scadenze sicurezza sul lavoro",
+        "scadenziario formazione sicurezza"
+      ],
+      "intento": "commerciale",
+      "decreto": "d81",
+      "codici_catalogo": ["S01", "S30", "S47", "S64"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 11,
+      "slug": "nomina-dpo-quando-e-obbligatoria",
+      "titolo": "Nomina del DPO: quando è obbligatoria e come si comunica",
+      "parola_chiave": "nomina dpo quando è obbligatoria",
+      "secondarie": [
+        "nomina dpo garante",
+        "nomina dpo obbligatoria",
+        "responsabile della protezione dei dati compiti"
+      ],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T12", "D01", "D05"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 12,
+      "slug": "whistleblowing-modello-231",
+      "titolo": "Whistleblowing e modello 231: cosa è cambiato con il D.Lgs 24/2023",
+      "parola_chiave": "whistleblowing 231",
+      "secondarie": [
+        "procedura whistleblowing 231",
+        "whistleblowing mog 231",
+        "segnalazione whistleblowing 231"
+      ],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M36", "M37", "M38", "M39", "M40"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 13,
+      "slug": "prova-di-evacuazione-ogni-quanto",
+      "titolo": "Prova di evacuazione: ogni quanto va fatta e come si documenta",
+      "parola_chiave": "prova evacuazione ogni quanto",
+      "secondarie": [
+        "prova evacuazione obbligatoria",
+        "piano di emergenza ed evacuazione",
+        "registro controlli antincendio"
+      ],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S06", "S26", "S64"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 14,
+      "slug": "adempimenti-gdpr-piccole-imprese",
+      "titolo": "Adempimenti GDPR per le piccole imprese: il minimo che non si può saltare",
+      "parola_chiave": "adempimenti gdpr piccole imprese",
+      "secondarie": [
+        "gdpr adempimenti per le aziende",
+        "adempimenti privacy gdpr",
+        "checklist gdpr italiano"
+      ],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T01", "T05", "T08", "T14"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 15,
+      "slug": "reati-presupposto-231-aggiornati",
+      "titolo": "Reati presupposto 231: come si aggiorna il modello quando cambia l'elenco",
+      "parola_chiave": "reati presupposto 231 aggiornato",
+      "secondarie": ["reati presupposto 231 elenco", "aggiornamento mog 231", "mappatura rischi reato"],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M11", "M12", "M61"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 16,
+      "slug": "aggiornamento-formazione-antincendio",
+      "titolo": "Aggiornamento della formazione antincendio: rischio basso, medio e alto",
+      "parola_chiave": "aggiornamento formazione antincendio",
+      "secondarie": [
+        "addetti antincendio aggiornamento",
+        "dm 2 settembre 2021 formazione",
+        "corso antincendio rischio medio aggiornamento"
+      ],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S26", "S35", "S36", "S37"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 17,
+      "slug": "checklist-audit-gdpr",
+      "titolo": "Audit GDPR: una checklist per l'audit interno",
+      "parola_chiave": "checklist audit gdpr",
+      "secondarie": ["audit gdpr", "audit privacy interno", "piano audit privacy dpo"],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T13", "D12", "R10"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 18,
+      "slug": "flussi-informativi-odv",
+      "titolo": "Flussi informativi verso l'OdV: quali, con che cadenza, da chi",
+      "parola_chiave": "flussi informativi odv",
+      "secondarie": [
+        "flussi informativi 231",
+        "informazioni all'organismo di vigilanza",
+        "flussi informativi odv esempio"
+      ],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M21", "M22", "M23", "M31"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 19,
+      "slug": "nomina-rspp-quanto-dura",
+      "titolo": "Nomina dell'RSPP: quanto dura e quando va rinnovata",
+      "parola_chiave": "nomina rspp quanto dura",
+      "secondarie": ["nomina rspp esterno", "rspp datore di lavoro", "nomina rspp datore di lavoro"],
+      "intento": "informativo",
+      "decreto": "d81",
+      "codici_catalogo": ["S22", "S33"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 20,
+      "slug": "privacy-studio-legale",
+      "titolo": "Privacy nello studio legale: gli adempimenti dello studio stesso",
+      "parola_chiave": "privacy studio legale",
+      "secondarie": ["privacy studio professionale", "gdpr avvocati", "registro trattamenti studio legale"],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T01", "T05", "T09"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 21,
+      "slug": "completato-non-vuol-dire-in-regola",
+      "titolo": "«Completato» non vuol dire «in regola»: il difetto degli scadenzari",
+      "parola_chiave": "scadenzario adempimenti compliance",
+      "secondarie": ["gestione scadenze compliance", "scadenzario adempimenti", "stato adempimenti scaduti"],
+      "intento": "commerciale",
+      "decreto": "d81",
+      "codici_catalogo": ["S01", "M08", "T05"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 22,
+      "slug": "modello-231-sicurezza-sul-lavoro",
+      "titolo": "231 e 81/08: dove il modello organizzativo incontra la sicurezza",
+      "parola_chiave": "art 30 d.lgs 81/08 modello 231",
+      "secondarie": [
+        "modello organizzativo sicurezza lavoro",
+        "reati sicurezza lavoro 231",
+        "audit sicurezza 231"
+      ],
+      "intento": "informativo",
+      "decreto": "d231",
+      "codici_catalogo": ["M47", "M53", "M55"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 23,
+      "slug": "ispezione-garante-privacy",
+      "titolo": "Ispezione del Garante privacy: cosa chiedono e come prepararsi",
+      "parola_chiave": "ispezione garante privacy",
+      "secondarie": ["ispezione garante", "controlli garante privacy aziende", "documenti ispezione privacy"],
+      "intento": "informativo",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T01", "T07", "T08"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 24,
+      "slug": "software-adempimenti-per-consulenti",
+      "titolo": "Un software per gli adempimenti di più clienti: cosa deve fare davvero",
+      "parola_chiave": "software gdpr per consulenti",
+      "secondarie": ["software odv 231", "gestionale sicurezza sul lavoro", "software gestione 231"],
+      "intento": "commerciale",
+      "decreto": "gdpr",
+      "codici_catalogo": ["T01", "M08", "S01"],
+      "stato": "da-scrivere"
+    }
   ]
 }

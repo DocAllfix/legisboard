@@ -60,15 +60,22 @@ export async function ripristinaDemo(): Promise<EsitoRipristino> {
   await db.transaction(async (tx) => {
     // I moduli: il cancello visivo li spegne e li riaccende; qui si riaccendono comunque.
     await tx.update(companyModule).set({ attivo: true }).where(eq(companyModule.clientCompanyId, azienda.id));
-    await tx.update(assessment).set({ dataRiferimento: oggi }).where(eq(assessment.clientCompanyId, azienda.id));
+    await tx
+      .update(assessment)
+      .set({ dataRiferimento: oggi })
+      .where(eq(assessment.clientCompanyId, azienda.id));
 
-    const valutazioni = await tx.query.assessment.findMany({ where: eq(assessment.clientCompanyId, azienda.id) });
+    const valutazioni = await tx.query.assessment.findMany({
+      where: eq(assessment.clientCompanyId, azienda.id),
+    });
     for (const v of valutazioni) {
       const dominio = v.dominio as Dominio;
       const demo = new Map(
         costruisciDemo(CATALOGHI[dominio], CLIENTI_DIMOSTRATIVI[dominio], oggi).map((a) => [a.codice, a]),
       );
-      const istanze = await tx.query.obligationInstance.findMany({ where: eq(obligationInstance.assessmentId, v.id) });
+      const istanze = await tx.query.obligationInstance.findMany({
+        where: eq(obligationInstance.assessmentId, v.id),
+      });
       if (istanze.length === 0) continue;
       const modelli = new Map(
         (
@@ -153,7 +160,9 @@ export async function assicuraUtenteDemo(): Promise<"creato" | "riparato" | "non
       accountId: creato.id,
       password: hash,
     });
-    await db.insert(member).values({ id: randomUUID(), organizationId: studio.id, userId: creato.id, role: "consulente" });
+    await db
+      .insert(member)
+      .values({ id: randomUUID(), organizationId: studio.id, userId: creato.id, role: "consulente" });
     return "creato";
   }
 
@@ -217,7 +226,6 @@ export async function istanzaDemo(): Promise<boolean> {
   const riga = await db.query.instanceConfig.findFirst({ columns: { mode: true } });
   return riga?.mode === "demo";
 }
-
 
 /**
  * L'identificativo dell'azienda d'esempio. Stabile: il ripristino notturno la riporta ai valori

@@ -223,10 +223,7 @@ function Misura({
           <>
             <ArrowRight className="size-4 shrink-0 text-faint-foreground" aria-hidden />
             <span
-              className={cn(
-                "cifra text-cifra leading-none",
-                migliorato ? "text-regolare" : "text-scaduta",
-              )}
+              className={cn("cifra text-cifra leading-none", migliorato ? "text-regolare" : "text-scaduta")}
             >
               {dopo === null ? "—" : dopo}
               {dopo === null ? "" : suffisso}

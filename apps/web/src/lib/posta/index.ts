@@ -111,8 +111,19 @@ async function consegna(m: {
  * la richiesta di un visitatore non è un dato dell'istanza. Se il relay rifiuta, lancia: chi
  * chiama lo trasforma in un esito.
  */
-export async function inviaSubito(m: { a: string; oggetto: string; testo: string; rispondiA: string }): Promise<void> {
-  await consegna({ destinatario: m.a, oggetto: m.oggetto, corpoTesto: m.testo, corpoHtml: null, rispondiA: m.rispondiA });
+export async function inviaSubito(m: {
+  a: string;
+  oggetto: string;
+  testo: string;
+  rispondiA: string;
+}): Promise<void> {
+  await consegna({
+    destinatario: m.a,
+    oggetto: m.oggetto,
+    corpoTesto: m.testo,
+    corpoHtml: null,
+    rispondiA: m.rispondiA,
+  });
 }
 
 /**
