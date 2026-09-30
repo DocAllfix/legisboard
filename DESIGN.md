@@ -138,14 +138,14 @@ Resta nel PDF, dove è al suo posto.
 - **La scala è quella di Tailwind più sette token nostri**, sotto e sopra dove Tailwind non
   arriva _(2026-09-19)_:
 
-  | Token | Misura | Uso |
-  | --- | --- | --- |
-  | `text-micro` | 10px | etichette di colonna, pastiglie, note sotto una cifra |
-  | `text-nota` | 11px | aiuti, didascalie, microtesto di riga |
-  | `text-titolo` | 1.7rem | il titolo di pagina, su dieci pagine su dieci |
-  | `text-cifra-sm` | 1.6rem | la banda compatta del portafoglio |
-  | `text-cifra` | 1.9rem | la cifra in testata, di pagina o di pannello |
-  | `text-cifra-xl` | 2.6rem | la lastra del cruscotto |
+  | Token           | Misura | Uso                                                   |
+  | --------------- | ------ | ----------------------------------------------------- |
+  | `text-micro`    | 10px   | etichette di colonna, pastiglie, note sotto una cifra |
+  | `text-nota`     | 11px   | aiuti, didascalie, microtesto di riga                 |
+  | `text-titolo`   | 1.7rem | il titolo di pagina, su dieci pagine su dieci         |
+  | `text-cifra-sm` | 1.6rem | la banda compatta del portafoglio                     |
+  | `text-cifra`    | 1.9rem | la cifra in testata, di pagina o di pannello          |
+  | `text-cifra-xl` | 2.6rem | la lastra del cruscotto                               |
 
   Erano 125 valori `text-[…]` scritti a mano: non disordine, una scala coerente che nessuno
   aveva nominato. **Le cifre erano quattro misure e sono tre.** `2.1rem` e `1.9rem` erano la
@@ -155,6 +155,7 @@ Resta nel PDF, dove è al suo posto.
 
   ⚠️ Il registro diceva «scala 1.2»: quella di Tailwind non lo è (12→14 è 1,167). Era
   un'intenzione mai applicata; rinumerarla sposterebbe 376 usi e la densità misurata.
+
 - `font-variant-numeric: tabular-nums` sul `body`, non solo nelle tabelle.
 - **Intestazioni di colonna in tondo**, 12px, peso 500, nessuna spaziatura. Il maiuscoletto
   spaziato è il registro dello schema «filetto»: in una pagina senza linee e con tanta aria è

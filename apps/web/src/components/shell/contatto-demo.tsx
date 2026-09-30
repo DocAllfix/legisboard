@@ -192,14 +192,22 @@ function Modulo() {
 
       <p className="text-xs leading-relaxed text-muted-foreground">
         Usiamo questi dati solo per rispondervi, come misura precontrattuale (art. 6.1.b GDPR).{" "}
-        <a href={`${PRODOTTO.sito}/privacy`} target="_blank" rel="noopener" className="underline underline-offset-2">
+        <a
+          href={`${PRODOTTO.sito}/privacy`}
+          target="_blank"
+          rel="noopener"
+          className="underline underline-offset-2"
+        >
           Informativa completa
         </a>
         .
       </p>
 
       {esito && !esito.ok ? (
-        <p role="alert" className="rounded-md border border-scaduta-border bg-scaduta-surface px-3 py-2 text-sm text-scaduta">
+        <p
+          role="alert"
+          className="rounded-md border border-scaduta-border bg-scaduta-surface px-3 py-2 text-sm text-scaduta"
+        >
           {esito.errore}
         </p>
       ) : null}

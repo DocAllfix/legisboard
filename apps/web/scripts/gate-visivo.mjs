@@ -238,8 +238,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
   // L'esenzione è STRETTA: vale solo per lo stato dichiarato da questa pagina, quindi un 404
   // su un foglio di stile o su un'immagine continua a bocciare. Un'esenzione globale su
   // «404» spegnerebbe proprio il controllo che serve di più.
-  const rumoreAtteso =
-    statoAtteso === 200 ? null : new RegExp(`status of ${statoAtteso}(?![0-9])`, "i");
+  const rumoreAtteso = statoAtteso === 200 ? null : new RegExp(`status of ${statoAtteso}(?![0-9])`, "i");
 
   const messaggi = [];
   const risposteRotte = [];
@@ -270,10 +269,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
   }
 
   if (!risposta || risposta.status() !== statoAtteso) {
-    segnala(
-      etichetta,
-      `la pagina risponde ${risposta?.status() ?? "senza risposta"}, atteso ${statoAtteso}`,
-    );
+    segnala(etichetta, `la pagina risponde ${risposta?.status() ?? "senza risposta"}, atteso ${statoAtteso}`);
     await contesto.close();
     return;
   }
@@ -341,12 +337,12 @@ async function verificaPagina(browser, pagina, misura, tema) {
   mkdirSync(SCREENSHOT, { recursive: true });
   const nomeFile = `${pagina.percorso.replace(/\W+/g, "_") || "_radice"}--${misura.nome}--${tema}.png`;
   // `caret: "initial"` disattiva la cortesia di Playwright, che per default nasconde il
-    // cursore di testo iniettando `caret-color: transparent`. Quello stile finisce nel DOM e
-    // React, idratando un confine di sospensione ANCORA PENDENTE, lo segnala come mancata
-    // corrispondenza. Spostare lo scatto dopo il controllo di interattivita non bastava: quel
-    // controllo aspetta la radice, non i confini annidati. Meglio togliere l interferenza che
-    // rincorrere la corsa.
-    await tab.screenshot({ path: join(SCREENSHOT, nomeFile), fullPage: true, caret: "initial" });
+  // cursore di testo iniettando `caret-color: transparent`. Quello stile finisce nel DOM e
+  // React, idratando un confine di sospensione ANCORA PENDENTE, lo segnala come mancata
+  // corrispondenza. Spostare lo scatto dopo il controllo di interattivita non bastava: quel
+  // controllo aspetta la radice, non i confini annidati. Meglio togliere l interferenza che
+  // rincorrere la corsa.
+  await tab.screenshot({ path: join(SCREENSHOT, nomeFile), fullPage: true, caret: "initial" });
 
   // --- 0. Il tema è davvero applicato? -------------------------------------------------
   // Al primo giro questo cancello è passato verde su una pagina in cui il tema scuro non
@@ -842,7 +838,11 @@ async function main() {
         continue;
       }
       if (stato === 404) console.log(`  --  ${pagina.percorso} · assente in produzione, come deve essere`);
-      else segnala(pagina.percorso, `rotta di sviluppo ANCORA RAGGIUNGIBILE in produzione: risponde ${stato}, atteso 404`);
+      else
+        segnala(
+          pagina.percorso,
+          `rotta di sviluppo ANCORA RAGGIUNGIBILE in produzione: risponde ${stato}, atteso 404`,
+        );
     }
   }
   if (!selezionate.length) {

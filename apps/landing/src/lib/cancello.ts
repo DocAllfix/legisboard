@@ -51,7 +51,8 @@ export function verificaArticoli(articoli: readonly Articolo[]): void {
     parole.set(pk, a.slug);
 
     for (const c of a.codici_catalogo) {
-      if (!codiceEsiste(c)) errori.push(`${dove}: codici_catalogo contiene «${c}», che non esiste nel catalogo`);
+      if (!codiceEsiste(c))
+        errori.push(`${dove}: codici_catalogo contiene «${c}», che non esiste nel catalogo`);
     }
     for (const m of a.corpo.matchAll(/<Adempimento\s+dominio="([^"]+)"\s+codice="([^"]+)"/g)) {
       const [, dominio, codice] = m;
@@ -61,7 +62,8 @@ export function verificaArticoli(articoli: readonly Articolo[]): void {
     }
 
     const n = a.corpo.split(/\s+/).filter(Boolean).length;
-    if (n < PAROLE_MIN || n > PAROLE_MAX) errori.push(`${dove}: ${n} parole, fuori da ${PAROLE_MIN}-${PAROLE_MAX}`);
+    if (n < PAROLE_MIN || n > PAROLE_MAX)
+      errori.push(`${dove}: ${n} parole, fuori da ${PAROLE_MIN}-${PAROLE_MAX}`);
 
     for (const r of VIETATE) {
       const trovata = a.corpo.match(r);

@@ -72,14 +72,16 @@ export default async function PaginaInvito({ params }: { params: Promise<{ id: s
   // distinguerli direbbe a un estraneo se un certo identificativo è mai esistito.
   if (!inv) {
     return (
-      <main data-schermata="invito-non-valido" className="mx-auto flex min-h-dvh max-w-lg flex-col justify-center px-6 py-16">
+      <main
+        data-schermata="invito-non-valido"
+        className="mx-auto flex min-h-dvh max-w-lg flex-col justify-center px-6 py-16"
+      >
         <div className="pannello entra p-6">
           <MailX className="size-5 text-faint-foreground" aria-hidden />
           <h1 className="titolo mt-3 text-xl">Invito non valido</h1>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Questo invito non esiste, è già stato usato oppure è scaduto. Gli inviti valgono una
-            volta sola e durano sette giorni: chiedi a chi te l&apos;ha mandato di generarne uno
-            nuovo.
+            Questo invito non esiste, è già stato usato oppure è scaduto. Gli inviti valgono una volta sola e
+            durano sette giorni: chiedi a chi te l&apos;ha mandato di generarne uno nuovo.
           </p>
           <div className="mt-5">
             <Button asChild variant="outline">
@@ -108,12 +110,10 @@ export default async function PaginaInvito({ params }: { params: Promise<{ id: s
           <p className="text-xs font-medium tracking-[0.14em] text-sidebar-muted uppercase">
             {PRODOTTO.nome}
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight">
-            {inv.studio} ti ha aperto un accesso
-          </h1>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight">{inv.studio} ti ha aperto un accesso</h1>
           <p className="mt-4 text-sm leading-relaxed text-sidebar-muted">
-            {ruolo.puo} Lo strumento tiene GDPR, 231 e 81/08 in un registro solo: adempimenti,
-            scadenze ed evidenze in una lista sola, con le relazioni che ne escono.
+            {ruolo.puo} Lo strumento tiene GDPR, 231 e 81/08 in un registro solo: adempimenti, scadenze ed
+            evidenze in una lista sola, con le relazioni che ne escono.
           </p>
 
           <dl className="mt-8 border-t border-sidebar-border">
@@ -128,9 +128,7 @@ export default async function PaginaInvito({ params }: { params: Promise<{ id: s
                     {ETICHETTE_DOMINIO[d].norma}
                   </span>
                 </dt>
-                <dd className="font-mono text-xs tabular-nums text-sidebar-muted">
-                  {CATALOGHI[d].length}
-                </dd>
+                <dd className="font-mono text-xs tabular-nums text-sidebar-muted">{CATALOGHI[d].length}</dd>
               </div>
             ))}
           </dl>

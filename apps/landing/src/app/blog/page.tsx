@@ -50,8 +50,12 @@ export default function IndiceGuide() {
               className="group rounded-lg border bg-surface p-5 transition-colors hover:border-border-strong"
             >
               <PastigliaDominio dominio={d} />
-              <p className="mt-3 font-semibold tracking-tight group-hover:underline">{PILASTRI[d].titoloBreve}</p>
-              <p className="mt-1 text-sm text-muted-foreground">L&apos;elenco completo, con cadenze e riferimenti</p>
+              <p className="mt-3 font-semibold tracking-tight group-hover:underline">
+                {PILASTRI[d].titoloBreve}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                L&apos;elenco completo, con cadenze e riferimenti
+              </p>
             </Link>
           ))}
         </nav>
@@ -60,7 +64,10 @@ export default function IndiceGuide() {
           <ol className="mt-16 divide-y border-y">
             {articoli.map((a) => (
               <li key={a.slug}>
-                <Link href={`/blog/${a.slug}`} className="group grid gap-2 py-7 md:grid-cols-[10rem_1fr] md:gap-8">
+                <Link
+                  href={`/blog/${a.slug}`}
+                  className="group grid gap-2 py-7 md:grid-cols-[10rem_1fr] md:gap-8"
+                >
                   <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2">
                     <PastigliaDominio dominio={a.decreto} />
                     <time dateTime={a.pubblicazione} className="text-sm text-muted-foreground">
@@ -68,7 +75,9 @@ export default function IndiceGuide() {
                     </time>
                   </div>
                   <div className="min-w-0">
-                    <h2 className="text-xl font-bold tracking-tight text-balance group-hover:underline">{a.titolo}</h2>
+                    <h2 className="text-xl font-bold tracking-tight text-balance group-hover:underline">
+                      {a.titolo}
+                    </h2>
                     <p className="mt-2 leading-relaxed text-muted-foreground">{a.descrizione}</p>
                   </div>
                 </Link>
@@ -77,8 +86,8 @@ export default function IndiceGuide() {
           </ol>
         ) : (
           <p className="mt-16 max-w-xl leading-relaxed text-muted-foreground">
-            Le prime guide sono in preparazione. Nel frattempo, gli elenchi completi degli adempimenti di ciascun decreto
-            sono qui sopra.
+            Le prime guide sono in preparazione. Nel frattempo, gli elenchi completi degli adempimenti di
+            ciascun decreto sono qui sopra.
           </p>
         )}
       </main>

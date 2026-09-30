@@ -29,8 +29,8 @@ export async function FasciaDemo() {
       className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-3 rounded-md border border-accento-border bg-accento-surface px-4 py-3 text-sm"
     >
       <p className="min-w-0 flex-1">
-        <strong className="font-semibold">Demo.</strong> I dati sono di un&apos;azienda d&apos;esempio inventata, e ogni
-        notte tornano com&apos;erano: cambiate pure gli stati.{" "}
+        <strong className="font-semibold">Demo.</strong> I dati sono di un&apos;azienda d&apos;esempio
+        inventata, e ogni notte tornano com&apos;erano: cambiate pure gli stati.{" "}
         {/* Le informative della demo sono quelle della landing: su un'istanza venduta questa
             fascia non esiste, e valgono quelle dello studio. */}
         <span>
@@ -53,7 +53,10 @@ export async function FasciaDemo() {
           >
             Fissa un appuntamento
           </a>
-          <a href={scrivi("Legisboard · richiesta d'acquisto")} className="font-medium underline underline-offset-2">
+          <a
+            href={scrivi("Legisboard · richiesta d'acquisto")}
+            className="font-medium underline underline-offset-2"
+          >
             Richiedi l&apos;acquisto
           </a>
         </div>

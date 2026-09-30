@@ -76,9 +76,7 @@ function TestataPagina({ misura, dati }: { misura: Misura; dati: ReturnType<type
       <div>
         <p className="text-[10px] tracking-[0.09em] text-faint-foreground uppercase">Scheda azienda</p>
         <h1 className="titolo mt-1.5 text-[1.7rem]">Rossi Manifattura S.p.A.</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Metalmeccanico · Brescia · P.IVA 03912840178
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">Metalmeccanico · Brescia · P.IVA 03912840178</p>
       </div>
       <div className="text-right">
         <p className={`cifra ${MISURE[misura]}`}>{c.percentuale}%</p>
@@ -146,17 +144,12 @@ function LastraModuli({ misura, dati }: { misura: Misura; dati: ReturnType<typeo
     <div className="pannello overflow-clip">
       <div className="grid md:grid-cols-3">
         {dati.perModulo.map((m, i) => (
-          <div
-            key={m.dominio}
-            className={`p-5 ${i > 0 ? "md:border-l md:border-border-subtle" : ""}`}
-          >
+          <div key={m.dominio} className={`p-5 ${i > 0 ? "md:border-l md:border-border-subtle" : ""}`}>
             <p className="text-[10px] tracking-[0.09em] text-faint-foreground uppercase">
               {m.etichetta.esteso}
             </p>
             <p className="mt-4 flex items-baseline gap-1">
-              <span className={`cifra ${MISURE[misura]} leading-none`}>
-                {m.conformita.percentuale}
-              </span>
+              <span className={`cifra ${MISURE[misura]} leading-none`}>{m.conformita.percentuale}</span>
               <span className="text-base text-muted-foreground">%</span>
             </p>
             <p className="mt-1 font-mono text-[10px] text-faint-foreground">
@@ -236,17 +229,15 @@ export default function PaginaCifre() {
           </p>
           <h1 className="titolo mt-1.5 text-[1.7rem]">Quante misure per una cifra</h1>
           <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-            Il prodotto usava quattro misure di cifra grande per sette occorrenze. Questa pagina è
-            servita a decidere se fossero una gerarchia o una deriva, guardandole invece che
-            descrivendole.
+            Il prodotto usava quattro misure di cifra grande per sette occorrenze. Questa pagina è servita a
+            decidere se fossero una gerarchia o una deriva, guardandole invece che descrivendole.
           </p>
           <p className="mt-3 max-w-prose rounded-lg border border-accento-border bg-accento-surface px-4 py-3 text-sm leading-relaxed">
-            <strong>Deciso il 19 settembre 2026: B — tre gradini, 1.6 · 1.9 · 2.6.</strong> B e C
-            appiattivano la distinzione allo stesso modo, quindi restava solo da scegliere quale
-            misura sopravvive. Decide il rapporto con il titolo che la cifra accompagna: a 2.1rem la
-            cifra è <span className="font-mono">1,24×</span> il titolo di pagina e gli grida sopra; a
-            1.9rem è <span className="font-mono">1,12×</span> e gli sta alla pari. La pagina resta come
-            archivio.
+            <strong>Deciso il 19 settembre 2026: B — tre gradini, 1.6 · 1.9 · 2.6.</strong> B e C appiattivano
+            la distinzione allo stesso modo, quindi restava solo da scegliere quale misura sopravvive. Decide
+            il rapporto con il titolo che la cifra accompagna: a 2.1rem la cifra è{" "}
+            <span className="font-mono">1,24×</span> il titolo di pagina e gli grida sopra; a 1.9rem è{" "}
+            <span className="font-mono">1,12×</span> e gli sta alla pari. La pagina resta come archivio.
           </p>
         </div>
         <InterruttoreTema />
@@ -257,8 +248,8 @@ export default function PaginaCifre() {
         <h2 className="titolo text-lg">1 · Il confronto che oggi non esiste</h2>
         <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
           Sono la stessa struttura: una cifra allineata a destra in cima a un contenitore, con
-          l&apos;etichetta sotto. Separate da 3,2 pixel. Nel prodotto vivono su schermate diverse e
-          non si toccano mai — qui sì. <strong>Se la differenza non si vede, non è una gerarchia.</strong>
+          l&apos;etichetta sotto. Separate da 3,2 pixel. Nel prodotto vivono su schermate diverse e non si
+          toccano mai — qui sì. <strong>Se la differenza non si vede, non è una gerarchia.</strong>
         </p>
 
         <div className="mt-5 grid gap-px overflow-clip rounded-xl bg-border sm:grid-cols-2">
@@ -270,9 +261,7 @@ export default function PaginaCifre() {
           ).map((v) => (
             <div key={v.dove} className="bg-surface p-5">
               <div className="flex items-baseline justify-between gap-3">
-                <p className="text-[10px] tracking-[0.09em] text-faint-foreground uppercase">
-                  {v.dove}
-                </p>
+                <p className="text-[10px] tracking-[0.09em] text-faint-foreground uppercase">{v.dove}</p>
                 <p className="font-mono text-[10px] text-faint-foreground">{MISURE[v.m].slice(6, -1)}</p>
               </div>
               <div className="mt-4 text-right">
@@ -299,8 +288,8 @@ export default function PaginaCifre() {
       <section className="mt-14">
         <h2 className="titolo text-lg">2 · Tutte e quattro, nel loro contenitore vero</h2>
         <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
-          Come appaiono oggi, con i numeri del motore. Dall&apos;alto: la lastra del cruscotto, la
-          testata di pagina, la testata di pannello, la banda compatta.
+          Come appaiono oggi, con i numeri del motore. Dall&apos;alto: la lastra del cruscotto, la testata di
+          pagina, la testata di pannello, la banda compatta.
         </p>
 
         <div className="mt-5 space-y-4">

@@ -83,8 +83,8 @@ export default function ErroreGlobale({
           </h1>
           <p style={{ margin: "0 0 0.75rem", color: SPENTO }}>
             Il guasto è stato registrato.{" "}
-            <strong style={{ color: INCHIOSTRO }}>I dati non sono stati toccati</strong>: questa
-            schermata compare prima che qualunque operazione venga scritta.
+            <strong style={{ color: INCHIOSTRO }}>I dati non sono stati toccati</strong>: questa schermata
+            compare prima che qualunque operazione venga scritta.
           </p>
 
           {/* IL RIFERIMENTO SÌ, IL MESSAGGIO NO. Il `digest` identifica l'errore nei nostri
@@ -101,9 +101,7 @@ export default function ErroreGlobale({
               }}
             >
               Riferimento per l&apos;assistenza:{" "}
-              <code style={{ fontFamily: "ui-monospace, monospace", color: INCHIOSTRO }}>
-                {error.digest}
-              </code>
+              <code style={{ fontFamily: "ui-monospace, monospace", color: INCHIOSTRO }}>{error.digest}</code>
             </p>
           ) : null}
 

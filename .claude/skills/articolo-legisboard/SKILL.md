@@ -36,7 +36,7 @@ Registro «voi» (come la landing), mai «tu».
    - EUR-Lex per il Reg. UE 2016/679;
    - garanteprivacy.it (provvedimenti, linee guida, FAQ), ispettorato.gov.it, gli accordi
      Stato-Regioni per la formazione, EDPB per le linee guida europee.
-   Annota ogni fonte usata: vanno nella descrizione della PR.
+     Annota ogni fonte usata: vanno nella descrizione della PR.
 2. **Leggi i primi risultati di Google** per la parola chiave (strumento di ricerca web): capisci che
    taglio hanno, cosa manca, cosa sbagliano. L'articolo deve essere più preciso e più utile del
    migliore di quelli, non una loro sintesi.
@@ -44,6 +44,7 @@ Registro «voi» (come la landing), mai «tu».
    `packages/engine/src/index.ts`: titolo, riferimento, ruolo, periodicità.
 
 ### La trappola da non cadere mai
+
 La **periodicità del catalogo è una cadenza di controllo del prodotto, non sempre una scadenza di
 legge.** Esempio: il DVR è in catalogo «ogni 3 anni», ma l'art. 29 c.3 D.Lgs 81/08 non fissa una
 scadenza (va rielaborato entro 30 giorni da modifiche significative, infortuni significativi, o
@@ -57,17 +58,18 @@ File `apps/landing/content/blog/<slug>.mdx`:
 
 ```mdx
 ---
-titolo: "…"                # 10-90 caratteri, contiene la parola chiave o una sua forma naturale
-descrizione: "…"           # 50-155 caratteri: la risposta in una frase, non un invito a leggere
-pubblicazione: AAAA-MM-GG  # la data di OGGI: la routine di pubblicazione la riallinea al merge
+titolo: "…" # 10-90 caratteri, contiene la parola chiave o una sua forma naturale
+descrizione: "…" # 50-155 caratteri: la risposta in una frase, non un invito a leggere
+pubblicazione: AAAA-MM-GG # la data di OGGI: la routine di pubblicazione la riallinea al merge
 autore: alessandro-di-lonardo
 decreto: gdpr | d231 | d81
-parola_chiave: "…"         # quella del piano, identica
+parola_chiave: "…" # quella del piano, identica
 codici_catalogo: ["…"]
 ---
 ```
 
 Struttura:
+
 - **Primi due paragrafi = la risposta.** Chi legge solo quelli deve avere ciò che cercava, con
   l'articolo di legge. Niente preamboli («In questo articolo vedremo…»).
 - **Almeno 3 sezioni `##`**, formulate come le domande che un professionista si fa. Le ancore e
@@ -78,18 +80,21 @@ Struttura:
 - Chiudi con cosa fare in pratica, non con un riassunto.
 
 Componenti ammessi (nient'altro, nessun `import`):
+
 - `<Adempimento dominio="…" codice="…" />`: scheda dal catalogo. Codice inesistente = build rotta.
 - `<Norma rif="Art. 29 c.3 D.Lgs 81/08">testo breve</Norma>`: citazione o parafrasi di un articolo.
 - `<Nota>…</Nota>`: un avvertimento pratico.
 - `<InvitoDemo />`: **non** usarlo, lo aggiunge già la pagina in fondo.
 
 Collegamenti (obbligatori):
+
 - **al pilastro del decreto**: `/adempimenti-gdpr`, `/adempimenti-231`,
   `/adempimenti-sicurezza-sul-lavoro` (il cancello lo pretende);
 - ad almeno un'altra guida già pubblicata, se ne esiste una pertinente;
 - alle fonti primarie esterne (Normattiva, Garante, EUR-Lex), con URL precisi.
 
 Divieti (alcuni li controlla il cancello, tutti valgono):
+
 - la lineetta lunga «—»; usa due punti, virgole, parentesi;
 - frasi da contenuto in serie: «in conclusione», «nel panorama attuale», «in un mondo in cui»,
   «è fondamentale sottolineare», «non solo… ma anche»;
@@ -123,6 +128,7 @@ Divieti (alcuni li controlla il cancello, tutti valgono):
 ## 6. La pubblicazione (routine quotidiana)
 
 Per ogni PR aperta con etichetta `articolo`:
+
 - **salta** se ha l'etichetta `blocca`, o un commento che contiene «blocca»;
 - **aggiorna** se ha commenti di modifica più recenti dell'ultimo commit: applica le modifiche,
   rilancia la build, spingi sul ramo, rispondi al commento con cosa hai cambiato; il conto delle

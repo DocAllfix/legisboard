@@ -17,7 +17,9 @@ export function GET() {
   const guide = articoli.length
     ? `${riga}## Guide${riga}${riga}${articoli.map((a) => `- [${a.titolo}](${SITO.url}/blog/${a.slug}): ${a.descrizione}`).join(riga)}${riga}`
     : "";
-  const pilastri = DOMINI.map((d) => `- [${PILASTRI[d].titolo}](${SITO.url}${PILASTRI[d].url}): ${PILASTRI[d].descrizione}`).join(riga);
+  const pilastri = DOMINI.map(
+    (d) => `- [${PILASTRI[d].titolo}](${SITO.url}${PILASTRI[d].url}): ${PILASTRI[d].descrizione}`,
+  ).join(riga);
   const testo = `# ${SITO.nome}
 
 > Registro unico degli adempimenti GDPR (Reg. UE 2016/679), D.Lgs 231/2001 e D.Lgs 81/2008, per DPO, studi legali, organismi di vigilanza e RSPP. Ogni adempimento ha due stati distinti: lo stato del lavoro, deciso da una persona, e lo stato della scadenza, deciso dalla data.

@@ -12,7 +12,8 @@ import { INGRESSO_DEMO, REVISIONE_INFORMATIVE } from "@/lib/sito";
 
 export const metadata: Metadata = {
   title: "Cookie · Legisboard",
-  description: "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
+  description:
+    "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
   alternates: { canonical: "/cookie" },
   // Senza, l'anteprima condivisa ereditava titolo e indirizzo della home dal layout.
   openGraph: {
@@ -20,7 +21,8 @@ export const metadata: Metadata = {
     locale: "it_IT",
     siteName: "Legisboard",
     title: "Cookie · Legisboard",
-    description: "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
+    description:
+      "Quali cookie usano legisboard.eu e la demo pubblica: nessuno sul sito, solo cookie tecnici di sessione nella demo.",
     url: "/cookie",
   },
 };
@@ -35,14 +37,15 @@ export default function Cookie() {
     >
       <h2 id="sito">Su questo sito</h2>
       <p>
-        Nessun cookie e nessun dato salvato nel vostro browser. Nessun contatore di visite, nessun pixel, nessun
-        contenuto incorporato da altri siti.
+        Nessun cookie e nessun dato salvato nel vostro browser. Nessun contatore di visite, nessun pixel,
+        nessun contenuto incorporato da altri siti.
       </p>
 
       <h2 id="demo">Nella demo</h2>
       <p>
-        La demo su <a href={INGRESSO_DEMO}>{demo}</a> è un&apos;applicazione con accesso, e senza un cookie di sessione non
-        saprebbe che siete appena entrati. Sono cookie tecnici: esenti dal consenso (art. 122 del Codice privacy).
+        La demo su <a href={INGRESSO_DEMO}>{demo}</a> è un&apos;applicazione con accesso, e senza un cookie di
+        sessione non saprebbe che siete appena entrati. Sono cookie tecnici: esenti dal consenso (art. 122 del
+        Codice privacy).
       </p>
       <table>
         <thead>
@@ -70,8 +73,8 @@ export default function Cookie() {
         </tbody>
       </table>
       <p>
-        Entrambi sono di prima parte, inaccessibili agli script della pagina (HttpOnly) e viaggiano solo su connessione
-        cifrata.
+        Entrambi sono di prima parte, inaccessibili agli script della pagina (HttpOnly) e viaggiano solo su
+        connessione cifrata.
       </p>
       <p>La demo salva anche due cose nel vostro browser, senza mandarle a nessuno:</p>
       <ul>
@@ -79,15 +82,15 @@ export default function Cookie() {
           <code>tema</code>, nella memoria locale: il tema chiaro o scuro, se lo cambiate.
         </li>
         <li>
-          <code>invito-contatto</code>, nella memoria della scheda: che avete già chiuso l&apos;invito a contattarci, così
-          non riappare. Sparisce quando chiudete la scheda.
+          <code>invito-contatto</code>, nella memoria della scheda: che avete già chiuso l&apos;invito a
+          contattarci, così non riappare. Sparisce quando chiudete la scheda.
         </li>
       </ul>
 
       <h2 id="gestione">Come toglierli</h2>
       <p>
-        Uscendo dalla demo la sessione si chiude. Potete comunque cancellare cookie e dati dei siti dalle impostazioni del
-        browser: la demo vi chiederà solo di rientrare con un clic.
+        Uscendo dalla demo la sessione si chiude. Potete comunque cancellare cookie e dati dei siti dalle
+        impostazioni del browser: la demo vi chiederà solo di rientrare con un clic.
       </p>
     </PaginaLegale>
   );

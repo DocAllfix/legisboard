@@ -45,8 +45,8 @@ export default async function PaginaCruscotto() {
             </Link>
           }
         >
-          Il cruscotto misura quello che c&apos;è: si popola quando almeno un&apos;azienda ha un modulo
-          attivo con adempimenti censiti.
+          Il cruscotto misura quello che c&apos;è: si popola quando almeno un&apos;azienda ha un modulo attivo
+          con adempimenti censiti.
         </Vuoto>
       </div>
     );
@@ -192,7 +192,11 @@ export default async function PaginaCruscotto() {
             numeri diversi (conformità ed esposizione) e fa da ancora visiva a un oggetto che
             altrimenti sarebbe solo testo. La superficie sale di un gradino invece di alzare
             la voce con un bordo: nella forma «quieto» il rilievo si fa così. */}
-        <div data-tour="cruscotto-complessivo" className="pannello entra bg-surface-raised p-5" style={{ animationDelay: "180ms" }}>
+        <div
+          data-tour="cruscotto-complessivo"
+          className="pannello entra bg-surface-raised p-5"
+          style={{ animationDelay: "180ms" }}
+        >
           <p className="text-sm font-semibold">Complessivo</p>
           <p className="text-xs text-muted-foreground">sull&apos;insieme unito dei tre decreti</p>
           <div className="mt-4 flex items-center gap-4">
@@ -392,5 +396,3 @@ function Voce({ etichetta, valore, tinta }: { etichetta: string; valore: number;
     </div>
   );
 }
-
-

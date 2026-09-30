@@ -15,7 +15,10 @@ import { Button } from "@/components/ui/button";
 
 export default function NonTrovata() {
   return (
-    <main data-schermata="non-trovata" className="mx-auto flex min-h-dvh max-w-lg flex-col justify-center px-6 py-16">
+    <main
+      data-schermata="non-trovata"
+      className="mx-auto flex min-h-dvh max-w-lg flex-col justify-center px-6 py-16"
+    >
       <div className="pannello entra p-6">
         <FileQuestion className="size-5 text-faint-foreground" aria-hidden />
         {/* `text-muted-foreground` e non `faint`: a dieci pixel su carta il token più
@@ -23,8 +26,8 @@ export default function NonTrovata() {
         <p className="mt-3 font-mono text-micro tracking-[0.12em] text-muted-foreground">404</p>
         <h1 className="titolo mt-1 text-xl">Pagina non trovata</h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          L&apos;indirizzo non corrisponde a nessuna pagina di questa istanza. Può essere un
-          collegamento vecchio, oppure un refuso.
+          L&apos;indirizzo non corrisponde a nessuna pagina di questa istanza. Può essere un collegamento
+          vecchio, oppure un refuso.
         </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-2">

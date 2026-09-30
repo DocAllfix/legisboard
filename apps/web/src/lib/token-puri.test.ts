@@ -44,7 +44,24 @@ const CSS = join(MONOREPO, "packages", "ui", "tokens.css");
 const CARTELLE = [RADICE, join(MONOREPO, "packages", "ui", "src"), join(MONOREPO, "apps", "landing", "src")];
 
 /** Le famiglie di utility che `DESIGN.md` vincola: colore, raggio, ombra. */
-const FAMIGLIE = ["bg", "text", "border", "ring", "fill", "stroke", "shadow", "rounded", "from", "to", "via", "outline", "divide", "decoration", "accent", "caret"] as const;
+const FAMIGLIE = [
+  "bg",
+  "text",
+  "border",
+  "ring",
+  "fill",
+  "stroke",
+  "shadow",
+  "rounded",
+  "from",
+  "to",
+  "via",
+  "outline",
+  "divide",
+  "decoration",
+  "accent",
+  "caret",
+] as const;
 
 /**
  * Fuori dal perimetro, ognuno con il suo perché.
@@ -59,11 +76,7 @@ const FAMIGLIE = ["bg", "text", "border", "ring", "fill", "stroke", "shadow", "r
  *
  * `spike-pdf` è una rotta di prova fuori dall'interfaccia: genera HTML per Puppeteer.
  */
-const ESENTI = [
-  join("app", "varianti"),
-  join("app", "global-error.tsx"),
-  join("app", "api", "spike-pdf"),
-];
+const ESENTI = [join("app", "varianti"), join("app", "global-error.tsx"), join("app", "api", "spike-pdf")];
 
 function sorgenti(dir: string, out: string[] = []): string[] {
   for (const voce of readdirSync(dir, { withFileTypes: true })) {

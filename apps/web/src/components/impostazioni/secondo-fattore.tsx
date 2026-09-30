@@ -225,8 +225,8 @@ export function SecondoFattore({ attivo }: { attivo: boolean }) {
           Secondo fattore <strong>attivato</strong>.
         </p>
         <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-          Conserva questi codici in un posto che non sia il telefono che hai appena registrato.
-          Servono se lo perdi: senza, l&apos;unico modo di rientrare è chiedere all&apos;assistenza.{" "}
+          Conserva questi codici in un posto che non sia il telefono che hai appena registrato. Servono se lo
+          perdi: senza, l&apos;unico modo di rientrare è chiedere all&apos;assistenza.{" "}
           <strong className="text-foreground">Non verranno mostrati di nuovo.</strong>
         </p>
 
@@ -261,9 +261,7 @@ export function SecondoFattore({ attivo }: { attivo: boolean }) {
 
         {segreto ? (
           <div className="mt-4">
-            <p className="text-micro tracking-[0.09em] text-muted-foreground uppercase">
-              Chiave segreta
-            </p>
+            <p className="text-micro tracking-[0.09em] text-muted-foreground uppercase">Chiave segreta</p>
             <p className="mt-1 font-mono text-base break-all select-all">{aGruppi(segreto)}</p>
             <div className="mt-2 flex flex-wrap items-center gap-2">
               <Copia testo={segreto} etichetta="Copia la chiave" />
@@ -322,8 +320,8 @@ export function SecondoFattore({ attivo }: { attivo: boolean }) {
     <div className="pannello max-w-xl p-5">
       <Passi corrente={1} />
       <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">
-        Una password sola non basta per un archivio che contiene le evidenze di conformità di
-        aziende terze. Serve un&apos;app di autenticazione sul telefono.
+        Una password sola non basta per un archivio che contiene le evidenze di conformità di aziende terze.
+        Serve un&apos;app di autenticazione sul telefono.
       </p>
       <form
         className="mt-4"
@@ -349,8 +347,8 @@ export function SecondoFattore({ attivo }: { attivo: boolean }) {
           </Button>
         </div>
         <p className="mt-1.5 text-xs text-muted-foreground">
-          Si richiede qui perché accendere il secondo fattore non deve poterlo fare chi ha trovato
-          una sessione aperta su un computer incustodito.
+          Si richiede qui perché accendere il secondo fattore non deve poterlo fare chi ha trovato una
+          sessione aperta su un computer incustodito.
         </p>
         {errore ? <div className="mt-3">{<Avviso testo={errore} />}</div> : null}
       </form>

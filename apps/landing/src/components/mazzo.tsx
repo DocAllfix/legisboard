@@ -42,13 +42,18 @@ const CARTA =
 
 export function Mazzo() {
   return (
-    <div aria-hidden className="group relative mx-auto w-full max-w-md space-y-4 lg:h-[38rem] lg:max-w-lg lg:space-y-0">
+    <div
+      aria-hidden
+      className="group relative mx-auto w-full max-w-md space-y-4 lg:h-[38rem] lg:max-w-lg lg:space-y-0"
+    >
       {/* Dietro — le prossime scadenze */}
       <div
         style={{ animationDelay: "80ms" }}
         className={`${CARTA} p-5 lg:absolute lg:top-0 lg:right-0 lg:w-72 lg:rotate-2 lg:group-hover:translate-x-4 lg:group-hover:-translate-y-3 lg:group-hover:rotate-3`}
       >
-        <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">{SETTIMANA.titolo}</p>
+        <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">
+          {SETTIMANA.titolo}
+        </p>
         <ul className="mt-3 space-y-2.5">
           {SETTIMANA.righe.map((r) => (
             <li key={`${r.dominio}:${r.codice}`} className="flex items-center gap-2">
@@ -71,7 +76,9 @@ export function Mazzo() {
           <span className="text-micro font-semibold tracking-widest uppercase">Studio Dimostrativo</span>
           <span className="text-micro text-muted-foreground">Fascicolo ispettivo</span>
         </div>
-        <p className="mt-2 font-mono text-micro text-muted-foreground tabular-nums">rilevazione del {formattaIt(OGGI_ISO)}</p>
+        <p className="mt-2 font-mono text-micro text-muted-foreground tabular-nums">
+          rilevazione del {formattaIt(OGGI_ISO)}
+        </p>
         <p className="mt-8 text-micro tracking-wide text-muted-foreground">
           Documentazione a corredo · Reg. UE 2016/679
         </p>
@@ -109,7 +116,9 @@ export function Mazzo() {
               </span>
             </dd>
           </dl>
-          <p className="mt-4 border-t pt-3 text-xs text-muted-foreground">Il documento c&apos;è. Il ciclo no.</p>
+          <p className="mt-4 border-t pt-3 text-xs text-muted-foreground">
+            Il documento c&apos;è. Il ciclo no.
+          </p>
         </div>
       ) : null}
     </div>

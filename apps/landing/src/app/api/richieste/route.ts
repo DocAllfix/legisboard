@@ -28,7 +28,8 @@ const rifiuto = (errore: string, stato: number) => Response.json({ errore }, { s
 export async function POST(richiesta: Request) {
   if (!RICHIESTE_ATTIVE) return rifiuto("Il modulo non è attivo.", 503);
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_MITTENTE, RICHIESTE_DESTINATARIO } = process.env;
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_MITTENTE, RICHIESTE_DESTINATARIO } =
+    process.env;
   if (!SMTP_HOST || !SMTP_MITTENTE || !RICHIESTE_DESTINATARIO) {
     return rifiuto("La posta non è configurata: la richiesta non può partire.", 503);
   }

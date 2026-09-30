@@ -71,7 +71,10 @@ export default async function PaginaAutore({ params }: Props) {
             <ul className="mt-5 divide-y border-y">
               {firmate.map((x) => (
                 <li key={x.slug}>
-                  <Link href={`/blog/${x.slug}`} className="group flex flex-wrap items-baseline justify-between gap-2 py-4">
+                  <Link
+                    href={`/blog/${x.slug}`}
+                    className="group flex flex-wrap items-baseline justify-between gap-2 py-4"
+                  >
                     <span className="font-semibold group-hover:underline">{x.titolo}</span>
                     <time dateTime={x.pubblicazione} className="text-sm text-muted-foreground">
                       {dataEstesa(x.pubblicazione)}

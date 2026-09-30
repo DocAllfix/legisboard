@@ -12,8 +12,10 @@ import { assicuraUtenteDemo, ripristinaDemo } from "./demo";
 // Uso:  pnpm --filter web db:demo-reset
 
 const esito = await ripristinaDemo();
-if (esito.stato === "ripristinata") console.log(`Azienda di esempio ripristinata: ${esito.campi} campi riportati ai valori iniziali.`);
-else if (esito.stato === "creata") console.log(`Azienda di esempio creata: ${esito.adempimenti} adempimenti.`);
+if (esito.stato === "ripristinata")
+  console.log(`Azienda di esempio ripristinata: ${esito.campi} campi riportati ai valori iniziali.`);
+else if (esito.stato === "creata")
+  console.log(`Azienda di esempio creata: ${esito.adempimenti} adempimenti.`);
 else {
   console.error(`Ripristino non riuscito: ${esito.stato}`);
   process.exit(1);

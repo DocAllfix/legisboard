@@ -258,10 +258,7 @@ export function TabellaPortafoglio({ righe }: { righe: readonly RigaPortafoglio[
 
           MISURATO, non supposto: con la scatola di scorrimento si vedevano 14 righe
           sull'assessment e 10 sullo scadenzario; così se ne vedono 24. DESIGN.md ne chiede 22. */}
-      <div
-        className="overflow-x-auto lg:overflow-x-visible"
-        data-tour="tabella-portafoglio"
-      >
+      <div className="overflow-x-auto lg:overflow-x-visible" data-tour="tabella-portafoglio">
         <table className="w-full">
           <thead className="border-b border-border-strong bg-surface-sunken lg:sticky lg:top-0 lg:z-10 lg:[&_th]:bg-surface-sunken">
             <tr>

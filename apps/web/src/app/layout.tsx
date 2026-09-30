@@ -106,11 +106,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             del render client (quello vero) e dichiara la differenza.
             Sonda: attributo "" · proprietà "Imi4Cuyi2JY23fzZ…". L'unica cosa da fare è dire a
             React di non confrontare proprio questo elemento. */}
-        <script
-          nonce={nonce}
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }}
-        />
+        <script nonce={nonce} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
       </head>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>

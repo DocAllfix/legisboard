@@ -69,7 +69,8 @@ export default async function PaginaPortafoglio() {
         </div>
       ) : null}
 
-      <div className="mt-3">{righe.length === 0 ? (
+      <div className="mt-3">
+        {righe.length === 0 ? (
           <VuotoPortafoglio />
         ) : (
           // Come assessment e scadenzario: la tabella legge i filtri dall indirizzo con
@@ -77,7 +78,8 @@ export default async function PaginaPortafoglio() {
           <Suspense fallback={<p className="text-sm text-muted-foreground">Caricamento…</p>}>
             <TabellaPortafoglio righe={righe} />
           </Suspense>
-        )}</div>
+        )}
+      </div>
     </div>
   );
 }
@@ -119,8 +121,8 @@ function mediana(righe: readonly { conformita: { percentuale: number | null } | 
 function VuotoPortafoglio() {
   return (
     <Vuoto icona={Building2} titolo="Il portafoglio è vuoto" azione={<NuovaAzienda />}>
-      Aggiungi la prima azienda assistita. Scegliendo i moduli, gli adempimenti dei decreti
-      selezionati vengono creati subito: {DOMINI.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}.
+      Aggiungi la prima azienda assistita. Scegliendo i moduli, gli adempimenti dei decreti selezionati
+      vengono creati subito: {DOMINI.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}.
     </Vuoto>
   );
 }

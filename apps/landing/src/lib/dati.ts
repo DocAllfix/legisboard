@@ -86,7 +86,13 @@ export type Cella = {
 export const MATRICE: readonly (readonly Cella[])[] = LAVORI.map((lavoro, i) =>
   SCADENZE.map((scadenza, j) => {
     const tutte = TUTTI.filter((a) => a.stato === lavoro && a.statoScadenza === scadenza).map(riga);
-    return { id: `${i}-${j}`, lavoro, scadenza, quanti: tutte.length, righe: [...tutte].sort(perUrgenza).slice(0, 3) };
+    return {
+      id: `${i}-${j}`,
+      lavoro,
+      scadenza,
+      quanti: tutte.length,
+      righe: [...tutte].sort(perUrgenza).slice(0, 3),
+    };
   }),
 );
 
@@ -150,7 +156,8 @@ export const INCROCIO = (() => {
 // di adempimento che NON si calcola da una periodicità: come esempio di «la scadenza si calcola
 // dalla periodicità» diceva il contrario.
 const conPeriodicita = TUTTI.find(
-  (a) => a.dominio === "gdpr" && a.scadenza !== null && !/verificars/i.test(descriviPeriodicita(a.periodicita)),
+  (a) =>
+    a.dominio === "gdpr" && a.scadenza !== null && !/verificars/i.test(descriviPeriodicita(a.periodicita)),
 );
 
 export const ESEMPIO_ASSESSMENT = conPeriodicita
@@ -170,7 +177,8 @@ export const CAMPIONI: Readonly<Record<Dominio, readonly { codice: string; titol
 // --- Il mazzo dell'eroe -----------------------------------------------------------------
 
 /** L'adempimento «Completata e Scaduta» più scaduto: la tesi del prodotto, come oggetto singolo. */
-export const TESI: Riga | null = ESTRATTO.find((r) => r.stato === "Completata" && r.statoScadenza === "Scaduta") ?? null;
+export const TESI: Riga | null =
+  ESTRATTO.find((r) => r.stato === "Completata" && r.statoScadenza === "Scaduta") ?? null;
 
 /**
  * Le prossime scadenze, UNA PER DECRETO, dalla più vicina.

@@ -11,7 +11,12 @@ import { Metodo } from "@/components/metodo";
 import { ModuloRichiesta } from "@/components/modulo-richiesta";
 import { Piede } from "@/components/piede";
 import { SchedaInstallazione } from "@/components/scheda-installazione";
-import { COLLEGAMENTO_SU_OLIVA, FRECCIA_CTA, PULSANTE_PIENO, PULSANTE_PIENO_SU_OLIVA } from "@/components/pulsanti";
+import {
+  COLLEGAMENTO_SU_OLIVA,
+  FRECCIA_CTA,
+  PULSANTE_PIENO,
+  PULSANTE_PIENO_SU_OLIVA,
+} from "@/components/pulsanti";
 import { INCROCIO, TOTALE } from "@/lib/dati";
 import { DATI_STRUTTURATI } from "@/lib/dati-strutturati";
 import { DOMANDE } from "@/lib/domande";
@@ -52,7 +57,17 @@ function Occhiello({ children, su = "chiaro" }: { children: React.ReactNode; su?
   );
 }
 
-function TitoloSezione({ id, occhiello, titolo, sotto }: { id: string; occhiello: string; titolo: string; sotto?: string }) {
+function TitoloSezione({
+  id,
+  occhiello,
+  titolo,
+  sotto,
+}: {
+  id: string;
+  occhiello: string;
+  titolo: string;
+  sotto?: string;
+}) {
   return (
     <div className="affiora max-w-3xl">
       <Occhiello>{occhiello}</Occhiello>
@@ -69,26 +84,35 @@ export default function Pagina() {
   const incrocio = INCROCIO;
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(DATI_STRUTTURATI) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(DATI_STRUTTURATI) }}
+      />
       <Intestazione />
       <main>
         {/* ================================================================== EROE */}
-        <section aria-labelledby="titolo" className="relative overflow-hidden bg-sidebar text-sidebar-foreground">
+        <section
+          aria-labelledby="titolo"
+          className="relative overflow-hidden bg-sidebar text-sidebar-foreground"
+        >
           <div aria-hidden className="registro pointer-events-none absolute inset-0" />
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-16 px-5 py-20 md:py-28 lg:grid-cols-[1.1fr_1fr]">
             <div className="min-w-0">
               <Occhiello su="oliva">GDPR · D.Lgs 231/2001 · D.Lgs 81/2008</Occhiello>
               {/* L'LCP della pagina: testo, mai dentro un'animazione. */}
-              <h1 id="titolo" className="mt-7 text-display leading-none font-extrabold tracking-tight text-balance">
+              <h1
+                id="titolo"
+                className="mt-7 text-display leading-none font-extrabold tracking-tight text-balance"
+              >
                 Fatto e in regola non sono la stessa cosa.
               </h1>
               <p className="mt-6 text-2xl font-semibold tracking-tight text-sidebar-accento">
                 Legisboard li tiene separati.
               </p>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-sidebar-muted">
-                Un solo registro per i tre decreti: {TOTALE} adempimenti, e per ognuno due stati distinti. Il lavoro lo
-                decide una persona, la scadenza la decide la data. Un documento redatto a marzo e scaduto a settembre
-                smette di sembrare a posto.
+                Un solo registro per i tre decreti: {TOTALE} adempimenti, e per ognuno due stati distinti. Il
+                lavoro lo decide una persona, la scadenza la decide la data. Un documento redatto a marzo e
+                scaduto a settembre smette di sembrare a posto.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
                 <a href={INGRESSO_DEMO} className={PULSANTE_PIENO_SU_OLIVA}>
@@ -123,8 +147,8 @@ export default function Pagina() {
               <div className="affiora min-w-0">
                 <h3 className="text-2xl font-extrabold tracking-tight">Provatelo sui numeri veri.</h3>
                 <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
-                  È la matrice dell&apos;azienda d&apos;esempio, lavoro per scadenza. Scegliete una cella: sotto compaiono
-                  gli adempimenti che ci stanno dentro.
+                  È la matrice dell&apos;azienda d&apos;esempio, lavoro per scadenza. Scegliete una cella:
+                  sotto compaiono gli adempimenti che ci stanno dentro.
                 </p>
               </div>
               <div className="affiora min-w-0">
@@ -154,7 +178,11 @@ export default function Pagina() {
                   <PastigliaDominio dominio={incrocio.dominio} />
                   <Codice codice={incrocio.codice} />
                   <span className="min-w-0 flex-1 truncate font-medium">{incrocio.titolo}</span>
-                  <Scadenza data={incrocio.scadenza} giorni={incrocio.giorni} statoScadenza={incrocio.statoScadenza} />
+                  <Scadenza
+                    data={incrocio.scadenza}
+                    giorni={incrocio.giorni}
+                    statoScadenza={incrocio.statoScadenza}
+                  />
                   <span className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
                     lo leggono
                     {incrocio.usi.map((u) => (
@@ -174,7 +202,11 @@ export default function Pagina() {
         {/* ========================================================= COME FUNZIONA */}
         <section id="come-funziona" aria-labelledby="come-titolo">
           <div className="mx-auto w-full max-w-6xl px-5 py-24 md:py-32">
-            <TitoloSezione id="come-titolo" occhiello="Come funziona" titolo="Tre gesti. Le date le calcola il motore." />
+            <TitoloSezione
+              id="come-titolo"
+              occhiello="Come funziona"
+              titolo="Tre gesti. Le date le calcola il motore."
+            />
             <ComeFunziona />
           </div>
         </section>
@@ -205,7 +237,10 @@ export default function Pagina() {
                 sotto="Legisboard non è un servizio a cui ci si iscrive. L'accordo si fa di persona."
               />
               <div className="affiora mt-8">
-                <a href={CONTATTO_POSSIBILE ? "/?motivo=appuntamento#richiesta" : INGRESSO_DEMO} className={PULSANTE_PIENO}>
+                <a
+                  href={CONTATTO_POSSIBILE ? "/?motivo=appuntamento#richiesta" : INGRESSO_DEMO}
+                  className={PULSANTE_PIENO}
+                >
                   {CONTATTO_POSSIBILE ? "Fissa un appuntamento" : "Entra nella demo"}
                 </a>
               </div>
@@ -217,7 +252,11 @@ export default function Pagina() {
         {/* ============================================================== DOMANDE */}
         <section id="domande" aria-labelledby="domande-titolo" className="bg-surface-sunken">
           <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-24 md:py-32 lg:grid-cols-[1fr_1.6fr]">
-            <TitoloSezione id="domande-titolo" occhiello="Domande" titolo="Le risposte che chiedereste al telefono." />
+            <TitoloSezione
+              id="domande-titolo"
+              occhiello="Domande"
+              titolo="Le risposte che chiedereste al telefono."
+            />
             <div className="affiora divide-y divide-border-strong border-y border-border-strong">
               {DOMANDE.map((d) => (
                 <details key={d.domanda} className="group">
@@ -244,7 +283,10 @@ export default function Pagina() {
         {/* Oliva, come l'eroe: la pagina si apre e si chiude sullo stesso colore. */}
         <section aria-labelledby="chiusura-titolo" className="bg-sidebar text-sidebar-foreground">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-10 px-5 py-24 md:py-32 lg:flex-row lg:items-end lg:justify-between">
-            <h2 id="chiusura-titolo" className="max-w-3xl text-display leading-none font-extrabold tracking-tight text-balance">
+            <h2
+              id="chiusura-titolo"
+              className="max-w-3xl text-display leading-none font-extrabold tracking-tight text-balance"
+            >
               Il modo più rapido per capirlo è entrarci.
             </h2>
             <a href={INGRESSO_DEMO} className={PULSANTE_PIENO_SU_OLIVA}>

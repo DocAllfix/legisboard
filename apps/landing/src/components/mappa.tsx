@@ -26,7 +26,9 @@ export function Mappa() {
               <span className="text-xs text-muted-foreground">{m.etichetta.norma}</span>
             </div>
             <p className="mt-3 flex items-baseline gap-2">
-              <span className="text-cifra leading-none font-extrabold tracking-tight tabular-nums">{m.celle.length}</span>
+              <span className="text-cifra leading-none font-extrabold tracking-tight tabular-nums">
+                {m.celle.length}
+              </span>
               <span className="text-sm text-muted-foreground">{m.etichetta.esteso.toLowerCase()}</span>
             </p>
             <div aria-hidden className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(0.875rem,1fr))] gap-1">

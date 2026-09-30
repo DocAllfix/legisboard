@@ -48,8 +48,8 @@ export function Piede() {
         <div>
           <Logotipo className="h-6 w-auto" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Il registro unico degli adempimenti GDPR, D.Lgs 231/2001 e D.Lgs 81/2008, con lo stato del lavoro separato
-            dalla scadenza.
+            Il registro unico degli adempimenti GDPR, D.Lgs 231/2001 e D.Lgs 81/2008, con lo stato del lavoro
+            separato dalla scadenza.
           </p>
         </div>
         <nav aria-label="Pagina">
@@ -65,7 +65,9 @@ export function Piede() {
           </ul>
         </nav>
         <nav aria-label="Adempimenti">
-          <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">Adempimenti</p>
+          <p className="text-micro font-semibold tracking-widest text-muted-foreground uppercase">
+            Adempimenti
+          </p>
           <ul className="mt-4 space-y-2 text-sm">
             {DOMINI.map((d) => (
               <li key={d}>

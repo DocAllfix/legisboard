@@ -109,8 +109,8 @@ export default async function PaginaAssessment({
               </Link>
             }
           >
-            Finché il modulo è spento, per questa azienda non esistono adempimenti{" "}
-            {etichetta.breve}: attivandolo vengono creati dal catalogo, con le loro scadenze.
+            Finché il modulo è spento, per questa azienda non esistono adempimenti {etichetta.breve}:
+            attivandolo vengono creati dal catalogo, con le loro scadenze.
           </Vuoto>
         ) : righe.length === 0 ? (
           // ERA IL VUOTO PEGGIORE DEL PRODOTTO: sette parole in un riquadro tratteggiato,
@@ -127,9 +127,9 @@ export default async function PaginaAssessment({
               </Link>
             }
           >
-            Il modulo è attivo ma non contiene adempimenti: di solito vuol dire che è stato
-            disattivato e riattivato, perché spegnendolo le sue righe vengono rimosse. Riattivarlo
-            dalla scheda li ricrea dal catalogo.
+            Il modulo è attivo ma non contiene adempimenti: di solito vuol dire che è stato disattivato e
+            riattivato, perché spegnendolo le sue righe vengono rimosse. Riattivarlo dalla scheda li ricrea
+            dal catalogo.
           </Vuoto>
         ) : (
           // `useSearchParams` richiede un confine di sospensione: senza, la pagina
@@ -141,11 +141,7 @@ export default async function PaginaAssessment({
                 componente: la tabella resterebbe con i filtri di prima, e il clic sulla cella
                 cambierebbe l'indirizzo senza cambiare le righe. La chiave sui due assi la
                 rimonta proprio e solo quando la matrice li cambia. */}
-            <TabellaAssessment
-              key={chiaveAssi}
-              righe={righe}
-              modificabile={ctx.ruolo !== "viewer"}
-            />
+            <TabellaAssessment key={chiaveAssi} righe={righe} modificabile={ctx.ruolo !== "viewer"} />
           </Suspense>
         )}
       </div>
@@ -251,7 +247,9 @@ function DueAssi({ griglia }: { griglia: Readonly<Record<string, Readonly<Record
                           {n}
                         </Link>
                       ) : (
-                        <span className="inline-block px-1.5 font-mono text-muted-foreground tabular-nums">·</span>
+                        <span className="inline-block px-1.5 font-mono text-muted-foreground tabular-nums">
+                          ·
+                        </span>
                       )}
                     </td>
                   );

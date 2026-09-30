@@ -29,8 +29,8 @@ export function Adempimento({ dominio, codice }: { dominio: Dominio; codice: str
         <dd>{descriviPeriodicita(t.periodicita)}</dd>
       </dl>
       <p className="mt-4 border-t pt-3 text-xs text-muted-foreground">
-        Dal catalogo Legisboard, {ETICHETTE_DOMINIO[dominio].breve}. La cadenza è quella con cui il registro lo
-        ripropone, non sempre una scadenza fissata dalla legge.
+        Dal catalogo Legisboard, {ETICHETTE_DOMINIO[dominio].breve}. La cadenza è quella con cui il registro
+        lo ripropone, non sempre una scadenza fissata dalla legge.
       </p>
     </aside>
   );
@@ -46,9 +46,7 @@ export function Norma({ rif, children }: { rif: string; children: React.ReactNod
 }
 
 export function Nota({ children }: { children: React.ReactNode }) {
-  return (
-    <aside className="my-8 rounded-lg bg-surface-sunken p-5 text-sm leading-relaxed">{children}</aside>
-  );
+  return <aside className="my-8 rounded-lg bg-surface-sunken p-5 text-sm leading-relaxed">{children}</aside>;
 }
 
 export function InvitoDemo() {

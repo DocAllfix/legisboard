@@ -9,13 +9,13 @@ Sostituire i segnaposto `<…>` e cancellare questa riga e la precedente.
 
 ## La vostra istanza
 
-|                   |                                       |
-| ----------------- | ------------------------------------- |
+|                   |                                   |
+| ----------------- | --------------------------------- |
 | Indirizzo         | **https://\<slug>.legisboard.it** |
-| Utenza iniziale   | `<email del referente>`               |
-| Password iniziale | `<generata dall'onboarding>`          |
-| Attivata il       | `<data>`                              |
-| Referente tecnico | `<nome, contatto>`                    |
+| Utenza iniziale   | `<email del referente>`           |
+| Password iniziale | `<generata dall'onboarding>`      |
+| Attivata il       | `<data>`                          |
+| Referente tecnico | `<nome, contatto>`                |
 
 **La password iniziale va cambiata al primo accesso.** Non la conserviamo: se si perde, si
 rigenera dalla vostra istanza, e nel farlo si invalidano le sessioni aperte.
