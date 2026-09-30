@@ -110,6 +110,11 @@ Divieti (alcuni li controlla il cancello, tutti valgono):
 2. Rileggi l'articolo come Alessandro: ogni affermazione normativa ha la sua fonte? C'è una frase
    che firmeresti senza verificarla? Toglila o verificala.
 3. Aggiorna la voce in `piano-editoriale.json`: `"stato": "in-revisione"`.
+4. **Prima di ogni commit** formatta i file toccati:
+   `npx prettier --write apps/landing/content/blog/<slug>.mdx apps/landing/content/piano-editoriale.json`.
+   La CI (controllo `verifica` su GitHub) esegue `prettier --check .`: un file non formattato la fa
+   fallire, e con la CI rossa la PR non viene pubblicata. Vale anche per i commit della routine di
+   pubblicazione (data e stato «pubblicato»).
 
 ## 5. Apri la PR
 
