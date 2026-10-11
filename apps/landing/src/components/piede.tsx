@@ -55,7 +55,7 @@ function PoweredBy() {
       href="https://www.axialoop.com/it"
       target="_blank"
       rel="noopener"
-      aria-label="Sito di Axialoop, che ha sviluppato Legisboard"
+      aria-label="powered by Axialoop: sito di Axialoop, che ha sviluppato Legisboard (si apre in una nuova scheda)"
       className="inline-flex min-h-6 items-center gap-2 rounded-sm text-sm hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
       <svg aria-hidden viewBox="0 0 497 494" className="size-4 shrink-0">
