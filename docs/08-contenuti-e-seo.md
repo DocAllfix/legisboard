@@ -76,3 +76,20 @@ Webmaster Tools importa da Search Console.
 
 Dopo 4-6 settimane di dati: una routine mensile legge query e posizioni tramite un account di
 servizio Google, e propone con una PR il piano del mese successivo (Fase 5 del piano).
+
+## Resistenza ai blocchi _(2026-10-11, dall'esperienza di FinBeacon)_
+
+Le regole stanno nella skill; le routine la rileggono a ogni giro.
+
+- **Controlli che contano**: per pubblicare servono verdi solo `verifica` (CI) e
+  `Vercel – legisboard-landing`. L'anteprima della demo non blocca una guida.
+- **Conflitti**: una PR in conflitto su `piano-editoriale.json` viene riallineata su `main` senza
+  far ripartire le 48 ore.
+- **Voci sospese**: una voce impossibile diventa `sospesa` con `motivo` e `tentativi`, e si passa
+  alla successiva nello stesso giro.
+- **Piano che si esaurisce**: sotto le 6 voci da scrivere la routine apre una PR `piano` con 6
+  voci nuove, da unire a mano.
+- **Sentinella**: se da 8 giorni non nasce una PR `articolo`, o una è aperta da più di 5 giorni,
+  la routine apre una issue `redazione-ferma` (email al proprietario) e la chiude quando torna a
+  posto. Limite: la sentinella gira dentro la routine, quindi non avvisa se è la routine stessa a
+  non partire (account senza quota, ambiente cambiato).

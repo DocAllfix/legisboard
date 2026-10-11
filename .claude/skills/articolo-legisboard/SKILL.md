@@ -28,6 +28,19 @@ Registro «voi» (come la landing), mai «tu».
    `articolo` abbia lo stesso slug (`gh pr list --label articolo`).
 4. Se c'è una PR `articolo` aperta con commenti di modifica non ancora risolti, **quella ha la
    precedenza**: aggiornala invece di scrivere un articolo nuovo.
+5. **Voci sospese** _(2026-10-11)_. Se una voce non si può scrivere bene (fonti primarie
+   irraggiungibili, norma in corso di modifica, argomento che si rivela un doppione), non fermare
+   la settimana: segna la voce `"stato": "sospesa"` con un campo `"motivo"` di una riga e un
+   campo `"tentativi"` (1, 2, 3), e passa alla voce successiva **nello stesso giro**. Una voce
+   sospesa si riprova al giro dopo; al terzo tentativo fallito resta sospesa e la segnali nel
+   riepilogo. La modifica al piano va nella PR dell'articolo che scrivi al suo posto.
+6. **Il piano non deve finire** _(2026-10-11)_. Se restano meno di 6 voci `da-scrivere`, dopo aver
+   aperto la PR dell'articolo apri una seconda PR, ramo `claude/piano-<data>`, etichetta `piano`
+   (non `articolo`: non si pubblica da sola), che aggiunge 6 voci nuove. Per sceglierle:
+   ricerca web sulle domande reali dei professionisti (DPO, OdV, RSPP, consulenti) per ciascun
+   decreto, scarta i doppioni delle voci esistenti (stessa parola chiave o stesso intento), lega
+   ogni voce a codici veri del catalogo, alterna i decreti. Nella descrizione della PR scrivi da
+   quali ricerche viene ogni voce. La unisce una persona.
 
 ## 2. Studia prima di scrivere
 
@@ -138,8 +151,26 @@ Per ogni PR aperta con etichetta `articolo`:
 - **aggiorna** se ha commenti di modifica più recenti dell'ultimo commit: applica le modifiche,
   rilancia la build, spingi sul ramo, rispondi al commento con cosa hai cambiato; il conto delle
   48 ore riparte dall'ultimo commit;
-- **unisci** se sono passate almeno 48 ore dall'ultimo commit, la build di Vercel è verde
-  (`gh pr checks`) e non c'è niente dei due casi sopra. Prima di unire: fissa `pubblicazione` alla
-  data di oggi e la voce del piano a `"pubblicato"`, poi `gh pr merge --squash --delete-branch`.
+- **riallinea** se GitHub segnala un conflitto con `main` (`gh pr view --json mergeable` dà
+  `CONFLICTING`): quasi sempre è `piano-editoriale.json`, toccato da due PR. Fai `git merge
+origin/main` sul ramo, risolvi tenendo la versione di `main` e rimettendo lo stato della sola
+  voce di questa PR, formatta, rilancia la build, spingi. Il riallineamento **non** fa ripartire
+  le 48 ore: non è una modifica del testo;
+- **unisci** se sono passate almeno 48 ore dall'ultimo commit che ha cambiato l'articolo, i
+  **controlli che contano** sono verdi e non c'è niente dei casi sopra. Prima di unire: fissa
+  `pubblicazione` alla data di oggi e la voce del piano a `"pubblicato"`, poi
+  `gh pr merge --squash --delete-branch`.
 
-Mai unire una PR con controlli rossi o in corso. Mai spingere direttamente su `main`.
+I **controlli che contano** sono due: `verifica` (la CI) e `Vercel – legisboard-landing`
+(l'anteprima del blog). `Vercel – legisboard-demo` e `Vercel Preview Comments` riguardano la
+demo, che una guida non tocca: se sono rossi, **non** bloccano, ma scrivilo nel riepilogo. Mai
+unire con uno dei due controlli che contano rosso o ancora in corso. Mai spingere su `main`.
+
+**Sentinella** _(2026-10-11)_. In fondo a ogni giro di pubblicazione controlla due cose:
+
+- l'ultima PR `articolo` è stata creata più di 8 giorni fa;
+- una PR `articolo` è aperta da più di 5 giorni.
+  Se una delle due è vera, e non esiste già una issue aperta con etichetta `redazione-ferma`, aprila
+  (`gh issue create --label redazione-ferma`), con cosa è fermo e perché: GitHub manda l'email al
+  proprietario del repository. Se nessuna delle due è vera e la issue è aperta, chiudila con un
+  commento. Crea l'etichetta con `gh label create redazione-ferma` se manca.
