@@ -5,7 +5,8 @@ import { PILASTRI } from "@/lib/pilastri";
 import { CONTATTO_EMAIL, INGRESSO_DEMO, TITOLARE } from "@/lib/sito";
 import { ANCORE } from "./intestazione";
 
-// I DATI DEL PRESTATORE, su ogni pagina _(2026-09-28)_: nome, sede, email, telefono, partita
+// I DATI DEL PRESTATORE, su ogni pagina _(2026-09-28; dal 2026-10-11 «Titolare:», senza la frase
+// «Legisboard è un servizio di…», per scelta del committente)_: nome, sede, email, telefono, partita
 // IVA ed eventuale REA, come chiedono il D.Lgs 70/2003 (art. 7) e il DPR 633/1972 (art. 35). Si
 // leggono da `TITOLARE` in `lib/sito.ts`: una voce senza valore semplicemente non compare, così
 // il piede non mostra mai un «da completare».
@@ -20,7 +21,7 @@ function DatiPrestatore() {
   ].filter(Boolean);
   return (
     <p className="basis-full leading-relaxed">
-      Legisboard è un servizio di {voci.join(" · ")}
+      Titolare: {voci.join(" · ")}
       {CONTATTO_EMAIL ? (
         <>
           {" · "}
@@ -55,9 +56,9 @@ function PoweredBy() {
       target="_blank"
       rel="noopener"
       aria-label="Sito di Axialoop, che ha sviluppato Legisboard"
-      className="inline-flex min-h-6 items-center gap-1.5 rounded-sm hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="inline-flex min-h-6 items-center gap-2 rounded-sm text-sm hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
-      <svg aria-hidden viewBox="0 0 497 494" className="size-3.5 shrink-0">
+      <svg aria-hidden viewBox="0 0 497 494" className="size-4 shrink-0">
         <path
           fill="currentColor"
           fillRule="evenodd"
