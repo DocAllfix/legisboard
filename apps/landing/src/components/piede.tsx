@@ -46,9 +46,9 @@ function DatiPrestatore() {
 //
 // Il credito a chi ha sviluppato il prodotto, su ogni pagina pubblica. Il collegamento è
 // DOFOLLOW per scelta: niente nofollow, sponsored o ugc. Il marchio è in linea (nessuna richiesta
-// in più) e nel colore attenuato del piede: i tre colori originali sono resi come tre intensità
-// di `currentColor`, perché un colore scritto a mano non commuterebbe col tema e la guardia dei
-// token lo vieta. Area cliccabile alta 24 px.
+// in più), nei suoi tre colori originali presi dai token `--color-axialoop-*` (un colore scritto
+// nel componente non passerebbe la guardia), senza sfondo. Testo come gli altri collegamenti del
+// piede, «Axialoop» in semibold; su telefono sta in una riga sua. Area cliccabile alta 24 px.
 function PoweredBy() {
   return (
     <a
@@ -56,26 +56,26 @@ function PoweredBy() {
       target="_blank"
       rel="noopener"
       aria-label="powered by Axialoop: sito di Axialoop, che ha sviluppato Legisboard (si apre in una nuova scheda)"
-      className="inline-flex min-h-6 items-center gap-2 rounded-sm text-sm hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="inline-flex min-h-6 basis-full items-center gap-2 rounded-sm text-sm text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:basis-auto"
     >
-      <svg aria-hidden viewBox="0 0 497 494" className="size-4 shrink-0">
+      <svg aria-hidden viewBox="0 0 497 494" className="size-5 shrink-0">
         <path
-          fill="currentColor"
+          fill="var(--color-axialoop-scuro)"
           fillRule="evenodd"
           d="M247 4 L139 67 L137 161 L5 238 L4 348 L210 470 L251 490 L492 350 L493 238 L358 158 L358 67 Z M245 231 L248 243 L347 301 L250 358 L197 328 L197 260 Z"
         />
         <path
-          fill="currentColor"
-          fillOpacity="0.55"
+          fill="var(--color-axialoop-blu)"
           d="M428 317 L377 290 L256 362 L307 389 L428 320 Z M142 293 L190 323 L193 322 L192 265 Z M10 245 L10 347 L201 459 L246 482 L246 428 L62 321 L60 274 Z M361 231 L355 240 L308 269 L308 272 L349 296 L376 283 L376 241 Z M360 167 L360 224 L434 267 L484 240 Z M246 75 L199 101 L199 188 L246 161 Z M148 67 L193 95 L204 92 L248 66 L301 96 L350 69 L250 9 Z"
         />
         <path
-          fill="currentColor"
-          fillOpacity="0.3"
+          fill="var(--color-axialoop-verde)"
           d="M70 317 L248 422 L297 395 L290 388 L120 289 Z M382 246 L383 284 L432 311 L432 273 Z M188 193 L138 166 L17 236 L15 240 L66 267 L183 199 Z M252 76 L253 240 L300 265 L300 103 Z M144 75 L144 159 L193 187 L193 103 Z"
         />
       </svg>
-      powered by Axialoop
+      <span>
+        powered by <span className="font-semibold">Axialoop</span>
+      </span>
     </a>
   );
 }
@@ -146,10 +146,10 @@ export function Piede() {
       <div className="border-t">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-between gap-4 px-5 py-6 text-xs text-muted-foreground">
           <DatiPrestatore />
-          <p className="flex flex-wrap items-center gap-x-3">
-            <span>© {new Date().getFullYear()} Legisboard</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <p className="flex min-h-6 items-center">© {new Date().getFullYear()} Legisboard</p>
             <PoweredBy />
-          </p>
+          </div>
           <p>La demo gira a Francoforte, con il database nell&apos;Unione europea.</p>
         </div>
       </div>

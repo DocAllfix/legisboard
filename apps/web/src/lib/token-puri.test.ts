@@ -203,5 +203,5 @@ describe("i token sono l'unica sorgente di colore, raggio e ombra", () => {
       `Utility che sembrano nostre e non lo sono: il token esiste in :root ma non è esposto\n` +
         `in @theme inline, quindi Tailwind serve il proprio valore di serie.\n  ${colpe.join("\n  ")}`,
     ).toEqual([]);
-  });
+  }, 30_000); // scansiona tutti i sorgenti delle due app: oltre i 5 s di serie da quando la landing è cresciuta
 });
