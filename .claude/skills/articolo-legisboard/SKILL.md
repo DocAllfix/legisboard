@@ -170,6 +170,7 @@ unire con uno dei due controlli che contano rosso o ancora in corso. Mai spinger
 
 - l'ultima PR `articolo` è stata creata più di 8 giorni fa;
 - una PR `articolo` è aperta da più di 5 giorni.
+- una PR `piano` è aperta da più di 5 giorni: il piano non si rifornisce finché qualcuno non la unisce.
   Se una delle due è vera, e non esiste già una issue aperta con etichetta `redazione-ferma`, aprila
   (`gh issue create --label redazione-ferma`), con cosa è fermo e perché: GitHub manda l'email al
   proprietario del repository. Se nessuna delle due è vera e la issue è aperta, chiudila con un
