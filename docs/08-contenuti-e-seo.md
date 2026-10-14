@@ -93,3 +93,28 @@ Le regole stanno nella skill; le routine la rileggono a ogni giro.
   la routine apre una issue `redazione-ferma` (email al proprietario) e la chiude quando torna a
   posto. Limite: la sentinella gira dentro la routine, quindi non avvisa se è la routine stessa a
   non partire (account senza quota, ambiente cambiato).
+
+## Keyword research _(2026-10-14)_
+
+Gli export dello strumento di keyword research (CSV con `Termine di ricerca`, `Piattaforma`,
+`Tipo di modificatore`, `Keyword`, `Volume`, `CPC (US$)`) vanno in `keywordblog/`, che è in
+`.gitignore`: sono dati di uno strumento esterno e il repository è pubblico.
+
+`node apps/landing/scripts/keyword-research.mjs` li normalizza (volumi «1.3K» → 1300, Google
+prima di Bing e YouTube, solo Italia), li filtra per pertinenza e li raggruppa nei cluster del
+piano, scrivendo `apps/landing/content/keyword-research.json`: l'unica cosa che si committa, e
+che la routine di scrittura consulta per le varianti di ogni cluster.
+
+**Il filtro è il punto critico.** Sul primo giro (file «231» e «odv» del 2026-10-13) tre quarti del
+volume erano rumore: omonimi del numero 231, le **altre leggi 231** (D.Lgs 231/2002 sugli
+interessi moratori, D.Lgs 231/2007 antiriciclaggio) e «odv» come Organizzazione di Volontariato.
+Le regole stanno nello script, commentate; un file nuovo con rumore nuovo si gestisce lì.
+
+Dal primo giro: 334 keyword valide su 7.000 righe, 59.820 di volume mensile, 17 cluster. Il piano
+è stato riscritto con un calendario a mesi e settimane (campi `id`, `mese`, `settimana`) e un
+brief per voce: `tipologia` (pillar o spoke BOFU, MOFU, TOFU), `secondarie`, `domande`,
+`collegamenti`. La voce `compiti-odv-231` è confluita nell'hub `organismo-di-vigilanza-231`
+(stato `fusa`). GDPR e 81/08 restano con le voci di settembre finché non arrivano i loro export.
+
+Le guide possono avere `domande` nell'intestazione: un blocco «Domande frequenti» in fondo e il
+nodo `FAQPage` nei dati strutturati.

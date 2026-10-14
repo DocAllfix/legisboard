@@ -1,0 +1,2142 @@
+{
+  "nota": "Generato da apps/landing/scripts/keyword-research.mjs: non modificare a mano. Volumi mensili Google Italia; CPC in US$.",
+  "fonti": [
+    {
+      "file": "tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "termine": "231",
+      "righe": 4835,
+      "valide": 300
+    },
+    {
+      "file": "tutte_le_categorie-odv-it-it-13-10-2026.csv",
+      "termine": "odv",
+      "righe": 2165,
+      "valide": 40
+    }
+  ],
+  "cluster": [
+    {
+      "id": "modello-231",
+      "volume": 11590,
+      "cpcMax": 5.02,
+      "keyword": [
+        {
+          "keyword": "231 modello",
+          "volume": 4400,
+          "cpc": 3.2,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzazione 231",
+          "volume": 1600,
+          "cpc": 0.51,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 modello organizzativo",
+          "volume": 1300,
+          "cpc": 2.27,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 cos'è",
+          "volume": 1000,
+          "cpc": 0.67,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231",
+          "volume": 1000,
+          "cpc": 5.02,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 cos'è",
+          "volume": 210,
+          "cpc": 2.59,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 parte speciale",
+          "volume": 170,
+          "cpc": 2.64,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "cos'è il modello 231",
+          "volume": 140,
+          "cpc": 0.97,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 del 2001",
+          "volume": 140,
+          "cpc": 2.64,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 fac simile word",
+          "volume": 140,
+          "cpc": 2.84,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "chi sono i destinatari del modello 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "consulenza modello organizzativo 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231/01",
+          "volume": 110,
+          "cpc": 1,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 cos'è",
+          "volume": 110,
+          "cpc": 0.62,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 01",
+          "volume": 90,
+          "cpc": 2.04,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 fac simile",
+          "volume": 90,
+          "cpc": 1,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "il modello 231",
+          "volume": 70,
+          "cpc": 1.09,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 cos è",
+          "volume": 70,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231/2001",
+          "volume": 70,
+          "cpc": 0.39,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231/01",
+          "volume": 50,
+          "cpc": 0.31,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo ex d lgs 231 01",
+          "volume": 50,
+          "cpc": 0.42,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "parte generale modello 231",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "cosa è il modello 231",
+          "volume": 40,
+          "cpc": 0.3,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello di gestione 231",
+          "volume": 40,
+          "cpc": 0.52,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modelli 231 cosa sono",
+          "volume": 30,
+          "cpc": 0.48,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 parte speciale pdf",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo dlgs 231 01",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 è obbligatorio",
+          "volume": 30,
+          "cpc": 0.41,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 esempio",
+          "volume": 30,
+          "cpc": 0.46,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 obbligatorio",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 significato",
+          "volume": 30,
+          "cpc": 0.55,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "obiettivi del modello organizzativo 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "parte speciale a modello 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "destinatari del modello 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mog 231 cosa è",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "mog 231/2001",
+          "volume": 20,
+          "cpc": 0.3,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 modello organizzazione gestione",
+          "volume": 10,
+          "cpc": 1.14,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "il modello 231 cos'è",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 a cosa serve",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello di gestione secondo d lgs 231 01",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 definizione",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 e codice etico",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 eni",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 fac simile word 2020",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 reati ambientali",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sono destinatari del modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 chi vigila",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 come si compone",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 cosa serve",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 dove si trova",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello organizzativo 231 per chi è obbligatorio",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        }
+      ]
+    },
+    {
+      "id": "redazione-modello",
+      "volume": 250,
+      "cpcMax": 1.91,
+      "keyword": [
+        {
+          "keyword": "modello 231 chi lo redige",
+          "volume": 90,
+          "cpc": 1.91,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "adozione modello 231",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 come farlo",
+          "volume": 30,
+          "cpc": 1.83,
+          "tipi": ["Domande", "Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "preventivo modello 231",
+          "volume": 30,
+          "cpc": 1.47,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "ciclo di vita modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "costruzione modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 procedure",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "preventivo redazione modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "prezzo modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "chi approva modello 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "come adottare modello 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "come redigere modello 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 chi lo deve fare",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 chi lo fa",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 come adottarlo",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 come ottenerlo",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "protocollo 231 chi lo redige",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        }
+      ]
+    },
+    {
+      "id": "obbligo-231",
+      "volume": 660,
+      "cpcMax": 2.65,
+      "keyword": [
+        {
+          "keyword": "modello 231 obbligatorio",
+          "volume": 260,
+          "cpc": 2.65,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 aziende",
+          "volume": 140,
+          "cpc": 0.84,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 aziende",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "le aziende sono obbligate ad adottare un modello 231",
+          "volume": 30,
+          "cpc": 0.77,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 è obbligatorio",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 per chi e obbligatorio",
+          "volume": 30,
+          "cpc": 0.94,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 per chi è obbligatorio",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        },
+        {
+          "keyword": "organismo di vigilanza 231 obbligatorio",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 obbligatoria",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 obbligatorio per chi",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 quando è obbligatorio",
+          "volume": 20,
+          "cpc": 0.77,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 soggetti obbligati",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 chi è obbligato",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 chi è obbligato",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "modello 231 per le aziende",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 per piccole imprese",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 quando obbligatorio",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "reati-presupposto",
+      "volume": 3180,
+      "cpcMax": 6.38,
+      "keyword": [
+        {
+          "keyword": "reati presupposti 231",
+          "volume": 720,
+          "cpc": 0.98,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 reati presupposto",
+          "volume": 590,
+          "cpc": 6.38,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "231 reati",
+          "volume": 260,
+          "cpc": 3.84,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "reato 231",
+          "volume": 260,
+          "cpc": 3.84,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 reati ambientali",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "catalogo reati 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "elenco reati 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "elenco reati presupposto 231",
+          "volume": 110,
+          "cpc": 2.11,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "quali sono i reati previsti dal d lgs 231 01",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reati ambientali e 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "nuovi reati 231",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reati 231 elenco",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reati tributari 231",
+          "volume": 90,
+          "cpc": 0.9,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reato presupposto 231",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "elenco reati presupposto 231 aggiornato 2025",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "elenco reati presupposto 231 aggiornato 2026",
+          "volume": 50,
+          "cpc": 2.17,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "catalogo reati presupposto 231",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "nuovi reati presupposto 231",
+          "volume": 40,
+          "cpc": 1.48,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reati 231 quali sono",
+          "volume": 40,
+          "cpc": 0.66,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "elenco reati presupposto 231 aggiornato",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "quanti sono i reati presupposto 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 nuovi reati",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 reati contro la pubblica amministrazione",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Paragoni"]
+        },
+        {
+          "keyword": "231 reati tributari",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "colpa organizzativa 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "cosa sono i reati presupposto 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "mobbing reato 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "reati 231 contro la pa",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Paragoni"]
+        }
+      ]
+    },
+    {
+      "id": "odv",
+      "volume": 3440,
+      "cpcMax": 1.85,
+      "keyword": [
+        {
+          "keyword": "231 organismo di vigilanza",
+          "volume": 590,
+          "cpc": 0.71,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "organo di vigilanza 231",
+          "volume": 590,
+          "cpc": 0.85,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "organismo di vigilanza 231",
+          "volume": 480,
+          "cpc": 0.75,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 odv",
+          "volume": 260,
+          "cpc": 1.05,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "odv 231",
+          "volume": 260,
+          "cpc": 1,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv vigilanza",
+          "volume": 210,
+          "cpc": 1.54,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "odv aziendale",
+          "volume": 110,
+          "cpc": 1.85,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 organismo di vigilanza",
+          "volume": 90,
+          "cpc": 0.92,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "organismo di vigilanza 231 compiti",
+          "volume": 90,
+          "cpc": 0.3,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "organismo di vigilanza odv",
+          "volume": 70,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "audit 231",
+          "volume": 50,
+          "cpc": 1.51,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "bando organismo di vigilanza 231",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv monocratico",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "odv adempimenti",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "odv organismo di vigilanza",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "come diventare odv 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "nomina odv",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 requisiti",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv legge 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "odv modello 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "modello 231 organismo di vigilanza",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "nomina organismo di vigilanza 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 compensi",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 cosa è",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 responsabilità",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 significato",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "relazione odv",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "requisiti odv",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "l'organismo di vigilanza nel sistema 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "nomina odv 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "nomina odv assemblea o cda",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv 231 01",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231 compiti",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231 composizione",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231 cos'è",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231 monocratico",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231/01",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "odv 231/2001",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "odv compiti",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "odv composizione",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "odv e whistleblowing",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "relazione finale odv",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "whistleblowing odv",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "chi nomina odv 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "nomina odv a chi spetta",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        },
+        {
+          "keyword": "odv chi lo nomina",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "odv modello 231 chi può farlo",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "odv monocratico o collegiale",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "odv per 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        },
+        {
+          "keyword": "quale compito ha l’organismo di vigilanza 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "regolamento odv chi lo approva",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "codice-etico",
+      "volume": 750,
+      "cpcMax": 2.67,
+      "keyword": [
+        {
+          "keyword": "codice etico 231",
+          "volume": 210,
+          "cpc": 1.56,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 codice etico",
+          "volume": 170,
+          "cpc": 2.67,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 codice etico",
+          "volume": 170,
+          "cpc": 0.78,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 e codice etico",
+          "volume": 110,
+          "cpc": 0.65,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "codice etico e modello 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "codice etico legge 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "cos è il codice etico 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "fac simile codice etico 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "codice etico senza 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "esempio-modello",
+      "volume": 1220,
+      "cpcMax": 2.38,
+      "keyword": [
+        {
+          "keyword": "esempio modello 231",
+          "volume": 390,
+          "cpc": 0.97,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 esempio",
+          "volume": 320,
+          "cpc": 1.19,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "fac simile modello 231",
+          "volume": 170,
+          "cpc": 0.86,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 fac simile",
+          "volume": 140,
+          "cpc": 1.69,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 editabile",
+          "volume": 90,
+          "cpc": 2.38,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 pdf",
+          "volume": 70,
+          "cpc": 1.74,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "art 39 d lgs 231 01 fac simile",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "risk assessment 231 esempio",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "formazione-231",
+      "volume": 840,
+      "cpcMax": 3.48,
+      "keyword": [
+        {
+          "keyword": "corso 231",
+          "volume": 260,
+          "cpc": 3.48,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "formazione 231",
+          "volume": 170,
+          "cpc": 3.46,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "formazione 231 cos'è",
+          "volume": 70,
+          "cpc": 0.45,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso 231 cos'è",
+          "volume": 40,
+          "cpc": 0.56,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso 231 gratis",
+          "volume": 40,
+          "cpc": 0.9,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso formazione 231",
+          "volume": 40,
+          "cpc": 1.53,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso 231 per avvocati",
+          "volume": 30,
+          "cpc": 2.59,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        },
+        {
+          "keyword": "corso 231/01",
+          "volume": 30,
+          "cpc": 3.19,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso di formazione 231",
+          "volume": 30,
+          "cpc": 2.25,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "formazione 231 cos è",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "formazione modello 231",
+          "volume": 30,
+          "cpc": 1,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso 231 online",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso online galassia 231 risposte",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso d lgs 231 01",
+          "volume": 10,
+          "cpc": 2.62,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso online 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "formazione 231 cos e",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "corso 231 per dipendenti",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        }
+      ]
+    },
+    {
+      "id": "software-231",
+      "volume": 820,
+      "cpcMax": 4.62,
+      "keyword": [
+        {
+          "keyword": "compliance 231",
+          "volume": 170,
+          "cpc": 1.23,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "consulente 231",
+          "volume": 170,
+          "cpc": 1.48,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "consulenza modello 231",
+          "volume": 140,
+          "cpc": 4.62,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 consulenza",
+          "volume": 110,
+          "cpc": 4.42,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "software 231",
+          "volume": 50,
+          "cpc": 4.58,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 consulenza",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "compliance 231 cos'è",
+          "volume": 30,
+          "cpc": 0.6,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "compliance aziendale 231",
+          "volume": 20,
+          "cpc": 1.87,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "consulenza 231 milano",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "software 231 gratis",
+          "volume": 20,
+          "cpc": 2.81,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "consulenza legge 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "manuale compliance 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "miglior software 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "software legge 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "software modello 231",
+          "volume": 10,
+          "cpc": 4.14,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "sanzioni-231",
+      "volume": 480,
+      "cpcMax": 0,
+      "keyword": [
+        {
+          "keyword": "231 sanzioni",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "quali sono le sanzioni previste dal d lgs 231 01",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni 231",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "quando si applicano le sanzioni interdittive 231",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni dlgs 231 01",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni 231/01",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni interdittive 231 quando si applicano",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni modello 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 sanzioni",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 sanzioni",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni 231 per gli enti",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        },
+        {
+          "keyword": "sanzioni decreto 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "sanzioni del d lgs 231 01",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "linee-guida-confindustria",
+      "volume": 330,
+      "cpcMax": 2.73,
+      "keyword": [
+        {
+          "keyword": "confindustria linee guida 231",
+          "volume": 320,
+          "cpc": 2.73,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "confindustria 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "risk-assessment",
+      "volume": 340,
+      "cpcMax": 3.57,
+      "keyword": [
+        {
+          "keyword": "a cosa servono i profili per processo nel modello 231",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "risk assessment 231",
+          "volume": 90,
+          "cpc": 3.57,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "scheda profilo 231 per processo",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Preposizioni", "Termini correlati"]
+        },
+        {
+          "keyword": "foglio excel valutazione rischi 231",
+          "volume": 20,
+          "cpc": 1.98,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "rischio 231",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "profilo 231 per processo",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        },
+        {
+          "keyword": "decreto 231 chi compila la scheda di evidenza",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        }
+      ]
+    },
+    {
+      "id": "aggiornamento-modello",
+      "volume": 1030,
+      "cpcMax": 6.14,
+      "keyword": [
+        {
+          "keyword": "riforma 231",
+          "volume": 210,
+          "cpc": 1.83,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 aggiornato 2025 pdf",
+          "volume": 170,
+          "cpc": 0.79,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 07 aggiornato 2023 pdf",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 07 aggiornato 2024 pdf",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 aggiornato 2023 pdf",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 aggiornato 2024 pdf",
+          "volume": 110,
+          "cpc": 6.14,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "aggiornamenti 231",
+          "volume": 70,
+          "cpc": 0.93,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 aggiornato",
+          "volume": 50,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 aggiornato",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 07 aggiornato",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 aggiornato 2023 pdf",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 aggiornato 2023",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "quando cambia il modello 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "chi aggiorna modello 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "perché il modello 231 deve essere aggiornato nel tempo",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "quando il modello 231 deve essere aggiornato",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "whistleblowing-231",
+      "volume": 150,
+      "cpcMax": 2.23,
+      "keyword": [
+        {
+          "keyword": "whistleblowing 231",
+          "volume": 90,
+          "cpc": 2.23,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 whistleblowing",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "segnalazione whistleblowing 231",
+          "volume": 20,
+          "cpc": 1.31,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 e whistleblowing",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "whistleblowing 231 modello",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "certificazione-231",
+      "volume": 40,
+      "cpcMax": 1.66,
+      "keyword": [
+        {
+          "keyword": "231 certificazione",
+          "volume": 40,
+          "cpc": 1.66,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "chi certifica la 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        }
+      ]
+    },
+    {
+      "id": "231-e-altri-decreti",
+      "volume": 140,
+      "cpcMax": 2.11,
+      "keyword": [
+        {
+          "keyword": "legge 231 sicurezza",
+          "volume": 110,
+          "cpc": 0.35,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 e gdpr",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 sicurezza",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "modello 231 sicurezza sul lavoro",
+          "volume": 10,
+          "cpc": 2.11,
+          "tipi": ["Termini correlati"]
+        }
+      ]
+    },
+    {
+      "id": "decreto-231",
+      "volume": 34560,
+      "cpcMax": 5.32,
+      "keyword": [
+        {
+          "keyword": "d lgs 231 01",
+          "volume": 4400,
+          "cpc": 1.15,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 legge",
+          "volume": 3600,
+          "cpc": 2.3,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "d lgs 231",
+          "volume": 3600,
+          "cpc": 2.05,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231",
+          "volume": 3600,
+          "cpc": 2.3,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231",
+          "volume": 2400,
+          "cpc": 2.57,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "dlgs 231 01",
+          "volume": 1900,
+          "cpc": 0.84,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 2001",
+          "volume": 1600,
+          "cpc": 0.6,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231 2001",
+          "volume": 1300,
+          "cpc": 0.51,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "dlgs 231 del 2001",
+          "volume": 1300,
+          "cpc": 0.44,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 del 2001",
+          "volume": 1000,
+          "cpc": 1.32,
+          "tipi": ["Numeri", "Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001",
+          "volume": 1000,
+          "cpc": 1.89,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231/2001",
+          "volume": 1000,
+          "cpc": 2.21,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "dlgs 231 2001",
+          "volume": 1000,
+          "cpc": 3.63,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 del 2001",
+          "volume": 1000,
+          "cpc": 1.62,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto 231",
+          "volume": 590,
+          "cpc": 1.35,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231/01",
+          "volume": 480,
+          "cpc": 1.69,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto 231 del 2001",
+          "volume": 480,
+          "cpc": 0.61,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 01",
+          "volume": 390,
+          "cpc": 1.14,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "dlgs 231",
+          "volume": 390,
+          "cpc": 0.31,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 normativa",
+          "volume": 260,
+          "cpc": 0.33,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 cosa è",
+          "volume": 260,
+          "cpc": 0.12,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto 231/2001",
+          "volume": 210,
+          "cpc": 0.5,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231",
+          "volume": 210,
+          "cpc": 0.33,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 del 2001 spiegazione",
+          "volume": 210,
+          "cpc": 1.94,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 responsabilità",
+          "volume": 140,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "decreto 231/01",
+          "volume": 140,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231 01",
+          "volume": 140,
+          "cpc": 0.73,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 01",
+          "volume": 140,
+          "cpc": 0.06,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "responsabilità 231",
+          "volume": 140,
+          "cpc": 1.05,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 cos'è",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 del 2001 normattiva",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "231 responsabilità amministrativa",
+          "volume": 110,
+          "cpc": 0.81,
+          "tipi": ["Ordine alfabetico", "Termini correlati"]
+        },
+        {
+          "keyword": "art 6 d lgs 231 2001",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 normattiva",
+          "volume": 110,
+          "cpc": 5.32,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231 del 2001 riassunto",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto legislativo 231/01 pdf",
+          "volume": 110,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "ex decreto legislativo 231/01",
+          "volume": 110,
+          "cpc": 1.32,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 del 2021",
+          "volume": 110,
+          "cpc": 0.68,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "legge 231 a chi si applica",
+          "volume": 90,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "responsabilità amministrativa 231",
+          "volume": 70,
+          "cpc": 0.11,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 01 dlgs",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "231 01 normattiva",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "231 2001 normattiva",
+          "volume": 40,
+          "cpc": 0,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "cosa disciplina il d lgs 231 01",
+          "volume": 40,
+          "cpc": 0.35,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 01 cos è",
+          "volume": 30,
+          "cpc": 0.46,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 legge 2001",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 normattiva",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "d lgs 231 07 normattiva",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 a chi si applica",
+          "volume": 30,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "normativa 231 cos'è",
+          "volume": 30,
+          "cpc": 0.38,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 07 normattiva",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Numeri"]
+        },
+        {
+          "keyword": "231 legge cos'è",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 mog",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "d lgs 231 del 2001 cos è",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "il decreto legislativo 231/2001 disciplina",
+          "volume": 20,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 012",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri", "Termini correlati"]
+        },
+        {
+          "keyword": "231 aziendale",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 del 2001 decreto legislativo",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Numeri", "Ordine alfabetico"]
+        },
+        {
+          "keyword": "231 responsabilità amministrativa degli enti",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Ordine alfabetico"]
+        },
+        {
+          "keyword": "d lgs 231 01 l'ente è responsabile",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 riassunto",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "d lgs 231 01 sintesi",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "decreto 231 cosa prevede",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "misure integrative mog 231",
+          "volume": 10,
+          "cpc": 0,
+          "tipi": ["Termini correlati"]
+        },
+        {
+          "keyword": "231 come funziona",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Paragoni", "Termini correlati"]
+        },
+        {
+          "keyword": "231 cosa disciplina",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "231 per aziende",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Preposizioni"]
+        },
+        {
+          "keyword": "cosa dice la 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "legge 231 cosa dice",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "legge 231 cosa prevede",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        },
+        {
+          "keyword": "legge 231 cosa riguarda",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande", "Termini correlati"]
+        },
+        {
+          "keyword": "perché la società ha adottato un modello 231",
+          "volume": 0,
+          "cpc": 0,
+          "tipi": ["Domande"]
+        }
+      ]
+    }
+  ]
+}

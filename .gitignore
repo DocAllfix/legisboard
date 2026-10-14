@@ -53,3 +53,7 @@ Thumbs.db
 # nella storia per sempre. Tre file di prova c'erano già.
 .archivio/
 .dati/
+
+# Export grezzi della keyword research (strumento esterno, repository pubblico): si committa
+# solo il riassunto elaborato, apps/landing/content/keyword-research.json. Vedi docs/08.
+keywordblog/

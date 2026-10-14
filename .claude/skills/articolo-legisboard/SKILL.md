@@ -23,7 +23,21 @@ Registro «voi» (come la landing), mai «tu».
 ## 1. Scegli la voce
 
 1. Leggi `apps/landing/content/piano-editoriale.json`.
-2. Prendi la voce con `stato: "da-scrivere"` e `priorita` più bassa.
+2. Prendi la voce con `stato: "da-scrivere"` e `priorita` più bassa. Le voci `"fusa"` (confluite
+   in un'altra, vedi `fusa_in`) e `"pubblicato"` si saltano.
+
+   **La voce è il tuo brief** _(2026-10-14)_. Oltre a slug, titolo e parola chiave può portare:
+   - `tipologia`: `pillar` | `spoke-bofu` | `spoke-mofu` | `spoke-tofu`;
+   - `secondarie`: le varianti `{ keyword, volume }`, da usare in H2 e H3 dove suonano naturali;
+   - `domande`: le domande reali da coprire, come H2 o nelle domande frequenti;
+   - `collegamenti`: `articolo_pilastro` (lo slug della guida pilastro del cluster), `spoke` (guide
+     sorelle), `pilastro_sito`, `cta`;
+   - `volume`, `cpc`, `intento`, `cluster`, `fonte_keyword`: per capire perché la voce esiste.
+
+   Le keyword vengono da ricerche reali: `apps/landing/content/keyword-research.json` per 231 e OdV
+   (cluster con tutte le varianti e i volumi). **Non usare keyword che non stanno nel brief o nel
+   cluster**, e non piegare la frase per farcele entrare: una variante che suona forzata si lascia.
+
 3. Controlla che non esista già `content/blog/<slug>.mdx` e che nessuna PR aperta con etichetta
    `articolo` abbia lo stesso slug (`gh pr list --label articolo`).
 4. Se c'è una PR `articolo` aperta con commenti di modifica non ancora risolti, **quella ha la
@@ -78,8 +92,15 @@ autore: alessandro-di-lonardo
 decreto: gdpr | d231 | d81
 parola_chiave: "…" # quella del piano, identica
 codici_catalogo: ["…"]
+domande: # facoltativo, al massimo 6: dalle `domande` del brief, con la risposta
+  - domanda: "…" # 10-160 caratteri
+    risposta: "…" # 40-700 caratteri, con l'articolo di legge se c'è un obbligo
 ---
 ```
+
+Le `domande` diventano un blocco «Domande frequenti» in fondo alla pagina e il nodo `FAQPage` dei
+dati strutturati. Le risposte devono essere **già contenute nel testo** dell'articolo: il blocco
+riassume, non aggiunge affermazioni nuove.
 
 Struttura:
 
@@ -87,7 +108,12 @@ Struttura:
   l'articolo di legge. Niente preamboli («In questo articolo vedremo…»).
 - **Almeno 3 sezioni `##`**, formulate come le domande che un professionista si fa. Le ancore e
   l'indice laterale si generano da soli.
-- **1.200-2.000 parole.** Il cancello accetta 900-2.800, ma sotto i 1.200 raramente si è esaurienti.
+- **Lunghezza secondo la `tipologia`**: `pillar` 2.000-2.700 parole (copre l'argomento intero e
+  rimanda agli spoke); `spoke-*` 1.200-2.000; senza tipologia, 1.200-2.000. Il cancello accetta
+  900-2.800.
+- **L'intento decide il taglio**: `informativo` spiega; `commerciale` (BOFU) aiuta a scegliere e
+  mostra come il problema si gestisce in pratica, con il prodotto come esempio concreto e mai come
+  pubblicità; `transazionale` (pillar «core») definisce e porta alla demo.
 - **Almeno un esempio concreto** con dati veri: `<Adempimento dominio="d81" codice="S01" />`.
 - Una tabella quando confronta casi (figure, periodicità, soglie): Markdown GFM.
 - Chiudi con cosa fare in pratica, non con un riassunto.
@@ -104,6 +130,9 @@ Collegamenti (obbligatori):
 - **al pilastro del decreto**: `/adempimenti-gdpr`, `/adempimenti-231`,
   `/adempimenti-sicurezza-sul-lavoro` (il cancello lo pretende);
 - ad almeno un'altra guida già pubblicata, se ne esiste una pertinente;
+- **al cluster**: uno spoke collega il suo `articolo_pilastro` se è già pubblicato (controlla
+  `content/blog/`); una guida `pillar` collega gli spoke del suo cluster già pubblicati. Un
+  collegamento a una guida non ancora pubblicata rompe la build: si aggiunge quando esce;
 - alle fonti primarie esterne (Normattiva, Garante, EUR-Lex), con URL precisi.
 
 Divieti (alcuni li controlla il cancello, tutti valgono):

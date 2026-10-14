@@ -33,6 +33,14 @@ export const Intestazione = z
     parola_chiave: z.string().min(3),
     codici_catalogo: z.array(z.string()).default([]),
     bozza: z.boolean().default(false),
+    // Le domande frequenti del brief, con la risposta scritta _(2026-10-14)_: diventano un blocco in
+    // fondo all'articolo e il nodo FAQPage dei dati strutturati. Facoltative, al massimo sei.
+    domande: z
+      .array(
+        z.object({ domanda: z.string().min(10).max(160), risposta: z.string().min(40).max(700) }).strict(),
+      )
+      .max(6)
+      .default([]),
   })
   .strict();
 

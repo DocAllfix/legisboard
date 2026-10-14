@@ -1,6 +1,6 @@
 import { CATALOGHI, DOMINI } from "@legisboard/engine";
 import { describe, expect, it } from "vitest";
-import { pubblicato, type Articolo } from "./blog";
+import { Intestazione, pubblicato, type Articolo } from "./blog";
 import { verificaArticoli } from "./cancello";
 import { PILASTRI } from "./pilastri";
 
@@ -19,6 +19,7 @@ function articolo(parziale: Partial<Articolo> = {}): Articolo {
     parola_chiave: "prova dvr",
     codici_catalogo: ["S01"],
     bozza: false,
+    domande: [],
     slug: "prova",
     aggiornatoIl: "2026-09-01",
     minuti: 5,
@@ -89,5 +90,34 @@ describe("cancello editoriale", () => {
     expect(() =>
       verificaArticoli([articolo({ corpo: "Breve. [p](/adempimenti-sicurezza-sul-lavoro)" })]),
     ).toThrow(/parole/);
+  });
+});
+
+describe("domande frequenti nell'intestazione", () => {
+  const base = {
+    titolo: "Un articolo di prova sul DVR",
+    descrizione: "Una descrizione di prova abbastanza lunga da essere valida per lo schema del blog.",
+    pubblicazione: "2026-10-14",
+    autore: "alessandro-di-lonardo",
+    decreto: "d231",
+    parola_chiave: "prova",
+  };
+  const d = {
+    domanda: "Chi nomina l'OdV 231?",
+    risposta: "Lo nomina l'organo dirigente dell'ente, di norma il consiglio di amministrazione.",
+  };
+
+  it("sono facoltative e valgono una lista vuota", () => {
+    expect(Intestazione.parse(base).domande).toEqual([]);
+  });
+
+  it("ne accetta fino a sei, con domanda e risposta", () => {
+    expect(Intestazione.parse({ ...base, domande: [d, d] }).domande).toHaveLength(2);
+    expect(() => Intestazione.parse({ ...base, domande: Array(7).fill(d) })).toThrow();
+  });
+
+  it("rifiuta una risposta troppo corta o un campo in più", () => {
+    expect(() => Intestazione.parse({ ...base, domande: [{ ...d, risposta: "Sì." }] })).toThrow();
+    expect(() => Intestazione.parse({ ...base, domande: [{ ...d, fonte: "x" }] })).toThrow();
   });
 });

@@ -1,6 +1,6 @@
 {
-  "nota": "Piano editoriale del blog. Lo legge la redazione automatica (skill .claude/skills/articolo-legisboard): prende la prima voce 'da-scrivere' in ordine di priorità. Le parole chiave vengono dall'autocompletamento di Google del 2026-09-29 (hl=it): sono domande reali, non stime di volume. Una parola chiave primaria per voce: il cancello rifiuta i doppioni.",
-  "aggiornato": "2026-09-29",
+  "nota": "Piano editoriale del blog. Lo legge la redazione automatica (skill .claude/skills/articolo-legisboard): prende la voce 'da-scrivere' con 'priorita' più bassa. Le voci 231 e OdV vengono dalla keyword research del 2026-10-13 (apps/landing/content/keyword-research.json, generato da apps/landing/scripts/keyword-research.mjs); quelle GDPR e 81/08 dall'autocompletamento di Google del 2026-09-29. Volumi mensili Google Italia, CPC in US$. Una parola chiave primaria per voce: il cancello rifiuta i doppioni. Stato 'fusa' = confluita in un'altra voce, da saltare.",
+  "aggiornato": "2026-10-14",
   "pilastri": {
     "gdpr": "/adempimenti-gdpr",
     "d231": "/adempimenti-231",
@@ -11,14 +11,14 @@
       "priorita": 1,
       "slug": "dvr-quando-va-aggiornato",
       "titolo": "DVR: quando va aggiornato davvero",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "dvr quando va aggiornato",
       "secondarie": [
         "aggiornamento dvr ogni quanto",
         "dvr quando scade",
         "aggiornamento dvr entro 30 giorni"
       ],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S01"],
       "stato": "pubblicato"
     },
@@ -26,10 +26,10 @@
       "priorita": 2,
       "slug": "relazione-annuale-odv",
       "titolo": "La relazione annuale dell'OdV: cosa deve contenere",
+      "decreto": "d231",
+      "intento": "informativo",
       "parola_chiave": "relazione annuale odv",
       "secondarie": ["relazione odv al cda", "relazione semestrale odv", "relazione annuale odv 231"],
-      "intento": "informativo",
-      "decreto": "d231",
       "codici_catalogo": ["M08", "M09"],
       "stato": "pubblicato"
     },
@@ -37,10 +37,10 @@
       "priorita": 3,
       "slug": "dpia-quando-e-obbligatoria",
       "titolo": "DPIA: quando è obbligatoria e chi deve farla",
+      "decreto": "gdpr",
+      "intento": "informativo",
       "parola_chiave": "dpia quando è obbligatoria",
       "secondarie": ["dpia cos'è", "dpia quando farla", "valutazione d'impatto art. 35 gdpr"],
-      "intento": "informativo",
-      "decreto": "gdpr",
       "codici_catalogo": ["T03", "D02"],
       "stato": "pubblicato"
     },
@@ -48,14 +48,14 @@
       "priorita": 4,
       "slug": "scadenze-formazione-lavoratori",
       "titolo": "Formazione dei lavoratori: le scadenze, figura per figura",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "formazione lavoratori scadenza",
       "secondarie": [
         "aggiornamento formazione lavoratori ogni quanto",
         "formazione preposti aggiornamento",
         "aggiornamento formazione rls"
       ],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S30", "S31", "S32", "S34"],
       "stato": "pubblicato"
     },
@@ -63,265 +63,991 @@
       "priorita": 5,
       "slug": "registro-dei-trattamenti-esempio",
       "titolo": "Registro dei trattamenti: un esempio compilato, riga per riga",
+      "decreto": "gdpr",
+      "intento": "informativo",
       "parola_chiave": "registro dei trattamenti esempio",
       "secondarie": [
         "registro dei trattamenti art 30 gdpr",
         "registro dei trattamenti semplificato",
         "registro trattamenti responsabile art 30.2"
       ],
-      "intento": "informativo",
-      "decreto": "gdpr",
       "codici_catalogo": ["T01", "R01", "D09"],
       "stato": "pubblicato"
     },
     {
       "priorita": 6,
-      "slug": "modello-231-obbligatorio",
-      "titolo": "Il modello 231 è obbligatorio? Chi deve adottarlo e perché conviene",
-      "parola_chiave": "modello 231 obbligatorio",
-      "secondarie": [
-        "modello 231 per chi è obbligatorio",
-        "modello organizzativo 231 a cosa serve",
-        "modello 231 cos'è"
-      ],
-      "intento": "informativo",
+      "id": "M1-W1-01",
+      "mese": 1,
+      "settimana": 1,
+      "slug": "modello-231-cos-e",
+      "titolo": "Modello 231: cos'è, cosa contiene e a cosa serve",
+      "tipologia": "pillar",
+      "cluster": "modello-231",
       "decreto": "d231",
-      "codici_catalogo": ["M11", "M14"],
+      "intento": "transazionale",
+      "parola_chiave": "modello 231",
+      "volume": 4400,
+      "cpc": 3.2,
+      "secondarie": [
+        {
+          "keyword": "modello organizzazione 231",
+          "volume": 1600
+        },
+        {
+          "keyword": "231 modello organizzativo",
+          "volume": 1300
+        },
+        {
+          "keyword": "mog 231",
+          "volume": 1000
+        },
+        {
+          "keyword": "modello 231 cos'è",
+          "volume": 1000
+        },
+        {
+          "keyword": "mog 231 cos'è",
+          "volume": 210
+        },
+        {
+          "keyword": "modello 231 parte speciale",
+          "volume": 170
+        },
+        {
+          "keyword": "chi sono i destinatari del modello 231",
+          "volume": 110
+        },
+        {
+          "keyword": "parte generale modello 231",
+          "volume": 50
+        }
+      ],
+      "domande": [
+        "modello 231 come si compone",
+        "modello 231 a cosa serve",
+        "chi sono i destinatari del modello 231",
+        "modello 231 chi vigila"
+      ],
+      "codici_catalogo": ["M11", "M13", "M14", "M17"],
+      "collegamenti": {
+        "pilastro_sito": "/adempimenti-231",
+        "cta": "demo"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
       "stato": "da-scrivere"
     },
     {
       "priorita": 7,
+      "id": "M1-W1-02",
+      "mese": 1,
+      "settimana": 1,
+      "slug": "d-lgs-231-2001-spiegato",
+      "titolo": "D.Lgs 231/2001 spiegato: responsabilità degli enti, reati e modello",
+      "tipologia": "pillar",
+      "cluster": "decreto-231",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "d lgs 231 01",
+      "volume": 4400,
+      "cpc": 1.15,
+      "secondarie": [
+        {
+          "keyword": "legge 231",
+          "volume": 3600
+        },
+        {
+          "keyword": "d lgs 231",
+          "volume": 3600
+        },
+        {
+          "keyword": "231 2001",
+          "volume": 1600
+        },
+        {
+          "keyword": "decreto legislativo 231/2001",
+          "volume": 1000
+        },
+        {
+          "keyword": "legge 231 del 2001 spiegazione",
+          "volume": 210
+        },
+        {
+          "keyword": "decreto legislativo 231 del 2001 riassunto",
+          "volume": 110
+        },
+        {
+          "keyword": "art 6 d lgs 231 01",
+          "volume": 110
+        },
+        {
+          "keyword": "231 responsabilità amministrativa",
+          "volume": 110
+        }
+      ],
+      "domande": [
+        "legge 231 cosa prevede",
+        "231 a chi si applica",
+        "legge 231 chi è obbligato",
+        "cosa disciplina il d lgs 231 01",
+        "231 come funziona"
+      ],
+      "codici_catalogo": ["M11", "M12"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e",
+        "pilastro_sito": "/adempimenti-231",
+        "cta": "demo"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 8,
+      "id": "M1-W2-01",
+      "mese": 1,
+      "settimana": 2,
+      "slug": "organismo-di-vigilanza-231",
+      "titolo": "Organismo di Vigilanza 231: composizione, compiti, nomina e requisiti",
+      "tipologia": "pillar",
+      "cluster": "odv",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "organismo di vigilanza 231",
+      "volume": 480,
+      "cpc": 0.75,
+      "secondarie": [
+        {
+          "keyword": "231 organismo di vigilanza",
+          "volume": 590
+        },
+        {
+          "keyword": "organo di vigilanza 231",
+          "volume": 590
+        },
+        {
+          "keyword": "odv 231",
+          "volume": 260
+        },
+        {
+          "keyword": "odv vigilanza",
+          "volume": 210
+        },
+        {
+          "keyword": "odv aziendale",
+          "volume": 110
+        },
+        {
+          "keyword": "organismo di vigilanza 231 compiti",
+          "volume": 90
+        },
+        {
+          "keyword": "odv monocratico",
+          "volume": 50
+        },
+        {
+          "keyword": "audit 231",
+          "volume": 50
+        },
+        {
+          "keyword": "nomina odv",
+          "volume": 30
+        }
+      ],
+      "domande": [
+        "quale compito ha l'organismo di vigilanza 231",
+        "chi nomina l'odv 231",
+        "odv monocratico o collegiale",
+        "come diventare odv 231",
+        "regolamento odv chi lo approva"
+      ],
+      "codici_catalogo": ["M01", "M02", "M04", "M05", "M06", "M07"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e",
+        "spoke": ["relazione-annuale-odv"],
+        "pilastro_sito": "/adempimenti-231",
+        "cta": "demo"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv + keywordblog/tutte_le_categorie-odv-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 9,
+      "id": "M1-W2-02",
+      "mese": 1,
+      "settimana": 2,
+      "slug": "data-breach-cosa-fare",
+      "titolo": "Data breach: cosa fare nelle prime 72 ore",
+      "decreto": "gdpr",
+      "intento": "informativo",
+      "parola_chiave": "data breach gdpr",
+      "secondarie": ["data breach cos'è", "notifica data breach garante", "registro data breach"],
+      "codici_catalogo": ["T04", "T17", "R04"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 10,
+      "id": "M1-W3-01",
+      "mese": 1,
+      "settimana": 3,
+      "slug": "software-modello-231",
+      "titolo": "Software per il modello 231: cosa deve gestire per l'OdV e per il consulente",
+      "tipologia": "spoke-bofu",
+      "cluster": "software-231",
+      "decreto": "d231",
+      "intento": "commerciale",
+      "parola_chiave": "software 231",
+      "volume": 50,
+      "cpc": 4.58,
+      "secondarie": [
+        {
+          "keyword": "compliance 231",
+          "volume": 170
+        },
+        {
+          "keyword": "consulente 231",
+          "volume": 170
+        },
+        {
+          "keyword": "consulenza modello 231",
+          "volume": 140
+        },
+        {
+          "keyword": "software modello 231",
+          "volume": 10
+        },
+        {
+          "keyword": "miglior software 231",
+          "volume": 10
+        }
+      ],
+      "domande": ["compliance 231 cos'è", "modello 231 chi lo redige"],
+      "codici_catalogo": ["M05", "M06", "M08", "M21", "M51"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e",
+        "spoke": ["organismo-di-vigilanza-231"],
+        "cta": "demo"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 11,
+      "id": "M1-W3-02",
+      "mese": 1,
+      "settimana": 3,
+      "slug": "reati-presupposto-231-aggiornati",
+      "titolo": "Reati presupposto 231: l'elenco e come si aggiorna il modello",
+      "tipologia": "spoke-mofu",
+      "cluster": "reati-presupposto",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "reati presupposto 231",
+      "volume": 1310,
+      "cpc": 6.38,
+      "secondarie": [
+        {
+          "keyword": "reato 231",
+          "volume": 260
+        },
+        {
+          "keyword": "elenco reati presupposto 231",
+          "volume": 110
+        },
+        {
+          "keyword": "catalogo reati 231",
+          "volume": 110
+        },
+        {
+          "keyword": "nuovi reati 231",
+          "volume": 90
+        },
+        {
+          "keyword": "elenco reati presupposto 231 aggiornato 2026",
+          "volume": 50
+        }
+      ],
+      "domande": [
+        "quali sono i reati previsti dal d lgs 231 01",
+        "reati 231 contro la pubblica amministrazione"
+      ],
+      "codici_catalogo": ["M11", "M12", "M61"],
+      "collegamenti": {
+        "articolo_pilastro": "d-lgs-231-2001-spiegato",
+        "pilastro_sito": "/adempimenti-231"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 12,
+      "id": "M1-W4-01",
+      "mese": 1,
+      "settimana": 4,
+      "slug": "modello-231-obbligatorio",
+      "titolo": "Il modello 231 è obbligatorio? Chi deve adottarlo e perché conviene",
+      "tipologia": "spoke-bofu",
+      "cluster": "obbligo-231",
+      "decreto": "d231",
+      "intento": "commerciale",
+      "parola_chiave": "modello 231 obbligatorio",
+      "volume": 260,
+      "cpc": 2.65,
+      "secondarie": [
+        {
+          "keyword": "legge 231 aziende",
+          "volume": 140
+        },
+        {
+          "keyword": "modello 231 per chi è obbligatorio",
+          "volume": 30
+        },
+        {
+          "keyword": "le aziende sono obbligate ad adottare un modello 231",
+          "volume": 30
+        },
+        {
+          "keyword": "organismo di vigilanza 231 obbligatorio",
+          "volume": 30
+        },
+        {
+          "keyword": "modello 231 quando è obbligatorio",
+          "volume": 20
+        }
+      ],
+      "domande": [
+        "modello 231 per chi è obbligatorio",
+        "legge 231 chi è obbligato",
+        "modello 231 quando è obbligatorio"
+      ],
+      "codici_catalogo": ["M11", "M14"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 13,
+      "id": "M1-W4-02",
+      "mese": 1,
+      "settimana": 4,
       "slug": "visite-mediche-lavoro-ogni-quanto",
       "titolo": "Visite mediche sul lavoro: ogni quanto, e chi lo decide",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "visite mediche lavoro ogni quanto",
       "secondarie": [
         "visite mediche periodiche ogni quanto",
         "visite mediche impiegati ogni quanto",
         "giudizio di idoneità"
       ],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S47", "S48", "S49", "S24"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 8,
-      "slug": "data-breach-cosa-fare",
-      "titolo": "Data breach: cosa fare nelle prime 72 ore",
-      "parola_chiave": "data breach gdpr",
-      "secondarie": ["data breach cos'è", "notifica data breach garante", "registro data breach"],
-      "intento": "informativo",
-      "decreto": "gdpr",
-      "codici_catalogo": ["T04", "T17", "R04"],
-      "stato": "da-scrivere"
-    },
-    {
-      "priorita": 9,
-      "slug": "compiti-odv-231",
-      "titolo": "OdV 231: compiti, riunioni e verbali in un anno di lavoro",
-      "parola_chiave": "odv 231 compiti",
-      "secondarie": ["odv 231 cosa fa", "odv 231 composizione", "odv 231 requisiti"],
-      "intento": "informativo",
+      "priorita": 14,
+      "id": "M2-W1-01",
+      "mese": 2,
+      "settimana": 1,
+      "slug": "risk-assessment-231",
+      "titolo": "Risk assessment 231: la mappatura dei rischi-reato per processo",
+      "tipologia": "spoke-mofu",
+      "cluster": "risk-assessment",
       "decreto": "d231",
-      "codici_catalogo": ["M01", "M02", "M05", "M06", "M07"],
+      "intento": "informativo",
+      "parola_chiave": "risk assessment 231",
+      "volume": 90,
+      "cpc": 3.57,
+      "secondarie": [
+        {
+          "keyword": "a cosa servono i profili per processo nel modello 231",
+          "volume": 110
+        },
+        {
+          "keyword": "scheda profilo 231 per processo",
+          "volume": 90
+        },
+        {
+          "keyword": "rischio 231",
+          "volume": 20
+        },
+        {
+          "keyword": "foglio excel valutazione rischi 231",
+          "volume": 20
+        },
+        {
+          "keyword": "profilo 231 per processo",
+          "volume": 10
+        }
+      ],
+      "domande": ["a cosa servono i profili per processo nel modello 231"],
+      "codici_catalogo": ["M11", "M14"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
       "stato": "da-scrivere"
     },
     {
-      "priorita": 10,
+      "priorita": 15,
+      "id": "M2-W1-02",
+      "mese": 2,
+      "settimana": 1,
       "slug": "scadenziario-sicurezza-sul-lavoro",
       "titolo": "Scadenziario della sicurezza sul lavoro: oltre il foglio Excel",
+      "decreto": "d81",
+      "intento": "commerciale",
       "parola_chiave": "scadenziario adempimenti sicurezza sul lavoro",
       "secondarie": [
         "scadenziario sicurezza excel",
         "gestionale scadenze sicurezza sul lavoro",
         "scadenziario formazione sicurezza"
       ],
-      "intento": "commerciale",
-      "decreto": "d81",
       "codici_catalogo": ["S01", "S30", "S47", "S64"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 11,
+      "priorita": 16,
+      "id": "M2-W2-01",
+      "mese": 2,
+      "settimana": 2,
+      "slug": "come-si-redige-modello-231",
+      "titolo": "Come si redige un modello 231: fasi, chi lo scrive, chi lo approva",
+      "tipologia": "spoke-bofu",
+      "cluster": "redazione-modello",
+      "decreto": "d231",
+      "intento": "commerciale",
+      "parola_chiave": "modello 231 chi lo redige",
+      "volume": 90,
+      "cpc": 1.91,
+      "secondarie": [
+        {
+          "keyword": "adozione modello 231",
+          "volume": 50
+        },
+        {
+          "keyword": "modello 231 come farlo",
+          "volume": 30
+        },
+        {
+          "keyword": "come redigere modello 231",
+          "volume": 0
+        },
+        {
+          "keyword": "come adottare modello 231",
+          "volume": 0
+        },
+        {
+          "keyword": "chi approva modello 231",
+          "volume": 0
+        }
+      ],
+      "domande": ["modello 231 chi lo redige", "chi approva modello 231", "come adottare modello 231"],
+      "codici_catalogo": ["M11", "M13", "M14"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 17,
+      "id": "M2-W2-02",
+      "mese": 2,
+      "settimana": 2,
       "slug": "nomina-dpo-quando-e-obbligatoria",
       "titolo": "Nomina del DPO: quando è obbligatoria e come si comunica",
+      "decreto": "gdpr",
+      "intento": "informativo",
       "parola_chiave": "nomina dpo quando è obbligatoria",
       "secondarie": [
         "nomina dpo garante",
         "nomina dpo obbligatoria",
         "responsabile della protezione dei dati compiti"
       ],
-      "intento": "informativo",
-      "decreto": "gdpr",
       "codici_catalogo": ["T12", "D01", "D05"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 12,
-      "slug": "whistleblowing-modello-231",
-      "titolo": "Whistleblowing e modello 231: cosa è cambiato con il D.Lgs 24/2023",
-      "parola_chiave": "whistleblowing 231",
-      "secondarie": [
-        "procedura whistleblowing 231",
-        "whistleblowing mog 231",
-        "segnalazione whistleblowing 231"
-      ],
-      "intento": "informativo",
+      "priorita": 18,
+      "id": "M2-W3-01",
+      "mese": 2,
+      "settimana": 3,
+      "slug": "formazione-231",
+      "titolo": "Formazione 231: chi va formato, quanto, come si documenta",
+      "tipologia": "spoke-mofu",
+      "cluster": "formazione-231",
       "decreto": "d231",
-      "codici_catalogo": ["M36", "M37", "M38", "M39", "M40"],
+      "intento": "informativo",
+      "parola_chiave": "corso 231",
+      "volume": 260,
+      "cpc": 3.48,
+      "secondarie": [
+        {
+          "keyword": "formazione 231",
+          "volume": 170
+        },
+        {
+          "keyword": "formazione 231 cos'è",
+          "volume": 70
+        },
+        {
+          "keyword": "corso formazione 231",
+          "volume": 40
+        },
+        {
+          "keyword": "corso 231 per avvocati",
+          "volume": 30
+        }
+      ],
+      "domande": ["formazione 231 cos'è"],
+      "codici_catalogo": ["M41", "M42", "M43", "M44", "M45"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
       "stato": "da-scrivere"
     },
     {
-      "priorita": 13,
+      "priorita": 19,
+      "id": "M2-W3-02",
+      "mese": 2,
+      "settimana": 3,
       "slug": "prova-di-evacuazione-ogni-quanto",
       "titolo": "Prova di evacuazione: ogni quanto va fatta e come si documenta",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "prova evacuazione ogni quanto",
       "secondarie": [
         "prova evacuazione obbligatoria",
         "piano di emergenza ed evacuazione",
         "registro controlli antincendio"
       ],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S06", "S26", "S64"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 14,
+      "priorita": 20,
+      "id": "M2-W4-01",
+      "mese": 2,
+      "settimana": 4,
+      "slug": "esempio-modello-231",
+      "titolo": "Modello 231: un esempio di struttura, parte generale e parte speciale",
+      "tipologia": "spoke-mofu",
+      "cluster": "esempio-modello",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "esempio modello 231",
+      "volume": 710,
+      "cpc": 1.19,
+      "secondarie": [
+        {
+          "keyword": "fac simile modello 231",
+          "volume": 170
+        },
+        {
+          "keyword": "modello 231 fac simile",
+          "volume": 140
+        },
+        {
+          "keyword": "modello 231 editabile",
+          "volume": 90
+        },
+        {
+          "keyword": "modello 231 pdf",
+          "volume": 70
+        }
+      ],
+      "domande": [],
+      "codici_catalogo": ["M11", "M13"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e",
+        "spoke": ["come-si-redige-modello-231"]
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 21,
+      "id": "M2-W4-02",
+      "mese": 2,
+      "settimana": 4,
       "slug": "adempimenti-gdpr-piccole-imprese",
       "titolo": "Adempimenti GDPR per le piccole imprese: il minimo che non si può saltare",
+      "decreto": "gdpr",
+      "intento": "informativo",
       "parola_chiave": "adempimenti gdpr piccole imprese",
       "secondarie": [
         "gdpr adempimenti per le aziende",
         "adempimenti privacy gdpr",
         "checklist gdpr italiano"
       ],
-      "intento": "informativo",
-      "decreto": "gdpr",
       "codici_catalogo": ["T01", "T05", "T08", "T14"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 15,
-      "slug": "reati-presupposto-231-aggiornati",
-      "titolo": "Reati presupposto 231: come si aggiorna il modello quando cambia l'elenco",
-      "parola_chiave": "reati presupposto 231 aggiornato",
-      "secondarie": ["reati presupposto 231 elenco", "aggiornamento mog 231", "mappatura rischi reato"],
-      "intento": "informativo",
+      "priorita": 22,
+      "id": "M3-W1-01",
+      "mese": 3,
+      "settimana": 1,
+      "slug": "aggiornamento-modello-231",
+      "titolo": "Aggiornamento del modello 231: quando, chi, come",
+      "tipologia": "spoke-mofu",
+      "cluster": "aggiornamento-modello",
       "decreto": "d231",
-      "codici_catalogo": ["M11", "M12", "M61"],
+      "intento": "informativo",
+      "parola_chiave": "riforma 231",
+      "volume": 210,
+      "cpc": 1.83,
+      "secondarie": [
+        {
+          "keyword": "aggiornamenti 231",
+          "volume": 70
+        }
+      ],
+      "domande": [
+        "quando il modello 231 deve essere aggiornato",
+        "chi aggiorna modello 231",
+        "perché il modello 231 deve essere aggiornato nel tempo"
+      ],
+      "codici_catalogo": ["M12", "M14", "M15"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e",
+        "spoke": ["reati-presupposto-231-aggiornati"]
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
       "stato": "da-scrivere"
     },
     {
-      "priorita": 16,
+      "priorita": 23,
+      "id": "M3-W1-02",
+      "mese": 3,
+      "settimana": 1,
       "slug": "aggiornamento-formazione-antincendio",
       "titolo": "Aggiornamento della formazione antincendio: rischio basso, medio e alto",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "aggiornamento formazione antincendio",
       "secondarie": [
         "addetti antincendio aggiornamento",
         "dm 2 settembre 2021 formazione",
         "corso antincendio rischio medio aggiornamento"
       ],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S26", "S35", "S36", "S37"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 17,
-      "slug": "checklist-audit-gdpr",
-      "titolo": "Audit GDPR: una checklist per l'audit interno",
-      "parola_chiave": "checklist audit gdpr",
-      "secondarie": ["audit gdpr", "audit privacy interno", "piano audit privacy dpo"],
-      "intento": "informativo",
-      "decreto": "gdpr",
-      "codici_catalogo": ["T13", "D12", "R10"],
-      "stato": "da-scrivere"
-    },
-    {
-      "priorita": 18,
+      "priorita": 24,
+      "id": "M3-W2-01",
+      "mese": 3,
+      "settimana": 2,
       "slug": "flussi-informativi-odv",
       "titolo": "Flussi informativi verso l'OdV: quali, con che cadenza, da chi",
+      "decreto": "d231",
+      "intento": "informativo",
       "parola_chiave": "flussi informativi odv",
       "secondarie": [
         "flussi informativi 231",
         "informazioni all'organismo di vigilanza",
         "flussi informativi odv esempio"
       ],
-      "intento": "informativo",
-      "decreto": "d231",
       "codici_catalogo": ["M21", "M22", "M23", "M31"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 19,
+      "priorita": 25,
+      "id": "M3-W2-02",
+      "mese": 3,
+      "settimana": 2,
+      "slug": "checklist-audit-gdpr",
+      "titolo": "Audit GDPR: una checklist per l'audit interno",
+      "decreto": "gdpr",
+      "intento": "informativo",
+      "parola_chiave": "checklist audit gdpr",
+      "secondarie": ["audit gdpr", "audit privacy interno", "piano audit privacy dpo"],
+      "codici_catalogo": ["T13", "D12", "R10"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 26,
+      "id": "M3-W3-01",
+      "mese": 3,
+      "settimana": 3,
+      "slug": "linee-guida-confindustria-231",
+      "titolo": "Linee guida Confindustria per il modello 231: cosa dicono e come usarle",
+      "tipologia": "spoke-mofu",
+      "cluster": "linee-guida-confindustria",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "confindustria linee guida 231",
+      "volume": 320,
+      "cpc": 2.73,
+      "secondarie": [
+        {
+          "keyword": "confindustria 231",
+          "volume": 10
+        }
+      ],
+      "domande": [],
+      "codici_catalogo": ["M11"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 27,
+      "id": "M3-W3-02",
+      "mese": 3,
+      "settimana": 3,
       "slug": "nomina-rspp-quanto-dura",
       "titolo": "Nomina dell'RSPP: quanto dura e quando va rinnovata",
+      "decreto": "d81",
+      "intento": "informativo",
       "parola_chiave": "nomina rspp quanto dura",
       "secondarie": ["nomina rspp esterno", "rspp datore di lavoro", "nomina rspp datore di lavoro"],
-      "intento": "informativo",
-      "decreto": "d81",
       "codici_catalogo": ["S22", "S33"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 20,
+      "priorita": 28,
+      "id": "M3-W4-01",
+      "mese": 3,
+      "settimana": 4,
+      "slug": "codice-etico-231",
+      "titolo": "Codice etico 231: cosa contiene e che rapporto ha con il modello",
+      "tipologia": "spoke-mofu",
+      "cluster": "codice-etico",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "codice etico 231",
+      "volume": 380,
+      "cpc": 2.67,
+      "secondarie": [
+        {
+          "keyword": "modello 231 e codice etico",
+          "volume": 110
+        },
+        {
+          "keyword": "fac simile codice etico 231",
+          "volume": 20
+        }
+      ],
+      "domande": ["cos è il codice etico 231", "codice etico senza 231"],
+      "codici_catalogo": ["M11", "M17"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 29,
+      "id": "M3-W4-02",
+      "mese": 3,
+      "settimana": 4,
       "slug": "privacy-studio-legale",
       "titolo": "Privacy nello studio legale: gli adempimenti dello studio stesso",
+      "decreto": "gdpr",
+      "intento": "informativo",
       "parola_chiave": "privacy studio legale",
       "secondarie": ["privacy studio professionale", "gdpr avvocati", "registro trattamenti studio legale"],
-      "intento": "informativo",
-      "decreto": "gdpr",
       "codici_catalogo": ["T01", "T05", "T09"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 21,
+      "priorita": 30,
+      "id": "M4-W1-01",
+      "mese": 4,
+      "settimana": 1,
+      "slug": "whistleblowing-modello-231",
+      "titolo": "Whistleblowing e modello 231: cosa è cambiato con il D.Lgs 24/2023",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "whistleblowing 231",
+      "volume": 90,
+      "cpc": 2.23,
+      "secondarie": [
+        "procedura whistleblowing 231",
+        "whistleblowing mog 231",
+        "segnalazione whistleblowing 231"
+      ],
+      "codici_catalogo": ["M36", "M37", "M38", "M39", "M40"],
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 31,
+      "id": "M4-W1-02",
+      "mese": 4,
+      "settimana": 1,
+      "slug": "ispezione-garante-privacy",
+      "titolo": "Ispezione del Garante privacy: cosa chiedono e come prepararsi",
+      "decreto": "gdpr",
+      "intento": "informativo",
+      "parola_chiave": "ispezione garante privacy",
+      "secondarie": ["ispezione garante", "controlli garante privacy aziende", "documenti ispezione privacy"],
+      "codici_catalogo": ["T01", "T07", "T08"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 32,
+      "id": "M4-W2-01",
+      "mese": 4,
+      "settimana": 2,
+      "slug": "sanzioni-231",
+      "titolo": "Sanzioni 231: pecuniarie, interdittive e quando si applicano",
+      "tipologia": "spoke-tofu",
+      "cluster": "sanzioni-231",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "sanzioni 231",
+      "volume": 90,
+      "cpc": 0,
+      "secondarie": [
+        {
+          "keyword": "quali sono le sanzioni previste dal d lgs 231 01",
+          "volume": 110
+        },
+        {
+          "keyword": "sanzioni dlgs 231 01",
+          "volume": 30
+        },
+        {
+          "keyword": "quando si applicano le sanzioni interdittive 231",
+          "volume": 30
+        }
+      ],
+      "domande": [
+        "quali sono le sanzioni previste dal d lgs 231 01",
+        "quando si applicano le sanzioni interdittive 231"
+      ],
+      "codici_catalogo": ["M11"],
+      "collegamenti": {
+        "articolo_pilastro": "d-lgs-231-2001-spiegato"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 33,
+      "id": "M4-W2-02",
+      "mese": 4,
+      "settimana": 2,
       "slug": "completato-non-vuol-dire-in-regola",
       "titolo": "«Completato» non vuol dire «in regola»: il difetto degli scadenzari",
+      "decreto": "d81",
+      "intento": "commerciale",
       "parola_chiave": "scadenzario adempimenti compliance",
       "secondarie": ["gestione scadenze compliance", "scadenzario adempimenti", "stato adempimenti scaduti"],
-      "intento": "commerciale",
-      "decreto": "d81",
       "codici_catalogo": ["S01", "M08", "T05"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 22,
+      "priorita": 34,
+      "id": "M4-W3-01",
+      "mese": 4,
+      "settimana": 3,
+      "slug": "reati-ambientali-tributari-231",
+      "titolo": "Reati ambientali e tributari nel modello 231",
+      "tipologia": "spoke-tofu",
+      "cluster": "reati-presupposto",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "reati ambientali e 231",
+      "volume": 110,
+      "cpc": 0,
+      "secondarie": [
+        {
+          "keyword": "231 reati ambientali",
+          "volume": 110
+        },
+        {
+          "keyword": "reati tributari 231",
+          "volume": 90
+        }
+      ],
+      "domande": [],
+      "codici_catalogo": ["M60", "M62"],
+      "collegamenti": {
+        "articolo_pilastro": "d-lgs-231-2001-spiegato",
+        "spoke": ["reati-presupposto-231-aggiornati"]
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 35,
+      "id": "M4-W3-02",
+      "mese": 4,
+      "settimana": 3,
+      "slug": "software-adempimenti-per-consulenti",
+      "titolo": "Un software per gli adempimenti di più clienti: cosa deve fare davvero",
+      "decreto": "gdpr",
+      "intento": "commerciale",
+      "parola_chiave": "software gdpr per consulenti",
+      "secondarie": ["software odv 231", "gestionale sicurezza sul lavoro", "software gestione 231"],
+      "codici_catalogo": ["T01", "M08", "S01"],
+      "stato": "da-scrivere"
+    },
+    {
+      "priorita": 36,
+      "id": "M4-W4-01",
+      "mese": 4,
+      "settimana": 4,
       "slug": "modello-231-sicurezza-sul-lavoro",
       "titolo": "231 e 81/08: dove il modello organizzativo incontra la sicurezza",
+      "decreto": "d231",
+      "intento": "informativo",
       "parola_chiave": "art 30 d.lgs 81/08 modello 231",
       "secondarie": [
         "modello organizzativo sicurezza lavoro",
         "reati sicurezza lavoro 231",
         "audit sicurezza 231"
       ],
-      "intento": "informativo",
-      "decreto": "d231",
       "codici_catalogo": ["M47", "M53", "M55"],
       "stato": "da-scrivere"
     },
     {
-      "priorita": 23,
-      "slug": "ispezione-garante-privacy",
-      "titolo": "Ispezione del Garante privacy: cosa chiedono e come prepararsi",
-      "parola_chiave": "ispezione garante privacy",
-      "secondarie": ["ispezione garante", "controlli garante privacy aziende", "documenti ispezione privacy"],
+      "priorita": 37,
+      "id": "M4-W4-02",
+      "mese": 4,
+      "settimana": 4,
+      "slug": "certificazione-231",
+      "titolo": "Esiste una certificazione 231? Cosa si può certificare e cosa no",
+      "tipologia": "spoke-tofu",
+      "cluster": "certificazione-231",
+      "decreto": "d231",
       "intento": "informativo",
-      "decreto": "gdpr",
-      "codici_catalogo": ["T01", "T07", "T08"],
+      "parola_chiave": "231 certificazione",
+      "volume": 40,
+      "cpc": 1.66,
+      "secondarie": [
+        {
+          "keyword": "chi certifica la 231",
+          "volume": 0
+        }
+      ],
+      "domande": ["chi certifica la 231"],
+      "codici_catalogo": ["M11"],
+      "collegamenti": {
+        "articolo_pilastro": "modello-231-cos-e"
+      },
+      "fonte_keyword": "keywordblog/tutte_le_categorie-231-it-it-13-10-2026.csv",
       "stato": "da-scrivere"
     },
     {
-      "priorita": 24,
-      "slug": "software-adempimenti-per-consulenti",
-      "titolo": "Un software per gli adempimenti di più clienti: cosa deve fare davvero",
-      "parola_chiave": "software gdpr per consulenti",
-      "secondarie": ["software odv 231", "gestionale sicurezza sul lavoro", "software gestione 231"],
-      "intento": "commerciale",
-      "decreto": "gdpr",
-      "codici_catalogo": ["T01", "M08", "S01"],
-      "stato": "da-scrivere"
+      "priorita": 38,
+      "slug": "compiti-odv-231",
+      "titolo": "OdV 231: compiti, riunioni e verbali in un anno di lavoro",
+      "decreto": "d231",
+      "intento": "informativo",
+      "parola_chiave": "odv 231 compiti",
+      "secondarie": ["odv 231 cosa fa", "odv 231 composizione", "odv 231 requisiti"],
+      "codici_catalogo": ["M01", "M02", "M05", "M06", "M07"],
+      "stato": "fusa",
+      "fusa_in": "organismo-di-vigilanza-231",
+      "motivo": "stesso intento dell'hub OdV (keyword research del 2026-10-13)"
     }
   ]
 }

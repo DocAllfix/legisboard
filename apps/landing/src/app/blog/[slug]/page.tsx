@@ -104,6 +104,18 @@ export default async function PaginaArticolo({ params }: Props) {
           { "@type": "ListItem", position: 3, name: a.titolo, item: url },
         ],
       },
+      ...(a.domande.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: a.domande.map((d) => ({
+                "@type": "Question",
+                name: d.domanda,
+                acceptedAnswer: { "@type": "Answer", text: d.risposta },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -150,6 +162,32 @@ export default async function PaginaArticolo({ params }: Props) {
             <div className={`mt-4 ${TESTO}`}>
               <Contenuto />
             </div>
+
+            {/* Le domande frequenti, nello stesso stile dei pilastri: chiuse per impostazione, così
+                l'articolo finisce con la risposta e non con un muro di testo. */}
+            {a.domande.length > 0 ? (
+              <section aria-labelledby="domande-articolo" className="mt-14">
+                <h2 id="domande-articolo" className="text-2xl font-bold tracking-tight">
+                  Domande frequenti
+                </h2>
+                <div className="mt-6 divide-y divide-border-strong border-y border-border-strong">
+                  {a.domande.map((d) => (
+                    <details key={d.domanda} className="group">
+                      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-semibold">
+                        {d.domanda}
+                        <span
+                          aria-hidden
+                          className="text-2xl leading-none text-primary motion-safe:transition-transform group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+                      <p className="max-w-2xl pb-6 leading-relaxed text-muted-foreground">{d.risposta}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <InvitoDemo />
 
