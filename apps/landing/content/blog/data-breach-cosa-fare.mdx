@@ -1,0 +1,144 @@
+---
+titolo: "Data breach GDPR: cosa fare nelle prime 72 ore"
+descrizione: "Il titolare notifica al Garante entro 72 ore da quando ne ha conoscenza, salvo rischio improbabile (art. 33 GDPR), e documenta ogni violazione."
+pubblicazione: 2026-10-28
+autore: alessandro-di-lonardo
+decreto: gdpr
+parola_chiave: "data breach gdpr"
+codici_catalogo: ["T04", "T17", "R04"]
+domande:
+  - domanda: "Da quando decorrono le 72 ore per notificare un data breach al Garante?"
+    risposta: "Dal momento in cui il titolare ne è venuto a conoscenza (art. 33, par. 1, GDPR). Per l'EDPB (linee guida 9/2022) è il momento in cui il titolare ha un ragionevole grado di certezza che un incidente di sicurezza ha compromesso dati personali. Se la violazione nasce da un fornitore, il titolare è in linea di principio a conoscenza quando il responsabile lo informa."
+  - domanda: "Ogni data breach va notificato al Garante?"
+    risposta: "No. La notifica non è dovuta quando è improbabile che la violazione presenti un rischio per i diritti e le libertà delle persone (art. 33, par. 1). Ogni violazione, notificata o no, va però documentata con i fatti, le conseguenze e i provvedimenti adottati (art. 33, par. 5)."
+  - domanda: "Come si notifica un data breach al Garante privacy?"
+    risposta: "Dal 1° luglio 2021 la notifica si invia solo con la procedura telematica sul portale servizi.gpdp.it, introdotta dal provvedimento del Garante n. 209 del 27 maggio 2021. Se le informazioni non sono complete, possono essere fornite in fasi successive (art. 33, par. 4)."
+  - domanda: "Quando bisogna avvisare gli interessati di un data breach?"
+    risposta: "Quando la violazione è suscettibile di presentare un rischio elevato per i diritti e le libertà delle persone, senza ingiustificato ritardo e con un linguaggio semplice e chiaro (art. 34, par. 1 e 2). Non serve se i dati erano resi incomprensibili, per esempio cifrati, se misure successive hanno scongiurato il rischio elevato o se servirebbero sforzi sproporzionati, nel qual caso si procede con una comunicazione pubblica (art. 34, par. 3)."
+---
+
+Dopo una violazione di dati personali il titolare del trattamento deve notificarla al Garante **senza ingiustificato ritardo e, ove possibile, entro 72 ore** dal momento in cui ne è venuto a conoscenza, a meno che sia improbabile che la violazione presenti un rischio per i diritti e le libertà delle persone fisiche: è la regola dell'[art. 33, paragrafo 1, del Regolamento (UE) 2016/679](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679). Oltre le 72 ore la notifica resta dovuta, ma va accompagnata dai motivi del ritardo. Se il rischio è **elevato**, la violazione va comunicata anche agli interessati (art. 34). In ogni caso, notificata o no, va **documentata** (art. 33, par. 5).
+
+La notifica si invia solo per via telematica, dal portale [servizi.gpdp.it](https://servizi.gpdp.it/databreach/s/), come stabilito dal [provvedimento del Garante n. 209 del 27 maggio 2021](https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9667201), in vigore dal 1° luglio 2021. Il responsabile del trattamento (il fornitore che tratta i dati per conto del titolare) non notifica al Garante: informa il titolare senza ingiustificato ritardo (art. 33, par. 2), e da quel momento, in linea di principio, corrono le 72 ore del titolare.
+
+## Data breach: cos'è, e cosa non lo è
+
+L'[art. 4, punto 12, del GDPR](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679) definisce la violazione dei dati personali come la violazione di sicurezza che comporta, accidentalmente o in modo illecito, la distruzione, la perdita, la modifica, la divulgazione non autorizzata o l'accesso ai dati personali trasmessi, conservati o comunque trattati. Servono due elementi: un **incidente di sicurezza** che tocca **dati personali**. Un attacco respinto prima di raggiungere dati personali è un incidente informatico, non un data breach.
+
+Le [linee guida EDPB 9/2022](https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-92022-personal-data-breach-notification-under_en) (versione 2.0 del 28 marzo 2023, che aggiornano le precedenti WP 250) classificano le violazioni in tre tipi, che possono presentarsi insieme:
+
+| Tipo di violazione | Che cosa succede ai dati                                | Esempio tipico                                                  |
+| ------------------ | ------------------------------------------------------- | --------------------------------------------------------------- |
+| Riservatezza       | divulgazione o accesso non autorizzato o accidentale    | e-mail con allegati inviata al destinatario sbagliato           |
+| Integrità          | modifica non autorizzata o accidentale                  | alterazione dei dati anagrafici in un gestionale compromesso    |
+| Disponibilità      | perdita di accesso o distruzione, anche solo temporanea | ransomware che cifra l'archivio dei clienti senza backup valido |
+
+La disponibilità è quella che si sottovaluta più spesso. Per l'EDPB anche un'indisponibilità temporanea è una violazione (la manutenzione programmata no): se il rischio è improbabile non si notifica, ma si registra. Un ransomware è quasi sempre almeno una violazione di disponibilità, anche senza prova di esfiltrazione.
+
+## Da quando partono le 72 ore
+
+L'art. 33 fa decorrere il termine dal momento in cui il titolare «ne è venuto a conoscenza». Le linee guida EDPB 9/2022 (paragrafo 31) precisano che il titolare è a conoscenza quando ha **un ragionevole grado di certezza** che si è verificato un incidente di sicurezza che ha compromesso dati personali. Prima è ammesso un breve periodo di indagine, che deve cominciare subito: chi non verifica una segnalazione e scopre dopo settimane che la violazione c'era rischia la contestazione della mancata notifica (paragrafo 40).
+
+Gli esempi dell'EDPB:
+
+- **chiavetta USB smarrita** con dati non cifrati: il titolare è a conoscenza quando si accorge dello smarrimento, perché la violazione di disponibilità è certa anche se non si sa se qualcuno ha letto i dati;
+- **terzo che segnala** di aver ricevuto per errore dati di un cliente, e ne dà prova: la conoscenza è immediata;
+- **richiesta di riscatto** da parte di chi ha attaccato i sistemi: la conoscenza c'è appena il titolare verifica che l'attacco è avvenuto.
+
+Le 72 ore sono ore di calendario e corrono anche di sabato, domenica e nei giorni festivi: le linee guida rinviano al Regolamento (CEE, Euratom) n. 1182/71 sul computo dei termini, il cui art. 3, par. 3, include nei periodi i festivi, le domeniche e i sabati, salvo che siano espressamente esclusi o che i periodi siano espressi in giorni lavorativi.
+
+<Norma rif="Art. 33 par. 2 Reg. UE 2016/679">
+  Il responsabile del trattamento informa il titolare del trattamento senza ingiustificato ritardo dopo essere
+  venuto a conoscenza della violazione.
+</Norma>
+
+Quando la violazione avviene presso un fornitore, l'EDPB considera il titolare a conoscenza, in linea di principio, nel momento in cui il responsabile lo informa (paragrafo 44). Il responsabile non valuta il rischio: accerta la violazione e avvisa. Per questo il contratto dell'art. 28 dovrebbe fissare un termine di preavviso e il contenuto minimo dell'avviso.
+
+## Come si valuta il rischio: notifica, comunicazione o solo registro
+
+Dentro le 72 ore il titolare decide in quale dei tre livelli ricade la violazione. Il criterio è il rischio per le persone, non il danno all'azienda.
+
+| Esito della valutazione | Garante              | Interessati               | Registro       |
+| ----------------------- | -------------------- | ------------------------- | -------------- |
+| Rischio improbabile     | nessuna notifica     | nessuna comunicazione     | sì, art. 33(5) |
+| Rischio                 | notifica, art. 33(1) | nessun obbligo            | sì             |
+| Rischio elevato         | notifica, art. 33(1) | comunicazione, art. 34(1) | sì             |
+
+I [considerando 75 e 85](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679) elencano i danni da considerare: perdita del controllo sui dati, discriminazione, furto o usurpazione d'identità, perdite finanziarie, pregiudizio alla reputazione, perdita di riservatezza dei dati protetti da segreto professionale. L'EDPB indica come fattori il tipo di violazione, la natura e la sensibilità dei dati, il volume, la facilità di identificare le persone, la gravità delle conseguenze, le caratteristiche degli interessati (minori, persone vulnerabili) e il numero di persone coinvolte.
+
+La cifratura cambia la valutazione, ma non la qualificazione. Dati cifrati con un algoritmo allo stato dell'arte restano oggetto di una violazione; se la chiave non è compromessa i dati sono in linea di principio incomprensibili, e la notifica può non essere necessaria (linee guida 9/2022, paragrafo 76). Se però il titolare non ha un backup, la perdita del supporto cifrato resta una violazione di disponibilità da valutare a parte.
+
+Il Garante offre uno **strumento di autovalutazione** nella [pagina sulle violazioni di dati personali](https://www.garanteprivacy.it/regolamentoue/databreach); la decisione resta del titolare, che deve poterla dimostrare (art. 5, par. 2).
+
+## Notifica del data breach al Garante: che cosa contiene
+
+L'art. 33, par. 3, fissa il contenuto minimo della notifica:
+
+1. la natura della violazione, comprese, ove possibile, le categorie e il numero approssimativo di interessati e di registrazioni coinvolti;
+2. il nome e i dati di contatto del responsabile della protezione dei dati o di un altro punto di contatto;
+3. le probabili conseguenze della violazione;
+4. le misure adottate o proposte per porvi rimedio e attenuarne gli effetti.
+
+Il paragrafo 4 consente di fornire le informazioni **in fasi successive**, senza ulteriore ingiustificato ritardo, e l'EDPB lo indica come la via sicura quando la violazione è certa ma la sua estensione non lo è ancora (paragrafo 53). Un numero approssimativo di interessati basta: attendere la cifra esatta non giustifica il ritardo.
+
+Quando c'è un rischio elevato, la comunicazione agli interessati (art. 34, par. 2) descrive con un linguaggio semplice e chiaro la natura della violazione e contiene almeno le informazioni dei punti 2, 3 e 4. Non è dovuta in tre casi (par. 3): se i dati erano protetti da misure che li rendono incomprensibili a chi non è autorizzato, come la cifratura; se il titolare ha adottato misure successive che scongiurano il rischio elevato; se la comunicazione individuale richiederebbe sforzi sproporzionati, e allora si procede con una comunicazione pubblica o una misura analoga. Il Garante può imporla (par. 4).
+
+<Nota>
+  Le società che rientrano nella disciplina NIS 2 hanno un obbligo distinto e parallelo: l'[art. 25 del D.Lgs
+  138/2024](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2024-09-04;138~art25)
+  chiede una pre-notifica al CSIRT Italia entro 24 ore e una notifica entro 72 ore dalla conoscenza di un
+  incidente significativo, poi una relazione finale entro un mese. Lo stesso attacco può richiedere entrambe
+  le notifiche, con destinatari, contenuti e termini diversi.
+</Nota>
+
+## Registro data breach: che cosa scrivere
+
+L'[art. 33, par. 5](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679) obbliga il titolare a documentare **qualsiasi** violazione, comprese le circostanze, le conseguenze e i provvedimenti adottati. La norma non usa la parola «registro» e non impone un formato; il Garante suggerisce di tenerlo come apposito registro, ed è la forma più semplice da esibire in un'ispezione. L'EDPB raccomanda di annotare anche le ragioni delle decisioni prese, in particolare quando il titolare decide di **non** notificare (paragrafo 125 delle linee guida 9/2022).
+
+Una scheda di registro che regge una verifica contiene almeno:
+
+- data e ora dell'incidente, se nota, e data e ora in cui il titolare ne è venuto a conoscenza;
+- chi l'ha rilevata e come;
+- tipo di violazione (riservatezza, integrità, disponibilità), categorie di dati e di interessati, numeri approssimativi;
+- valutazione del rischio con la motivazione dell'esito;
+- data della notifica al Garante e delle eventuali integrazioni, o motivazione della mancata notifica;
+- comunicazione agli interessati, o motivazione dell'esclusione ai sensi dell'art. 34, par. 3;
+- misure di contenimento e correttive adottate.
+
+Il registro data breach è distinto da quello dell'art. 30, ma vi si appoggia: è il [registro dei trattamenti](/blog/registro-dei-trattamenti-esempio) a dire quali dati e quali interessati stanno in ciascun sistema colpito. Nel catalogo Legisboard è un adempimento continuo del titolare:
+
+<Adempimento dominio="gdpr" codice="T04" />
+
+## Le prime 72 ore, in sequenza
+
+Le linee guida EDPB (paragrafo 39) indicano una sequenza da tradurre in una procedura interna, scritta prima della violazione.
+
+1. **Ora zero, la segnalazione.** Ogni evento di sicurezza arriva a una persona designata, che accerta se c'è una violazione e coinvolge subito il DPO, se designato (art. 38, par. 1).
+2. **Prime ore, contenimento e accertamento.** Si isolano i sistemi, si revocano le credenziali, si conservano i log. Si stabilisce, con un ragionevole grado di certezza, se dati personali sono stati compromessi: da qui decorre il termine.
+3. **Entro le 72 ore, valutazione e notifica.** Si valuta il rischio, si decide se notificare e si notifica, anche in forma preliminare. Se il termine non può essere rispettato, la notifica successiva riporta i motivi del ritardo.
+4. **Senza ingiustificato ritardo, gli interessati.** Se il rischio è elevato, si comunica la violazione con indicazioni pratiche per proteggersi (cambio password, blocco di carte).
+5. **Dopo, il registro e la revisione.** Si chiude la scheda di registro e si rivede la procedura. Se il trattamento colpito era soggetto a [DPIA](/blog/dpia-quando-e-obbligatoria), la violazione è una variazione del rischio che ne impone il riesame (art. 35, par. 11).
+
+<Adempimento dominio="gdpr" codice="T17" />
+
+Per il fornitore, la procedura ha un passo solo verso l'esterno: avvisare il titolare.
+
+<Adempimento dominio="gdpr" codice="R04" />
+
+Il termine di 24 ore che compare nel catalogo è una scelta contrattuale frequente, non una regola del GDPR: l'art. 33, par. 2, dice solo «senza ingiustificato ritardo». Il termine vincolante è quello scritto nel contratto dell'art. 28.
+
+## Che cosa si rischia
+
+La violazione degli obblighi degli artt. 33 e 34 rientra nell'[art. 83, par. 4, lett. a](https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679): sanzione amministrativa fino a 10 milioni di euro o, per le imprese, fino al 2% del fatturato mondiale annuo dell'esercizio precedente, se superiore. È il massimo edittale; l'importo concreto dipende dagli elementi del paragrafo 2, fra i quali la **maniera in cui l'autorità ha preso conoscenza della violazione**, in particolare se e in che misura il titolare l'ha notificata (lett. h). Una violazione che il Garante scopre da un reclamo, senza notifica, può pesare di più.
+
+Spesso la contestazione principale riguarda la causa: misure di sicurezza inadeguate violano l'art. 32, nella stessa fascia del paragrafo 4, e la notifica tempestiva non sana quella violazione.
+
+## Cosa fare in pratica
+
+1. **Scrivete la procedura data breach ora**, con nomi, reperibilità nel fine settimana ed escalation fino al titolare e al DPO, e provatela con una simulazione.
+2. **Rileggete i contratti con i fornitori** e verificate che fissino un termine di preavviso e il contenuto minimo dell'avviso, coerenti con le vostre 72 ore.
+3. **Aprite il registro data breach** e annotate anche gli incidenti minori e le decisioni di non notificare, con la motivazione.
+4. **Verificate l'accesso al portale** servizi.gpdp.it prima di averne bisogno, e tenete pronti i dati di contatto del DPO.
+5. **Se siete soggetti NIS 2**, coordinate le due procedure: termini e destinatari diversi, stesso incidente.
+
+Le cadenze degli altri adempimenti di titolare, responsabile e DPO sono raccolte nella pagina sugli [adempimenti GDPR](/adempimenti-gdpr). Sulla qualificazione di una violazione specifica, e in particolare sulla soglia del rischio elevato, serve il parere di un professionista che conosca il caso.
