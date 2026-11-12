@@ -306,6 +306,27 @@ spiegavano scelte corrette: erano invisibili perché nessuno aveva mai eseguito 
                apre quel file: per questo sta anche qui.
     VERIFICATO 2026-09-18.
 
+### D4 · `setup-vps.sh` si ferma a metà su Ubuntu 24.04
+
+    SINTOMO    L'output finisce con «ssh.service is not active, cannot reload.» e manca
+               «=== Setup completato ===». Docker e fail2ban ci sono; swap e fuso orario no.
+    CAUSA      Su Ubuntu 24.04 sshd parte a richiesta (`ssh.socket`) e il servizio risulta
+               inattivo. `systemctl reload ssh` fallisce, e con `set -e` lo script esce.
+               Una build senza swap sul taglio piccolo va poi in OOM, che è il guasto vero.
+    RIMEDIO    `systemctl try-reload-or-restart ssh`: ricarica solo se il servizio gira.
+               Con l'attivazione a socket ogni connessione rilegge già la configurazione.
+    CONTROLLO  `swapon --show` e `timedatectl | grep zone` dopo lo script.
+    VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
+
+### D5 · `Permission denied` (exit 126) lanciando gli script di `deploy/`
+
+    SINTOMO    `./deploy/onboard-cliente.sh …` esce con 126 sulla VPS appena clonata.
+    CAUSA      Gli script erano stati committati da Windows senza il bit di esecuzione:
+               nel repository erano `100644`. Su Windows non si vede mai.
+    RIMEDIO    `git update-index --chmod=+x deploy/*.sh`, poi commit.
+    CONTROLLO  `git ls-files -s deploy/*.sh` deve dire `100755` per ognuno.
+    VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
+
 ### B13 · Il file d'esempio documenta il contrario di ciò che lo script fa
 
     SINTOMO    Nessuno, finché qualcuno non segue la documentazione: configura il relay

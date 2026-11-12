@@ -56,7 +56,11 @@ systemctl restart fail2ban
 if [ -s /root/.ssh/authorized_keys ]; then
   sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
   sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-  systemctl reload ssh
+  # Su Ubuntu 24.04 sshd parte a richiesta (ssh.socket) e il servizio risulta inattivo: un
+  # `reload` fallisce e, con `set -e`, fermava lo script prima di swap e fuso orario
+  # _(2026-11-12, primo provisioning reale)_. Con l'attivazione a socket ogni connessione
+  # rilegge la configurazione, quindi basta ricaricare se e solo se il servizio gira.
+  systemctl try-reload-or-restart ssh
   echo "[setup] SSH: solo chiave pubblica"
 else
   echo "[setup] ATTENZIONE: nessuna chiave in /root/.ssh/authorized_keys — password lasciata attiva"
