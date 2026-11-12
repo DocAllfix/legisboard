@@ -327,6 +327,16 @@ spiegavano scelte corrette: erano invisibili perché nessuno aveva mai eseguito 
     CONTROLLO  `git ls-files -s deploy/*.sh` deve dire `100755` per ognuno.
     VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
 
+### D6 · La build sulla VPS fallisce su `COPY … apps/web/public`
+
+    SINTOMO    `"/costruzione/apps/web/public": not found` allo stadio `istanza`.
+    CAUSA      `apps/web/public` era una cartella VUOTA. Git non salva le cartelle vuote,
+               quindi in una copia clonata non esiste. In locale la cartella c'era, e la
+               build passava: il guasto esiste solo partendo da un clone pulito.
+    RIMEDIO    `apps/web/public/.gitkeep`.
+    CONTROLLO  Costruire da `git clone` in una cartella nuova, non dalla copia di lavoro.
+    VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
+
 ### B13 · Il file d'esempio documenta il contrario di ciò che lo script fa
 
     SINTOMO    Nessuno, finché qualcuno non segue la documentazione: configura il relay
