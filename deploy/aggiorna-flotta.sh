@@ -54,7 +54,7 @@ while read -r nome host percorso dominio; do
 
   echo "  → aggiornamento"
   # shellcheck disable=SC2029
-  if ! ssh "$host" "cd '$percorso' && git pull --ff-only && docker compose -f deploy/docker-compose.prod.yml --env-file deploy/.env.prod up -d --build"; then
+  if ! ssh "$host" "cd '$percorso' && git pull --ff-only && c=\"docker compose -f deploy/docker-compose.prod.yml --env-file deploy/.env.prod\" && \$c build app && \$c build preparazione && \$c up -d"; then
     echo "  ✗ aggiornamento fallito."
     fallite=$((fallite + 1))
     break

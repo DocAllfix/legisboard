@@ -132,7 +132,11 @@ fi
 fi  # chiude il ramo "env non ancora generato"
 
 echo "[onboard] alzo lo stack (la prima build richiede parecchi minuti)…"
-docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" up -d --build
+# Le due immagini si costruiscono UNA ALLA VOLTA (GUASTI D7): con `up --build` Docker 29 le
+# esporta in parallelo e una delle due perde uno strato («parent snapshot … not found»).
+docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" build app
+docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" build preparazione
+docker compose -f "$COMPOSE_FILE" --env-file "$ENV_FILE" up -d
 
 # IL COLLAUDO NON È UN OPZIONALE. Un'istanza consegnata senza averla interrogata è
 # un'istanza di cui si scopre lo stato dal cliente.

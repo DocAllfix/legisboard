@@ -337,6 +337,18 @@ spiegavano scelte corrette: erano invisibili perché nessuno aveva mai eseguito 
     CONTROLLO  Costruire da `git clone` in una cartella nuova, non dalla copia di lavoro.
     VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
 
+### D7 · `parent snapshot … does not exist` alla fine della build
+
+    SINTOMO    `failed to prepare extraction snapshot … parent snapshot sha256:… does not
+               exist: not found` su `[preparazione] exporting to image`, a build finita.
+    CAUSA      `up -d --build` costruisce `app` e `preparazione` insieme dallo stesso
+               Dockerfile; Docker 29 (pacchetto Ubuntu) le esporta in parallelo e una perde
+               uno strato condiviso.
+    RIMEDIO    Costruirle una alla volta: `build app`, poi `build preparazione`, poi `up -d`.
+               Così fanno ora `onboard-cliente.sh` e `aggiorna-flotta.sh`.
+    CONTROLLO  `docker images | grep legisboard-prod` mostra tutte e due le immagini.
+    VERIFICATO 2026-11-12, primo provisioning reale (studiotorresi).
+
 ### B13 · Il file d'esempio documenta il contrario di ciò che lo script fa
 
     SINTOMO    Nessuno, finché qualcuno non segue la documentazione: configura il relay
