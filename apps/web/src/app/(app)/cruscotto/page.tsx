@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, LayoutGrid } from "lucide-react";
+import { PrimiPassi } from "@/components/primi-passi/primi-passi";
 import { Vuoto } from "@/components/ui/vuoto";
 import { DOMINI, ETICHETTE_DOMINIO } from "@legisboard/engine";
 import { cruscotto } from "@/features/cruscotto/dati";
@@ -31,6 +32,7 @@ export default async function PaginaCruscotto() {
   if (!d)
     return (
       <div className="mx-auto max-w-3xl px-6 py-16">
+        <PrimiPassi />
         <Vuoto
           icona={LayoutGrid}
           livello="h1"
@@ -56,6 +58,7 @@ export default async function PaginaCruscotto() {
 
   return (
     <div className="mx-auto max-w-[1600px] px-6 py-7">
+      <PrimiPassi />
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium tracking-[0.12em] text-muted-foreground uppercase">Cruscotto</p>

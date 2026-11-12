@@ -7,6 +7,20 @@ const radiceMonorepo = resolve(dirname(fileURLToPath(import.meta.url)), "../..")
 /** Il Chromium compresso. Percorso relativo alla cartella dell'applicazione. */
 const CHROMIUM_BIN = "../../node_modules/.pnpm/@sparticuz+chromium@*/node_modules/@sparticuz/chromium/bin/**";
 
+/**
+ * PLAYWRIGHT PER INTERO, MA SOLO FUORI DA VERCEL _(2026-11-12)_.
+ *
+ * Sull'istanza dedicata il PDF lo rende il driver `local`: Playwright con il Chromium di
+ * sistema. `playwright-core` legge a runtime file che nessuno importa (`browsers.json` per
+ * primo), quindi la tracciatura li lasciava fuori e OGNI PDF rispondeva 500: «Cannot find
+ * module …/playwright-core/browsers.json». Nessuna istanza dedicata aveva mai reso un PDF; lo
+ * ha trovato il collaudo dell'immagine di produzione, alla prima relazione. Su Vercel i PDF
+ * passano da @sparticuz, e il pacchetto sarebbe solo peso nelle funzioni.
+ */
+const PLAYWRIGHT = process.env.VERCEL
+  ? []
+  : ["../../node_modules/.pnpm/playwright-core@*/node_modules/playwright-core/**"];
+
 const nextConfig: NextConfig = {
   // Motore e componenti condivisi sono pubblicati come sorgente TypeScript dal workspace:
   // niente passo di build separato, né in sviluppo né su Vercel.
@@ -38,17 +52,17 @@ const nextConfig: NextConfig = {
   // colto questa dimenticanza una volta: i prototipi rispondevano 500 su Vercel e 200 in
   // locale, perché la rotta nuova non era in questo elenco.
   outputFileTracingIncludes: {
-    "/api/spike-pdf": [CHROMIUM_BIN],
+    "/api/spike-pdf": [CHROMIUM_BIN, ...PLAYWRIGHT],
     // NON scrivere `/prototipi/[documento]`: le chiavi sono glob, e le parentesi quadre
     // valgono come classe di caratteri. `[documento]` significa «un carattere fra d, o, c,
     // u, m, e, n, t», quindi non corrisponde a nulla e la cartella non viene inclusa.
     // La build resta verde e la rotta risponde 500 solo in produzione.
-    "/prototipi/**": [CHROMIUM_BIN],
+    "/prototipi/**": [CHROMIUM_BIN, ...PLAYWRIGHT],
     // La relazione vera segue la stessa regola: glob con `**`, mai le parentesi quadre.
     // È lo stesso difetto che ha fatto rispondere 500 alla rotta dei prototipi in
     // produzione mentre in locale funzionava, e si ripeterebbe identico.
-    "/api/relazioni/**": [CHROMIUM_BIN],
-    "/api/fascicolo/**": [CHROMIUM_BIN],
+    "/api/relazioni/**": [CHROMIUM_BIN, ...PLAYWRIGHT],
+    "/api/fascicolo/**": [CHROMIUM_BIN, ...PLAYWRIGHT],
   },
 
   // IL LIMITE DI CARICAMENTO DICHIARATO ERA FITTIZIO.

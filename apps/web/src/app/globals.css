@@ -293,6 +293,15 @@
   color: var(--foreground);
 }
 
+/* Il focus dei pulsanti della guida. La regola globale sta in `@layer base`, e il foglio di
+   driver.js, che non è in nessun layer, la batteva togliendo il contorno: da tastiera non si
+   vedeva su quale pulsante si fosse. Trovato dal cancello visivo, 2026-11-12. */
+.guida-popover .driver-popover-footer button:focus-visible,
+.guida-popover .driver-popover-close-btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
 /* La X di chiusura: driver.js la disegna con un glifo, non con un'icona. */
 .guida-popover .driver-popover-close-btn {
   color: var(--faint-foreground);

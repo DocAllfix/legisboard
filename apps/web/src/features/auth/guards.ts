@@ -4,7 +4,7 @@ import { and, eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { db } from "@/lib/db";
-import { instanceConfig, member, organization } from "@/lib/db/schema";
+import { instanceConfig, member, organization, user } from "@/lib/db/schema";
 
 // Guard di accesso. Da qui passa OGNI query e OGNI azione di dominio.
 //
@@ -82,10 +82,17 @@ export const requireStudio = cache(async (): Promise<ContestoStudio> => {
       brandNome: instanceConfig.brandNome,
       profilo: instanceConfig.profilo,
       mode: instanceConfig.mode,
+      devePassword: user.mustChangePassword,
     })
     .from(organization)
     .leftJoin(member, and(eq(member.organizationId, organization.id), eq(member.userId, sessione.user.id)))
     .leftJoin(instanceConfig, eq(instanceConfig.organizationId, organization.id))
+    // Il flag del cambio password si legge QUI e non dalla sessione _(2026-11-12)_. La sessione
+    // tiene l'utente in una cache del cookie per cinque minuti, quindi dopo il cambio diceva
+    // ancora «da cambiare» e rimandava a /primo-accesso: trovato dal collaudo di un'istanza
+    // vuota, al primo minuto di uso. Al contrario, una password reimpostata da un
+    // amministratore restava libera per cinque minuti.
+    .leftJoin(user, eq(user.id, sessione.user.id))
     .limit(1);
 
   if (!riga) {
@@ -105,9 +112,7 @@ export const requireStudio = cache(async (): Promise<ContestoStudio> => {
     ruolo: riga.ruolo,
     // L'obbligo vale solo dove l'istanza lo chiede: sulla vetrina le utenze si creano a
     // mano per far provare il sistema, e chi consegna la password la conosce già.
-    mustChangePassword:
-      env.RICHIEDI_CAMBIO_PASSWORD &&
-      Boolean((sessione.user as { mustChangePassword?: boolean }).mustChangePassword),
+    mustChangePassword: env.RICHIEDI_CAMBIO_PASSWORD && Boolean(riga.devePassword),
     profilo: riga.profilo ?? "consulente",
     mode: riga.mode ?? "full",
   };

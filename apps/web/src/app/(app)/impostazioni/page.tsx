@@ -10,6 +10,9 @@ import { GestioneUtenti, type RigaUtente } from "@/components/impostazioni/utent
 import { SecondoFattore } from "@/components/impostazioni/secondo-fattore";
 
 export const metadata: Metadata = { title: "Impostazioni" };
+
+/** Il ruolo come lo legge una persona: «admin» è il valore nel database, non un'etichetta. */
+const NOME_RUOLO = { admin: "Amministratore", consulente: "Consulente", viewer: "Sola lettura" } as const;
 export const dynamic = "force-dynamic";
 
 export default async function PaginaImpostazioni() {
@@ -95,7 +98,7 @@ export default async function PaginaImpostazioni() {
           <Riga voce="Prodotto" valore={PRODOTTO.nome} />
           <Riga voce="Profilo" valore={ctx.profilo === "consulente" ? "Consulente" : "Azienda singola"} />
           <Riga voce="Modalità" valore={ctx.mode === "full" ? "Completa" : "Dimostrativa"} />
-          <Riga voce="Il tuo ruolo" valore={ctx.ruolo} />
+          <Riga voce="Il tuo ruolo" valore={NOME_RUOLO[ctx.ruolo]} />
           <Riga voce="Il tuo accesso" valore={ctx.email} />
         </dl>
         <p className="mt-2.5 text-xs text-muted-foreground">

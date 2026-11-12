@@ -1,10 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { HelpCircle } from "lucide-react";
 import { segnaTourVisto } from "@/features/tour/azioni";
-import { TOUR, tourPerChiave, type Tour } from "@/lib/tour/passi";
+import { tourPerChiave, tourPerPercorso, type Tour } from "@/lib/tour/passi";
 import { cn } from "@/lib/utils";
 
 // LA GUIDA.
@@ -21,15 +21,30 @@ import { cn } from "@/lib/utils";
 // maggior parte delle sessioni non aprirà mai, e metterla nel bundle di ogni pagina
 // significherebbe farla scaricare a tutti per servire i primi cinque minuti di alcuni.
 
-/** Quale tour appartiene alla schermata corrente. */
-function tourDelPercorso(percorso: string): Tour | undefined {
-  if (percorso.startsWith("/cruscotto")) return tourPerChiave("cruscotto");
-  if (percorso.startsWith("/scadenzario")) return tourPerChiave("scadenzario");
-  if (percorso.startsWith("/portafoglio")) return tourPerChiave("portafoglio");
-  if (/^\/azienda\/[^/]+\/relazioni/.test(percorso)) return tourPerChiave("relazioni");
-  if (/^\/azienda\/[^/]+\/[^/]+/.test(percorso)) return tourPerChiave("assessment");
-  if (/^\/azienda\/[^/]+$/.test(percorso)) return tourPerChiave("azienda");
-  return undefined;
+/** I giri della schermata corrente, nell'ordine in cui si provano. */
+function tourDelPercorso(percorso: string): readonly Tour[] {
+  if (percorso.startsWith("/cruscotto")) return tourPerPercorso("/cruscotto");
+  if (percorso.startsWith("/scadenzario")) return tourPerPercorso("/scadenzario");
+  if (percorso.startsWith("/portafoglio")) return tourPerPercorso("/portafoglio");
+  const uno = (chiave: string) => [tourPerChiave(chiave)].filter((t): t is Tour => Boolean(t));
+  if (/^\/azienda\/[^/]+\/relazioni/.test(percorso)) return uno("relazioni");
+  // Prima dell'assessment, che altrimenti si prendeva anche `/registro/<tipo>`: lì apriva il
+  // suo primo passo, quello senza ancoraggio, e il giro dei registri non partiva mai.
+  if (/^\/azienda\/[^/]+\/registro\//.test(percorso)) return uno("registri");
+  if (/^\/azienda\/[^/]+\/[^/]+/.test(percorso)) return uno("assessment");
+  if (/^\/azienda\/[^/]+$/.test(percorso)) return uno("azienda");
+  return [];
+}
+
+/**
+ * Quale dei giri candidati vale sulla pagina COM'È ADESSO: il primo la cui condizione
+ * (`quando`) trova il suo ancoraggio. Si decide nel browser perché la stessa schermata,
+ * vuota o piena, ha bisogno di un giro diverso, e solo il DOM sa quale delle due è.
+ */
+function scegli(candidati: readonly Tour[], escludi?: (t: Tour) => boolean): Tour | undefined {
+  return candidati.find(
+    (t) => (!t.quando || document.querySelector(`[data-tour="${t.quando}"]`)) && !escludi?.(t),
+  );
 }
 
 /**
@@ -47,7 +62,10 @@ export function Guida({ visti, dove }: { visti: Record<string, number>; dove: "b
   // ripartirebbe da capo prima che il server abbia registrato la visita.
   const apertiOra = useRef(new Set<string>());
 
-  const tour = tourDelPercorso(percorso ?? "");
+  const candidati = useMemo(() => tourDelPercorso(percorso ?? ""), [percorso]);
+  // Per il pulsante, prima che il DOM sia leggibile: basta sapere se un giro esiste. Con più
+  // giri sullo stesso percorso il nome dipende da cosa c'è sulla pagina, e resta generico.
+  const tour = candidati.length === 1 ? candidati[0] : undefined;
 
   const avvia = useCallback(
     async (quale: Tour) => {
@@ -112,23 +130,30 @@ export function Guida({ visti, dove }: { visti: Record<string, number>; dove: "b
   // La prima volta si apre da solo. La versione conta: se il testo cambia perché la
   // schermata è cambiata, chi l'aveva già visto lo rivede una volta sola.
   useEffect(() => {
-    if (!tour) return;
+    if (candidati.length === 0) return;
     if (window.matchMedia(LG).matches !== (dove === "binario")) return;
-    if ((visti[tour.chiave] ?? 0) >= tour.versione) return;
-    if (apertiOra.current.has(tour.chiave)) return;
     // Un istante di attesa: la schermata deve aver finito di disegnarsi, altrimenti gli
-    // ancoraggi non ci sono ancora e il tour si apre monco.
-    const t = setTimeout(() => void avvia(tour), 900);
+    // ancoraggi non ci sono ancora e il tour si apre monco (o si sceglie il giro sbagliato).
+    const t = setTimeout(() => {
+      // Il primo giro valido sulla pagina e non ancora visto. La versione conta: se il testo
+      // cambia perché la schermata è cambiata, chi l'aveva già visto lo rivede una volta sola.
+      const scelto = scegli(
+        candidati,
+        (g) => (visti[g.chiave] ?? 0) >= g.versione || apertiOra.current.has(g.chiave),
+      );
+      if (scelto) void avvia(scelto);
+    }, 900);
     return () => clearTimeout(t);
-  }, [tour, visti, avvia, dove]);
-
-  const disponibili = TOUR.filter((t) => t.chiave === tour?.chiave);
+  }, [candidati, visti, avvia, dove]);
 
   return (
     <button
       type="button"
-      onClick={() => tour && void avvia(tour)}
-      disabled={!tour || inCorso}
+      onClick={() => {
+        const scelto = scegli(candidati);
+        if (scelto) void avvia(scelto);
+      }}
+      disabled={candidati.length === 0 || inCorso}
       data-tour="guida"
       // IL CANCELLO NON CLICCA QUESTO. Aprirebbe il velo di driver.js, che copre la pagina
       // e intercetta ogni clic successivo: la spazzata si fermerebbe lì e riporterebbe
@@ -138,15 +163,22 @@ export function Guida({ visti, dove }: { visti: Record<string, number>; dove: "b
       // sorgenti e fallisce se un passo punta a un ancoraggio inesistente — difetto che
       // driver.js non segnala, perché salta il passo in silenzio.
       data-cancello="salta"
-      aria-label={tour ? `Guida · ${tour.nome}` : "Guida non disponibile su questa schermata"}
-      title={tour ? `Guida · ${tour.nome}` : "Nessuna guida per questa schermata"}
+      aria-label={
+        tour
+          ? `Guida · ${tour.nome}`
+          : candidati.length > 0
+            ? "Guida di questa schermata"
+            : "Guida non disponibile su questa schermata"
+      }
+      title={
+        tour ? `Guida · ${tour.nome}` : candidati.length > 0 ? "Guida" : "Nessuna guida per questa schermata"
+      }
       className={cn(
         "rounded-md p-1.5 text-sidebar-muted hover:bg-sidebar-selected hover:text-sidebar-foreground",
-        (!tour || inCorso) && "opacity-40",
+        (candidati.length === 0 || inCorso) && "opacity-40",
       )}
     >
       <HelpCircle className="size-4" aria-hidden />
-      <span className="sr-only">{disponibili.length > 0 ? disponibili[0]?.nome : "Guida"}</span>
     </button>
   );
 }

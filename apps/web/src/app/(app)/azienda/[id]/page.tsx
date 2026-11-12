@@ -185,7 +185,8 @@ export default async function PaginaAzienda({ params }: { params: Promise<{ id: 
         )}
       </section>
 
-      {attivi.length > 0 ? (
+      {/* Con zero righe la nota diceva «le prime 0 scadenze»: il vuoto qui sopra spiega già. */}
+      {attivi.length > 0 && righe.length > 0 ? (
         <p className="mt-4 text-xs text-muted-foreground">
           L&apos;elenco mostra le prime {righe.length} scadenze per urgenza sui moduli attivi (
           {attivi.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}). La vista completa con modifica dello

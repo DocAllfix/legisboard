@@ -49,6 +49,11 @@ const argomenti = process.argv.slice(2);
 //
 // In produzione non succede: il blocco riguarda solo le risorse di sviluppo.
 const base = argomenti.find((a) => a.startsWith("http")) ?? "http://localhost:3100";
+
+// Il collaudo di un'istanza in locale passa da Caddy con `tls internal`, cioè un certificato
+// di una CA privata: `GATE_CERT_PRIVATO=1` lo accetta. Mai contro un'istanza vera, dove un
+// certificato rifiutato è proprio uno dei difetti da trovare.
+const TLS = process.env.GATE_CERT_PRIVATO === "1" ? { ignoreHTTPSErrors: true } : {};
 const soloIndice = argomenti.indexOf("--solo");
 const soloPercorso = soloIndice >= 0 ? argomenti[soloIndice + 1] : null;
 
@@ -128,7 +133,7 @@ async function accediUnaVolta(browser) {
     segnala("sessione", "ADMIN_EMAIL/ADMIN_PASSWORD assenti: impossibile verificare le pagine protette");
     return false;
   }
-  const contesto = await browser.newContext();
+  const contesto = await browser.newContext({ ...TLS });
   // Il limitatore di tentativi è attivo e va rispettato, non aggirato: se risponde 429 si
   // aspetta e si riprova, invece di allentare la configurazione di produzione per far
   // passare un test.
@@ -169,6 +174,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
   const etichetta = `${pagina.percorso} · ${misura.nome} · ${tema}`;
   const url = new URL(pagina.percorso, base).toString();
   const contesto = await browser.newContext({
+    ...TLS,
     viewport: { width: misura.larghezza, height: misura.altezza },
     colorScheme: tema,
     locale: "it-IT",
@@ -691,7 +697,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
 async function risolviDinamiche(browser, pagine) {
   if (!pagine.some((p) => p.dinamica)) return pagine;
 
-  const contesto = await browser.newContext({ locale: "it-IT" });
+  const contesto = await browser.newContext({ ...TLS, locale: "it-IT" });
   let primaAzienda = null;
   if (await apriSessione(contesto, "risoluzione dei percorsi dinamici")) {
     const tab = await contesto.newPage();
@@ -753,7 +759,7 @@ async function ripristinaModuli(browser, pagine, quando = "") {
   const scheda = pagine.find((p) => p.dinamica && /^\/azienda\/[^/]+$/.test(p.percorso));
   if (!scheda) return;
 
-  const contesto = await browser.newContext({ locale: "it-IT" });
+  const contesto = await browser.newContext({ ...TLS, locale: "it-IT" });
   if (!(await apriSessione(contesto, "ripristino dei moduli"))) {
     await contesto.close();
     return;

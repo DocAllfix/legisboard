@@ -120,9 +120,13 @@ function mediana(righe: readonly { conformita: { percentuale: number | null } | 
 
 function VuotoPortafoglio() {
   return (
-    <Vuoto icona={Building2} titolo="Il portafoglio è vuoto" azione={<NuovaAzienda />}>
-      Aggiungi la prima azienda assistita. Scegliendo i moduli, gli adempimenti dei decreti selezionati
-      vengono creati subito: {DOMINI.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}.
-    </Vuoto>
+    // L'ancoraggio del giro «portafoglio vuoto»: c'è solo quando non c'è niente, ed è così che la
+    // guida sceglie quale giro aprire (vedi `quando` in `lib/tour/passi.ts`).
+    <div data-tour="portafoglio-vuoto">
+      <Vuoto icona={Building2} titolo="Il portafoglio è vuoto" azione={<NuovaAzienda />}>
+        Aggiungi la prima azienda assistita. Scegliendo i moduli, gli adempimenti dei decreti selezionati
+        vengono creati subito: {DOMINI.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}.
+      </Vuoto>
+    </div>
   );
 }

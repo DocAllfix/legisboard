@@ -319,8 +319,9 @@ export function TabellaScadenzario({
                       dice COSA sta escludendo e offre di smettere. */}
                   {voci.length === 0 ? (
                     <Vuoto icona={CalendarClock} titolo="Nessuna scadenza da presidiare" variante="riga">
-                      In tutto il portafoglio non c&apos;è un adempimento con una scadenza: succede quando le
-                      aziende non hanno ancora moduli attivi con adempimenti censiti.
+                      Nessun adempimento ha ancora una data. La scadenza nasce dall&apos;ultima esecuzione:
+                      registrala nell&apos;assessment e l&apos;adempimento entra in agenda. Quelli ancora
+                      senza data sono elencati qui sotto.
                     </Vuoto>
                   ) : (
                     <VuotoFiltro

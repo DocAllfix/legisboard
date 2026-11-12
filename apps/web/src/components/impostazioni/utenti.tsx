@@ -61,7 +61,6 @@ export function GestioneUtenti({
   const errore =
     (creazione && !creazione.ok && creazione.errore) ||
     (ruolo && !ruolo.ok && ruolo.errore) ||
-    (invito && !invito.ok && invito.errore) ||
     (reset && !reset.ok && reset.errore) ||
     null;
   const precedenti = creazione && !creazione.ok ? creazione.valori : undefined;
@@ -217,6 +216,15 @@ export function GestioneUtenti({
               </Button>
             </div>
           </div>
+          {/* L'errore dell'invito sotto l'invito. Stava nel messaggio comune, che è sotto «Nuova
+              utenza»: si leggeva nel modulo sbagliato e restava lì anche dopo aver creato
+              un'utenza con successo. Visto dal collaudo del 2026-11-12. */}
+          {invito && !invito.ok ? (
+            <p role="alert" className="flex items-start gap-1.5 text-xs text-scaduta">
+              <AlertCircle className="mt-px size-3.5 shrink-0" aria-hidden />
+              {invito.errore}
+            </p>
+          ) : null}
         </form>
       ) : null}
 

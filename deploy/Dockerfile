@@ -30,7 +30,9 @@ RUN corepack enable
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json ./apps/web/
 COPY packages/engine/package.json ./packages/engine/
-RUN pnpm install --frozen-lockfile
+COPY packages/ui/package.json ./packages/ui/
+COPY apps/landing/package.json ./apps/landing/
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 # ---------------------------------------------------------------------------------------
 FROM node:22-bookworm-slim AS compilato
@@ -47,7 +49,7 @@ COPY . .
 # `NEXT_TELEMETRY_DISABLED`: un'istanza di un cliente non chiama casa. Vale come principio
 # in un prodotto che vende conformità, non come ottimizzazione.
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm --filter web build
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store pnpm install --frozen-lockfile --offline --store-dir /pnpm/store && pnpm --config.verify-deps-before-run=false --filter web build
 
 # ---------------------------------------------------------------------------------------
 # Gli STRUMENTI di prima installazione: creare l'amministratore, seminare il catalogo,

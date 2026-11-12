@@ -59,7 +59,9 @@ export function Vuoto({
         "text-center",
         variante === "pannello"
           ? "rounded-lg border border-dashed border-border-strong bg-surface px-6 py-14"
-          : "px-6 py-10",
+          : // `whitespace-normal`: dentro una cella di tabella, che è `nowrap`, la spiegazione non
+            // andava a capo e allargava la pagina oltre lo schermo. Visto dal collaudo del 2026-11-12.
+            "px-6 py-10 whitespace-normal",
         className,
       )}
     >

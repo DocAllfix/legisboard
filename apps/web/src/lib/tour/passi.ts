@@ -29,10 +29,66 @@ export type Tour = {
   readonly percorso: string;
   /** Si alza quando il contenuto cambia: chi l'ha già visto lo rivede una volta sola. */
   readonly versione: number;
+  /**
+   * Il giro vale solo se questo `data-tour` è sulla pagina. Serve a due giri sullo stesso
+   * percorso: quello dell'istanza appena consegnata, vuota, e quello di chi ha già i dati.
+   * Fra i giri di un percorso vince il primo, nell'ordine di questo elenco, la cui condizione regge.
+   */
+  readonly quando?: string;
   readonly passi: readonly Passo[];
 };
 
 export const TOUR: readonly Tour[] = [
+  {
+    // L'ISTANZA APPENA CONSEGNATA _(2026-11-12)_. Vuota, il cruscotto non ha niente da
+    // spiegare: il giro presenta i primi passi, che portano il cliente a usare ogni parte del
+    // sistema una volta. Viene prima di quello del cruscotto, che si apre alla visita dopo.
+    chiave: "benvenuto",
+    nome: "I primi passi",
+    percorso: "/cruscotto",
+    versione: 1,
+    quando: "primi-passi",
+    passi: [
+      {
+        titolo: "Benvenuto nel registro di conformità dello studio",
+        testo:
+          "Qui GDPR, D.Lgs 231/2001 e sicurezza sul lavoro stanno in un registro solo, per tutte le aziende che segui. L'istanza è dello studio e parte vuota: nessun dato d'esempio da cancellare, nessun altro studio sullo stesso server.",
+      },
+      {
+        ancora: "primi-passi",
+        titolo: "Sette tappe, e si spuntano da sole",
+        testo:
+          "Ogni tappa ti porta in una parte diversa del sistema e si segna come fatta quando la cosa è fatta davvero, non quando ci clicchi. Alla fine avrai usato tutto almeno una volta, su un'azienda vera o di prova.",
+      },
+      {
+        ancora: "primi-passi-prossima",
+        titolo: "Si comincia da qui",
+        testo:
+          "La tappa evidenziata è sempre la prossima. Su ogni schermata in cui ti porta si apre una guida breve, che resta richiamabile dal punto interrogativo nella barra. Il riquadro si nasconde quando hai finito, o quando lo chiudi tu.",
+      },
+    ],
+  },
+  {
+    chiave: "portafoglio-vuoto",
+    nome: "Il primo cliente",
+    percorso: "/portafoglio",
+    versione: 1,
+    quando: "portafoglio-vuoto",
+    passi: [
+      {
+        ancora: "portafoglio-vuoto",
+        titolo: "Il portafoglio sono le aziende che segui",
+        testo:
+          "Ogni azienda ha il proprio registro, con i decreti che la riguardano. Puoi cominciare da un cliente vero o da un'azienda di prova: l'archiviazione la toglie dai conteggi senza cancellare niente.",
+      },
+      {
+        ancora: "nuova-azienda",
+        titolo: "Scegli i decreti al momento di crearla",
+        testo:
+          "Per ogni decreto scelto gli adempimenti del catalogo nascono subito, con cadenza e riferimento normativo. Dipendenti e fatturato servono al calcolo dell'esposizione sanzionatoria: senza, il sistema non stima e lo dice, invece di inventare.",
+      },
+    ],
+  },
   {
     // IL PRIMO GIRO DELLA DEMO PUBBLICA _(2026-09-29)_: chi arriva dalla landing entra qui, e
     // prima di toccare un adempimento deve capire che cosa sta guardando. Vale anche per i
@@ -41,11 +97,12 @@ export const TOUR: readonly Tour[] = [
     nome: "Il cruscotto",
     percorso: "/cruscotto",
     versione: 1,
+    quando: "cruscotto-decreti",
     passi: [
       {
         titolo: "Come stanno tutte le aziende, in una schermata",
         testo:
-          "Il cruscotto risponde a «come stiamo» prima di «cosa devo fare»: GDPR, 231 e sicurezza sul lavoro letti insieme, su tutte le aziende che seguite.",
+          "Il cruscotto risponde a «come stiamo» prima di «cosa devo fare»: GDPR, 231 e sicurezza sul lavoro letti insieme, su tutte le aziende che segui.",
       },
       {
         ancora: "cruscotto-decreti",
@@ -78,6 +135,7 @@ export const TOUR: readonly Tour[] = [
     nome: "Il portafoglio",
     percorso: "/portafoglio",
     versione: 1,
+    quando: "indicatori-portafoglio",
     passi: [
       {
         titolo: "Una riga per azienda, una colonna per decreto",
@@ -225,7 +283,9 @@ export const TOUR: readonly Tour[] = [
     versione: 1,
     passi: [
       {
-        ancora: "registri",
+        // Senza ancoraggio, di proposito: `registri` è l'indice sulla scheda azienda, e il giro si
+        // apre sulla pagina del singolo registro, dove saltava proprio il passo che spiega il
+        // concetto. Trovato dal collaudo di un'istanza vuota, 2026-11-12.
         titolo: "Gli adempimenti hanno una periodicità, i fatti no",
         testo:
           "Tutto ciò che hai visto finora si ripete a scadenza. Una violazione dei dati, una richiesta di accesso, una segnalazione a un OdV accadono quando accadono: non hanno una periodicità, hanno un termine che parte dal giorno in cui se n'è saputo.",
@@ -245,6 +305,10 @@ export const TOUR: readonly Tour[] = [
     ],
   },
 ];
+
+/** I giri candidati per un percorso, nell'ordine in cui si provano. */
+export const tourPerPercorso = (percorso: string): readonly Tour[] =>
+  TOUR.filter((t) => t.percorso === percorso);
 
 export const tourPerChiave = (chiave: string): Tour | undefined => TOUR.find((t) => t.chiave === chiave);
 
