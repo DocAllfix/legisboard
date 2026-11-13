@@ -61,73 +61,87 @@ export async function ripristinaDemo(): Promise<EsitoRipristino> {
     return esito;
   }
 
+  // TUTTE le aziende della demo, non solo quella d'esempio _(2026-11-13)_. Sulla vetrina ci
+  // sono anche le aziende dei collaudatori (`collaudatori-cli.ts`), che il ripristino non
+  // toccava: restavano con le modifiche dei visitatori e con il 231 del prototipo, mentre il
+  // banner promette che ogni notte i dati tornano com'erano.
+  const aziende = await db.query.clientCompany.findMany({
+    where: eq(clientCompany.organizationId, studio.id),
+    columns: { id: true },
+  });
+
   const oggi = oggiA();
   let campi = 0;
-  await db.transaction(async (tx) => {
-    // I moduli: il cancello visivo li spegne e li riaccende; qui si riaccendono comunque.
-    await tx.update(companyModule).set({ attivo: true }).where(eq(companyModule.clientCompanyId, azienda.id));
-    await tx
-      .update(assessment)
-      .set({ dataRiferimento: oggi })
-      .where(eq(assessment.clientCompanyId, azienda.id));
+  for (const azienda of aziende) {
+    await db.transaction(async (tx) => {
+      // I moduli: il cancello visivo li spegne e li riaccende; qui si riaccendono comunque.
+      await tx
+        .update(companyModule)
+        .set({ attivo: true })
+        .where(eq(companyModule.clientCompanyId, azienda.id));
+      await tx
+        .update(assessment)
+        .set({ dataRiferimento: oggi })
+        .where(eq(assessment.clientCompanyId, azienda.id));
 
-    const valutazioni = await tx.query.assessment.findMany({
-      where: eq(assessment.clientCompanyId, azienda.id),
-    });
-    for (const v of valutazioni) {
-      const dominio = v.dominio as Dominio;
-      const demo = new Map(
-        costruisciDemo(CATALOGHI[dominio], CLIENTI_VETRINA[dominio], oggi).map((a) => [a.codice, a]),
-      );
-      const istanze = await tx.query.obligationInstance.findMany({
-        where: eq(obligationInstance.assessmentId, v.id),
+      const valutazioni = await tx.query.assessment.findMany({
+        where: eq(assessment.clientCompanyId, azienda.id),
       });
-      if (istanze.length === 0) continue;
-      const modelli = new Map(
-        (
-          await tx.query.obligationTemplate.findMany({
-            where: inArray(
-              obligationTemplate.id,
-              istanze.map((i) => i.templateId),
-            ),
-          })
-        ).map((t) => [t.id, t]),
-      );
-
-      for (const i of istanze) {
-        const d = demo.get(i.codice);
-        const t = modelli.get(i.templateId);
-        const voluti = {
-          stato: d?.stato ?? ("Da fare" as const),
-          ultimaEsecuzione: d?.ultimaEsecuzione ?? null,
-          scadenzaEsplicita: d?.scadenzaEsplicita ?? null,
-          priorita: d?.priorita ?? t?.prioritaDefault ?? i.priorita,
-          rischio: d?.rischio ?? t?.rischioDefault ?? i.rischio,
-          note: null,
-          motivazioneNonApplicabile: null,
-        };
-        const attuali = i as unknown as Record<string, unknown>;
-        const testo = (x: unknown) => (x === null || x === undefined ? null : String(x));
-        const tracce = Object.entries(voluti)
-          .map(([campo, a]) => ({ campo, da: testo(attuali[campo]), a: testo(a) }))
-          .filter((x) => x.da !== x.a);
-        if (tracce.length === 0) continue;
-
-        await tx.update(obligationInstance).set(voluti).where(eq(obligationInstance.id, i.id));
-        await tx.insert(instanceHistory).values(
-          tracce.map((x) => ({
-            organizationId: studio.id,
-            obligationInstanceId: i.id,
-            campo: x.campo,
-            da: x.da,
-            a: x.a,
-            userId: null,
-          })),
+      for (const v of valutazioni) {
+        const dominio = v.dominio as Dominio;
+        const demo = new Map(
+          costruisciDemo(CATALOGHI[dominio], CLIENTI_VETRINA[dominio], oggi).map((a) => [a.codice, a]),
         );
-        campi += tracce.length;
+        const istanze = await tx.query.obligationInstance.findMany({
+          where: eq(obligationInstance.assessmentId, v.id),
+        });
+        if (istanze.length === 0) continue;
+        const modelli = new Map(
+          (
+            await tx.query.obligationTemplate.findMany({
+              where: inArray(
+                obligationTemplate.id,
+                istanze.map((i) => i.templateId),
+              ),
+            })
+          ).map((t) => [t.id, t]),
+        );
+
+        for (const i of istanze) {
+          const d = demo.get(i.codice);
+          const t = modelli.get(i.templateId);
+          const voluti = {
+            stato: d?.stato ?? ("Da fare" as const),
+            ultimaEsecuzione: d?.ultimaEsecuzione ?? null,
+            scadenzaEsplicita: d?.scadenzaEsplicita ?? null,
+            priorita: d?.priorita ?? t?.prioritaDefault ?? i.priorita,
+            rischio: d?.rischio ?? t?.rischioDefault ?? i.rischio,
+            note: null,
+            motivazioneNonApplicabile: null,
+          };
+          const attuali = i as unknown as Record<string, unknown>;
+          const testo = (x: unknown) => (x === null || x === undefined ? null : String(x));
+          const tracce = Object.entries(voluti)
+            .map(([campo, a]) => ({ campo, da: testo(attuali[campo]), a: testo(a) }))
+            .filter((x) => x.da !== x.a);
+          if (tracce.length === 0) continue;
+
+          await tx.update(obligationInstance).set(voluti).where(eq(obligationInstance.id, i.id));
+          await tx.insert(instanceHistory).values(
+            tracce.map((x) => ({
+              organizationId: studio.id,
+              obligationInstanceId: i.id,
+              campo: x.campo,
+              da: x.da,
+              a: x.a,
+              userId: null,
+            })),
+          );
+          campi += tracce.length;
+        }
       }
-    }
-  });
+    });
+  }
   await assicuraRelazioneDemo(studio.id, azienda.id);
   return { stato: "ripristinata", campi };
 }

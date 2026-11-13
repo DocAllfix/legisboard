@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { and, eq, like } from "drizzle-orm";
 import {
   CATALOGHI,
-  CLIENTI_DIMOSTRATIVI,
+  CLIENTI_VETRINA,
   DOMINI,
   ETICHETTE_DOMINIO,
   costruisciDemo,
@@ -125,7 +125,7 @@ async function creaAziendaPopolata(studioId: string, indice: number, versioneId:
     // scadute, in scadenza e regolari invece di 171 righe tutte «Da fare» che non dicono
     // nulla su come si comporta il prodotto.
     const demo = new Map(
-      costruisciDemo(CATALOGHI[dominio], CLIENTI_DIMOSTRATIVI[dominio], oggi).map((a) => [a.codice, a]),
+      costruisciDemo(CATALOGHI[dominio], CLIENTI_VETRINA[dominio], oggi).map((a) => [a.codice, a]),
     );
 
     await db.insert(obligationInstance).values(

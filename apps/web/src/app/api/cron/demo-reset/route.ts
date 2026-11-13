@@ -1,4 +1,6 @@
 import { assicuraUtenteDemo, istanzaDemo, pulisciTracceDemo, ripristinaDemo } from "@/lib/db/demo";
+import { db } from "@/lib/db";
+import { invalidaDati } from "@/lib/cache";
 import { env } from "@/lib/env";
 
 // IL RIPRISTINO NOTTURNO DELLA DEMO PUBBLICA _(docs/07 §5.3)_.
@@ -20,6 +22,12 @@ export async function GET(richiesta: Request) {
   const esito = await ripristinaDemo();
   const utente = await assicuraUtenteDemo();
   const tracce = await pulisciTracceDemo();
+  // La cache dei calcoli si invalida solo dalle azioni che scrivono, e il ripristino scrive
+  // fuori da ogni azione: senza questa riga la demo mostrava i dati della sera prima per
+  // altri cinque minuti _(2026-11-13)_. Sta qui e non in `ripristinaDemo` perché quella gira
+  // anche da riga di comando, dove `revalidateTag` non ha un server da avvisare.
+  const studio = await db.query.organization.findFirst({ columns: { id: true } });
+  if (studio) invalidaDati(studio.id);
   const riuscito = esito.stato === "ripristinata" || esito.stato === "creata";
   return Response.json({ esito, utente, tracce }, { status: riuscito ? 200 : 500 });
 }
