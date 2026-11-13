@@ -97,10 +97,12 @@ export const CLIENTI_DIMOSTRATIVI: Readonly<Record<Dominio, StatoDemo>> = {
  * Il prototipo del committente non ha nessun adempimento 231 completato, e i golden ne
  * verificano la fedeltà: quel dato resta com'è in `CLIENTI_DIMOSTRATIVI`. Sulla vetrina però
  * produceva un muro rosso, otto famiglie di reato scoperte su otto, e chi la apriva vedeva un
- * allarme invece del prodotto. Qui trenta adempimenti su sessantacinque risultano completati,
- * con la scadenza in giorni da oggi: OdV costituito e operativo, modello e codice etico
- * aggiornati, parte dei flussi, canale whistleblowing, formazione, due audit. Restano scoperti
- * apposta reati informatici e ambientali, perché una mappa tutta verde non dimostrerebbe di più.
+ * allarme invece del prodotto. Qui trentacinque adempimenti su sessantacinque risultano
+ * completati, con la scadenza in giorni da oggi: OdV costituito e operativo, modello e codice
+ * etico aggiornati, i flussi che presidiano cinque famiglie di reato, canale whistleblowing,
+ * formazione, due audit. Restano scoperti apposta reati informatici e ambientali, e la
+ * sicurezza sul lavoro dipende dall'81/08 del prototipo: tre famiglie scoperte su otto, perché
+ * una mappa tutta verde non dimostrerebbe di più.
  * Uno scostamento negativo vuol dire «completato e scaduto», il caso dei due assi.
  * La divergenza è annotata in `docs/politica-scoring.md` §9.
  */
@@ -119,9 +121,14 @@ const VETRINA_D231: Readonly<Record<string, number>> = {
   M17: 105,
   M18: 92,
   M19: -16,
+  M21: 30,
   M25: 20,
   M26: 46,
+  M27: 18,
   M28: 20,
+  M29: 40,
+  M33: 30,
+  M34: 20,
   M35: 35,
   M36: 16,
   M38: 56,

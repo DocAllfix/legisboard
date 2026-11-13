@@ -208,14 +208,15 @@ Data di riferimento fissa: **2026-08-14**. Test in `packages/engine/src/golden.t
 
 I golden qui sopra restano sul prototipo e **non cambiano**. La demo pubblica legge invece
 `CLIENTI_VETRINA` (`packages/engine/src/index.ts`): GDPR e 81/08 identici al prototipo, nel 231
-**30 adempimenti su 65 completati**, ciascuno con la sua scadenza in giorni da oggi. Sono
-l'OdV costituito e operativo, il modello e il codice etico aggiornati, una parte dei flussi, il
-canale whistleblowing, la formazione e due audit. Restano scoperti apposta i reati informatici
-e quelli ambientali. M19 è completato e scaduto, per mostrare i due assi anche nel 231.
+**35 adempimenti su 65 completati**, ciascuno con la sua scadenza in giorni da oggi. Sono
+l'OdV costituito e operativo, il modello e il codice etico aggiornati, i flussi che presidiano
+cinque famiglie di reato, il canale whistleblowing, la formazione e due audit. Restano scoperti
+apposta i reati informatici e quelli ambientali; la sicurezza sul lavoro dipende dall'81/08 del
+prototipo. La mappa dei reati dice tre famiglie scoperte su otto. M19 è completato e scaduto, per mostrare i due assi anche nel 231.
 
 Perché: con 0 su 65 la mappa dei reati mostrava otto famiglie scoperte su otto, e chi apriva
 la vetrina vedeva un allarme invece del prodotto (`05-arretrato.md` §2.1). Decisione del
-committente: «aggiusta le cose della demo». Un test in `catalog.test.ts` fissa la forma: 30
+committente: «aggiusta le cose della demo». Un test in `catalog.test.ts` fissa la forma: 35
 completati, almeno una famiglia coperta e almeno una scoperta, prototipo invariato.
 
 Nello stesso giorno, due correzioni al catalogo delle famiglie di reato: il riciclaggio sta

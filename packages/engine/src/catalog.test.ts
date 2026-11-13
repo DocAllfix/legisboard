@@ -151,13 +151,23 @@ describe("il cliente dimostrativo", () => {
     expect(prototipo.filter((a) => a.stato === "Completata")).toHaveLength(0);
 
     const vetrina = risolviTutti(costruisciDemo(CATALOGHI.d231, CLIENTI_VETRINA.d231, OGGI), OGGI);
-    expect(vetrina.filter((a) => a.stato === "Completata")).toHaveLength(30);
+    expect(vetrina.filter((a) => a.stato === "Completata")).toHaveLength(35);
     // Il caso dei due assi deve esserci anche nel 231: completato e scaduto.
     expect(vetrina.some((a) => a.stato === "Completata" && a.statoScadenza === "Scaduta")).toBe(true);
 
     const mappa = coperturaReati(vetrina, ["d231"]).filter((c) => c.copertura !== null);
     expect(mappa.some((c) => c.copertura === 100)).toBe(true);
     expect(mappa.some((c) => c.copertura === 0)).toBe(true);
+
+    // Con i tre moduli attivi, come sulla demo: tre famiglie scoperte su otto
+    // (informatici, ambientali, sicurezza sul lavoro che dipende dall'81/08 del prototipo).
+    const tutti = DOMINI.flatMap((d) =>
+      risolviTutti(costruisciDemo(CATALOGHI[d], CLIENTI_VETRINA[d], OGGI), OGGI),
+    );
+    const scoperte = coperturaReati(tutti, [...DOMINI])
+      .filter((c) => c.copertura !== null && c.copertura < 100)
+      .map((c) => c.famiglia.articolo);
+    expect(scoperte).toEqual(["Art. 24-bis", "Art. 25-septies", "Art. 25-undecies"]);
     // GDPR e 81/08 della vetrina sono quelli del prototipo.
     expect(CLIENTI_VETRINA.gdpr).toBe(CLIENTI_DIMOSTRATIVI.gdpr);
     expect(CLIENTI_VETRINA.d81).toBe(CLIENTI_DIMOSTRATIVI.d81);
