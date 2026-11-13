@@ -30,7 +30,7 @@ import { TEMPLATES as GDPR_TEMPLATES, DEMO as GDPR_DEMO } from "./gdpr";
 import { TEMPLATES as D231_TEMPLATES, DEMO as D231_DEMO } from "./d231";
 import { TEMPLATES as D81_TEMPLATES, DEMO as D81_DEMO } from "./d81";
 import type { AdempimentoTemplate, Dominio } from "./core/types";
-import type { StatoDemo } from "./core/demo";
+import type { StatoDemo, VoceDemo } from "./core/demo";
 
 export { GDPR_TEMPLATES, D231_TEMPLATES, D81_TEMPLATES, GDPR_DEMO, D231_DEMO, D81_DEMO };
 
@@ -89,6 +89,65 @@ export const CLIENTI_DIMOSTRATIVI: Readonly<Record<Dominio, StatoDemo>> = {
   gdpr: GDPR_DEMO,
   d231: D231_DEMO,
   d81: D81_DEMO,
+};
+
+/**
+ * Il 231 della DEMO PUBBLICA: un modello adottato e attuato a metà _(2026-11-13)_.
+ *
+ * Il prototipo del committente non ha nessun adempimento 231 completato, e i golden ne
+ * verificano la fedeltà: quel dato resta com'è in `CLIENTI_DIMOSTRATIVI`. Sulla vetrina però
+ * produceva un muro rosso, otto famiglie di reato scoperte su otto, e chi la apriva vedeva un
+ * allarme invece del prodotto. Qui trenta adempimenti su sessantacinque risultano completati,
+ * con la scadenza in giorni da oggi: OdV costituito e operativo, modello e codice etico
+ * aggiornati, parte dei flussi, canale whistleblowing, formazione, due audit. Restano scoperti
+ * apposta reati informatici e ambientali, perché una mappa tutta verde non dimostrerebbe di più.
+ * Uno scostamento negativo vuol dire «completato e scaduto», il caso dei due assi.
+ * La divergenza è annotata in `docs/politica-scoring.md` §9.
+ */
+const VETRINA_D231: Readonly<Record<string, number>> = {
+  M01: 120,
+  M02: 16,
+  M03: 15,
+  M04: 61,
+  M05: 35,
+  M06: 92,
+  M08: 166,
+  M10: 25,
+  M11: 77,
+  M14: 106,
+  M16: 30,
+  M17: 105,
+  M18: 92,
+  M19: -16,
+  M25: 20,
+  M26: 46,
+  M28: 20,
+  M35: 35,
+  M36: 16,
+  M38: 56,
+  M40: 16,
+  M42: 136,
+  M43: 105,
+  M45: 30,
+  M47: 66,
+  M49: 35,
+  M55: 46,
+  M56: 15,
+  M59: 30,
+  M62: 25,
+};
+
+/** I tre clienti dimostrativi come li vede la demo pubblica: GDPR e 81/08 dal prototipo, 231 a maturità media. */
+export const CLIENTI_VETRINA: Readonly<Record<Dominio, StatoDemo>> = {
+  ...CLIENTI_DIMOSTRATIVI,
+  d231: {
+    ...D231_DEMO,
+    fonte: `${D231_DEMO.fonte}, vetrina a maturità media`,
+    controlli: D231_DEMO.controlli.map((c): VoceDemo => {
+      const scostamento = VETRINA_D231[c.codice];
+      return scostamento === undefined ? c : { ...c, stato: "Completata", scadenzaOffsetGiorni: scostamento };
+    }),
+  },
 };
 
 /** Tutti gli adempimenti dei tre domini in un elenco solo. */

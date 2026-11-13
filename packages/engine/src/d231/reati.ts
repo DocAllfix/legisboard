@@ -91,7 +91,9 @@ export const FAMIGLIE_REATO: readonly FamigliaReato[] = [
     nota: "È il collegamento più pesante della suite: l'esimente dell'art. 6 passa dal sistema di gestione richiesto dall'art. 30 D.Lgs 81/08. Un DVR scaduto indebolisce direttamente la difesa dell'ente.",
   },
   {
-    articolo: "Art. 25-octies.1",
+    // Art. 25-octies, non 25-octies.1 _(corretto il 2026-11-13)_: il 25-octies.1, introdotto
+    // dal D.Lgs 184/2021, riguarda gli strumenti di pagamento diversi dal contante.
+    articolo: "Art. 25-octies",
     titolo: "Riciclaggio, autoriciclaggio e impiego di denaro di provenienza illecita",
     interdittive: true,
     presidi: [
@@ -112,7 +114,9 @@ export const FAMIGLIE_REATO: readonly FamigliaReato[] = [
   {
     articolo: "Art. 25-quinquiesdecies",
     titolo: "Reati tributari",
-    interdittive: false,
+    // Il comma 3 dell'art. 25-quinquiesdecies applica le interdittive dell'art. 9 comma 2
+    // lett. c), d) ed e) _(corretto il 2026-11-13: era `false`)_.
+    interdittive: true,
     presidi: [
       { dominio: "d231", codice: "M62" }, // Reati tributari: soglie ed esterovestizione
       { dominio: "d231", codice: "M33" }, // Flusso: verifiche fiscali e doganali

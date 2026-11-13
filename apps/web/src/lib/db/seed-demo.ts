@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { and, eq } from "drizzle-orm";
 import {
   CATALOGHI,
-  CLIENTI_DIMOSTRATIVI,
+  CLIENTI_VETRINA,
   DOMINI,
   ETICHETTE_DOMINIO,
   VOCI_DIMOSTRATIVE,
@@ -107,7 +107,7 @@ export async function seminaAziendaDimostrativa(): Promise<EsitoDemo> {
 
       // Lo stato dimostrativo del motore, indicizzato per codice.
       const demo = new Map(
-        costruisciDemo(CATALOGHI[dominio], CLIENTI_DIMOSTRATIVI[dominio], oggi).map((a) => [a.codice, a]),
+        costruisciDemo(CATALOGHI[dominio], CLIENTI_VETRINA[dominio], oggi).map((a) => [a.codice, a]),
       );
 
       await tx.insert(obligationInstance).values(

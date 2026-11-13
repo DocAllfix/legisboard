@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { CATALOGHI, CLIENTI_DIMOSTRATIVI, costruisciDemo, oggiA, type Dominio } from "@legisboard/engine";
-import { and, eq, inArray, lt } from "drizzle-orm";
+import { CATALOGHI, CLIENTI_VETRINA, costruisciDemo, oggiA, type Dominio } from "@legisboard/engine";
+import { and, desc, eq, inArray, lt } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { db } from "./index";
@@ -14,10 +14,12 @@ import {
   obligationInstance,
   obligationTemplate,
   rateLimit,
+  report,
   session,
   user,
 } from "./schema";
 import { seminaAziendaDimostrativa, type EsitoDemo } from "./seed-demo";
+import { costruisciSnapshot, improntaSnapshot } from "@/features/relazioni/snapshot";
 
 // LA DEMO PUBBLICA: ripristino dei dati e utente dimostrativo _(docs/07 §5)_.
 //
@@ -53,7 +55,11 @@ export async function ripristinaDemo(): Promise<EsitoRipristino> {
   const azienda = await db.query.clientCompany.findFirst({
     where: and(eq(clientCompany.organizationId, studio.id), eq(clientCompany.nome, NOME)),
   });
-  if (!azienda) return seminaAziendaDimostrativa();
+  if (!azienda) {
+    const esito = await seminaAziendaDimostrativa();
+    if (esito.stato === "creata") await assicuraRelazioneDemo(studio.id, esito.id);
+    return esito;
+  }
 
   const oggi = oggiA();
   let campi = 0;
@@ -71,7 +77,7 @@ export async function ripristinaDemo(): Promise<EsitoRipristino> {
     for (const v of valutazioni) {
       const dominio = v.dominio as Dominio;
       const demo = new Map(
-        costruisciDemo(CATALOGHI[dominio], CLIENTI_DIMOSTRATIVI[dominio], oggi).map((a) => [a.codice, a]),
+        costruisciDemo(CATALOGHI[dominio], CLIENTI_VETRINA[dominio], oggi).map((a) => [a.codice, a]),
       );
       const istanze = await tx.query.obligationInstance.findMany({
         where: eq(obligationInstance.assessmentId, v.id),
@@ -122,7 +128,52 @@ export async function ripristinaDemo(): Promise<EsitoRipristino> {
       }
     }
   });
+  await assicuraRelazioneDemo(studio.id, azienda.id);
   return { stato: "ripristinata", campi };
+}
+
+/**
+ * Una relazione PUBBLICATA sull'azienda di esempio, se non ce n'è già una _(2026-11-13)_.
+ *
+ * Nella demo generare e pubblicare sono bloccati, quindi la pagina delle relazioni restava
+ * vuota e il documento che il consulente consegna, cioè il punto d'arrivo del prodotto, non
+ * si poteva vedere. La si crea qui, dal calcolo del momento, come farebbe il pulsante.
+ *
+ * Una sola, e non una a notte: una relazione pubblicata è un atto e il trigger ne vieta la
+ * cancellazione, quindi rifarla ogni giorno accumulerebbe righe per sempre. Resta con la sua
+ * data, ed è giusto: è il documento di quel giorno.
+ */
+async function assicuraRelazioneDemo(organizationId: string, aziendaId: string): Promise<void> {
+  const esistente = await db.query.report.findFirst({
+    where: and(eq(report.clientCompanyId, aziendaId), eq(report.stato, "pubblicata")),
+    columns: { id: true },
+  });
+  if (esistente) return;
+
+  const snapshot = await costruisciSnapshot(organizationId, aziendaId, "suite");
+  if (!snapshot) return;
+
+  await db.transaction(async (tx) => {
+    const ultima = await tx
+      .select({ n: report.numero })
+      .from(report)
+      .where(eq(report.clientCompanyId, aziendaId))
+      .orderBy(desc(report.numero))
+      .limit(1);
+    await tx.insert(report).values({
+      id: randomUUID(),
+      organizationId,
+      clientCompanyId: aziendaId,
+      ambito: "suite",
+      stato: "pubblicata",
+      numero: (ultima[0]?.n ?? 0) + 1,
+      dataRiferimento: snapshot.dataRiferimento,
+      snapshot,
+      hashSnapshot: improntaSnapshot(snapshot),
+      generataDa: null,
+      pubblicataIl: new Date(),
+    });
+  });
 }
 
 /**

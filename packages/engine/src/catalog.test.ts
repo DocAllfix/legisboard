@@ -6,9 +6,11 @@ import { describe, expect, it } from "vitest";
 import {
   CATALOGHI,
   CLIENTI_DIMOSTRATIVI,
+  CLIENTI_VETRINA,
   TUTTI_I_TEMPLATES,
   categorieDi,
   costruisciDemo,
+  coperturaReati,
   ruoliDi,
   templatePerCodice,
   templatesPerCategoria,
@@ -141,6 +143,24 @@ describe("il cliente dimostrativo", () => {
     const a = risolviTutti(costruisciDemo(CATALOGHI.d231, CLIENTI_DIMOSTRATIVI.d231, OGGI), OGGI);
     const b = risolviTutti(costruisciDemo(CATALOGHI.d231, CLIENTI_DIMOSTRATIVI.d231, oggiTardi), oggiTardi);
     expect(conteggi(b).perScadenza).toEqual(conteggi(a).perScadenza);
+  });
+
+  it("la vetrina 231 è a maturità media: né un muro rosso né tutta verde", () => {
+    // Il prototipo resta intatto (lo verificano i golden); la demo pubblica legge CLIENTI_VETRINA.
+    const prototipo = costruisciDemo(CATALOGHI.d231, CLIENTI_DIMOSTRATIVI.d231, OGGI);
+    expect(prototipo.filter((a) => a.stato === "Completata")).toHaveLength(0);
+
+    const vetrina = risolviTutti(costruisciDemo(CATALOGHI.d231, CLIENTI_VETRINA.d231, OGGI), OGGI);
+    expect(vetrina.filter((a) => a.stato === "Completata")).toHaveLength(30);
+    // Il caso dei due assi deve esserci anche nel 231: completato e scaduto.
+    expect(vetrina.some((a) => a.stato === "Completata" && a.statoScadenza === "Scaduta")).toBe(true);
+
+    const mappa = coperturaReati(vetrina, ["d231"]).filter((c) => c.copertura !== null);
+    expect(mappa.some((c) => c.copertura === 100)).toBe(true);
+    expect(mappa.some((c) => c.copertura === 0)).toBe(true);
+    // GDPR e 81/08 della vetrina sono quelli del prototipo.
+    expect(CLIENTI_VETRINA.gdpr).toBe(CLIENTI_DIMOSTRATIVI.gdpr);
+    expect(CLIENTI_VETRINA.d81).toBe(CLIENTI_DIMOSTRATIVI.d81);
   });
 
   it("le scadenze derivate sono coerenti con la periodicità dichiarata", () => {
