@@ -160,6 +160,24 @@ async function accediUnaVolta(browser) {
   return true;
 }
 
+/**
+ * Chiude la guida a tappe se è aperta _(2026-11-13)_.
+ *
+ * La guida si apre da sola, una frazione di secondo dopo il caricamento, dove l'utente non
+ * l'ha ancora vista. Nella demo non risulta MAI vista, apposta: ogni visitatore la trova. Il
+ * cancello apre ogni pagina in un contesto nuovo, quindi lì la trovava sempre, e i suoi clic
+ * finivano sul velo: centinaia di «clic fallito» su comandi sani. Si chiude con la crocetta,
+ * come farebbe una persona.
+ */
+async function chiudiGuida(tab, attesa = 0) {
+  if (attesa) await tab.waitForTimeout(attesa);
+  const chiudi = tab.locator(".driver-popover-close-btn");
+  if ((await chiudi.count()) > 0 && (await chiudi.first().isVisible())) {
+    await chiudi.first().click();
+    await tab.waitForTimeout(250);
+  }
+}
+
 /** Innesta la sessione già aperta in un contesto nuovo, senza ripassare dal login. */
 async function apriSessione(contesto, etichetta) {
   if (!cookieSessione) {
@@ -287,6 +305,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
     await contesto.close();
     return;
   }
+  if (pagina.autenticata) await chiudiGuida(tab, 1100);
 
   // Il tema si può pilotare in due modi: la preferenza di sistema e l'attributo che il
   // selettore dell'interfaccia scrive sulla radice. Vanno concordi, o il tema scuro
@@ -505,6 +524,7 @@ async function verificaPagina(browser, pagina, misura, tema) {
     //
     // Il velo è già un comando di chiusura nel prodotto — si preme fuori per chiudere — e
     // premerlo qui è esattamente ciò che farebbe una persona.
+    await chiudiGuida(tab);
     const velo = tab.locator(".fixed.inset-0[aria-label^='Chiudi']");
     if ((await velo.count()) > 0 && (await velo.first().isVisible())) {
       // SI CHIUDE CON ESC, non cliccando il velo.
@@ -561,6 +581,9 @@ async function verificaPagina(browser, pagina, misura, tema) {
       } catch (primoErrore) {
         if (!/Timeout/.test(primoErrore.message)) throw primoErrore;
         await tab.waitForTimeout(500);
+        // Se nel frattempo si è aperta la guida (parte da sola poco dopo ogni ricarica), il
+        // secondo tentativo la chiude prima: è lei a coprire il comando, non un difetto.
+        await chiudiGuida(tab);
         await elemento.first().click({ timeout: 5_000, trial: false });
       }
       cliccato = true;
