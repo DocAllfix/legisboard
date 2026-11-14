@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Download, FileCheck2, Paperclip, Trash2 } from "lucide-react";
 import { caricaEvidenza, eliminaEvidenza, type EsitoEvidenza } from "@/features/evidenze/azioni";
 import { pesoLeggibile, type Evidenza } from "@/features/evidenze/tipi";
@@ -36,10 +36,13 @@ export function Evidenze({
   istanzaId,
   elenco,
   modificabile,
+  onCambiato,
 }: {
   istanzaId: string;
   elenco: readonly Evidenza[];
   modificabile: boolean;
+  /** Il pannello rilegge l'elenco: senza, il file allegato non compariva _(2026-11-14)_. */
+  onCambiato?: () => void;
 }) {
   const [carica, azioneCarica, caricando] = useActionState<EsitoEvidenza | null, FormData>(
     caricaEvidenza,
@@ -56,6 +59,12 @@ export function Evidenze({
   // a rileggere l'elenco e a ripassarlo qui, quindi qui non c'è niente da ricordare.
 
   const [troppoGrande, setTroppoGrande] = useState<string | null>(null);
+
+  // Dopo un caricamento o un'eliminazione riuscita, l'elenco si rilegge. Il messaggio
+  // «allegato» compariva ma il file no, finché non si chiudeva e riapriva il pannello.
+  useEffect(() => {
+    if (carica?.ok || rimozione?.ok) onCambiato?.();
+  }, [carica, rimozione, onCambiato]);
 
   const errore =
     troppoGrande ||

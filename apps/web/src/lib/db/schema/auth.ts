@@ -135,6 +135,14 @@ export const twoFactor = pgTable(
       .references(() => user.id, { onDelete: "cascade" }),
     secret: text("secret").notNull(),
     backupCodes: text("backup_codes").notNull(),
+    // I tre campi che Better Auth 1.6 si aspetta _(2026-11-14)_. Senza, attivare il secondo
+    // fattore rispondeva 500 su ogni istanza («The field "verified" does not exist»): trovato
+    // dal collaudo completo, che lo accende e lo spegne davvero. `verified` distingue un
+    // secondo fattore appena impostato da uno confermato con un codice; gli altri due
+    // bloccano per un po' chi prova i codici a raffica.
+    verified: boolean("verified").default(true),
+    failedVerificationCount: integer("failed_verification_count").default(0),
+    lockedUntil: timestamp("locked_until", { withTimezone: true }),
   },
   (t) => [index("two_factor_user_idx").on(t.userId)],
 );

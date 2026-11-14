@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { AlertCircle, Check, History } from "lucide-react";
 import { ETICHETTE_DOMINIO, STATI_LAVORO, formattaIt, type StatoLavoro } from "@legisboard/engine";
 import type { RigaAssessment } from "@/features/assessment/dati";
@@ -77,6 +77,9 @@ function Corpo({
   const [chiedeNonApplicabile, setChiedeNonApplicabile] = useState(riga.stato === "Non applicabile");
 
   const id = riga.id;
+  // Stabile, o l'effetto in `Evidenze` la vedrebbe nuova a ogni disegno e rileggerebbe
+  // l'elenco all'infinito.
+  const ricaricaEvidenze = useCallback(() => void elencoEvidenze(id).then(setEvidenze), [id]);
 
   // Lo storico si carica solo quando il pannello si apre: farlo per tutte le righe
   // significherebbe 171 query per mostrare qualcosa che si guarda una volta ogni tanto.
@@ -331,7 +334,12 @@ function Corpo({
             </p>
           ) : null}
 
-          <Evidenze istanzaId={riga.id} elenco={evidenze ?? []} modificabile={scrivibile} />
+          <Evidenze
+            istanzaId={riga.id}
+            elenco={evidenze ?? []}
+            modificabile={scrivibile}
+            onCambiato={ricaricaEvidenze}
+          />
 
           {/* --- Storico ------------------------------------------------------------- */}
           <section className="space-y-2 border-t border-border pt-4">

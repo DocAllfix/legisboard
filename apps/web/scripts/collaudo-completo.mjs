@@ -281,7 +281,7 @@ await blocco("3 · Navigazione, tema, ricerca, guida", async () => {
     ["Impostazioni", "/impostazioni"],
     ["Cruscotto", "/cruscotto"],
   ]) {
-    const link = p.locator(`nav a[href="${percorso}"]`).first();
+    const link = p.locator(`nav a[href="${percorso}"]:visible`).first();
     if (!(await link.count())) {
       ko(`nella barra non c'è il collegamento a ${percorso}`);
       continue;
@@ -1321,6 +1321,35 @@ await blocco("15 · Ruoli: consulente e sola lettura", async () => {
       `${chi}: stati ${disab ? "bloccati" : "modificabili"}, non dovrebbero`,
     );
     await q.keyboard.press("Escape");
+    if (chi === "sola lettura") {
+      await q.goto(`${BASE}${aziendaA}`, { waitUntil: "networkidle" });
+      await chiudiGuida(q);
+      const moduliAttivi = await q
+        .locator('[data-tour="moduli-azienda"] button[type="submit"]:enabled')
+        .count();
+      atteso(
+        moduliAttivi === 0,
+        "sola lettura: i moduli non si commutano",
+        `sola lettura: ${moduliAttivi} comandi dei moduli attivi`,
+      );
+      await q.goto(`${BASE}${aziendaA}/registro/violazione`, { waitUntil: "networkidle" });
+      await chiudiGuida(q);
+      atteso(
+        (await q.locator('[data-tour="apri-voce"]').count()) === 0,
+        "sola lettura: niente «Apri violazione»",
+        "sola lettura: vede «Apri violazione»",
+      );
+      await q.goto(`${BASE}${aziendaA}/gdpr`, { waitUntil: "networkidle" });
+      await chiudiGuida(q);
+      await q.locator('[data-tour="apri-adempimento"]').first().click();
+      await q.waitForTimeout(1500);
+      atteso(
+        (await q.locator('[data-tour="evidenze"] input[type="file"]').count()) === 0,
+        "sola lettura: niente caricamento di evidenze",
+        "sola lettura: può caricare evidenze",
+      );
+      await q.keyboard.press("Escape");
+    }
     await q.goto(`${BASE}/impostazioni`, { waitUntil: "networkidle" });
     const gestisce = await q
       .locator('[data-tour="crea-utente"]')
@@ -1353,6 +1382,248 @@ await blocco("15 · Ruoli: consulente e sola lettura", async () => {
   }
 });
 
+let xss = false;
+p.on("dialog", (d) => {
+  xss = true;
+  d.dismiss().catch(() => {});
+});
+await blocco("17 · Casi limite", async () => {
+  const NOME = `Prova <img src=x onerror="window.__xss=1"> «àèé» 😀 & "virgolette"`;
+  await vai("/portafoglio");
+  const righePrima = await p.locator('[data-tour="tabella-portafoglio"] tbody tr').count();
+  await p.locator('[data-tour="nuova-azienda"]').first().click();
+  await p.waitForSelector('[role="dialog"]');
+  await p.fill("#nome", NOME);
+  await p.check('input[name="modulo-gdpr"]');
+  await p.uncheck('input[name="modulo-d231"]').catch(() => {});
+  await p.uncheck('input[name="modulo-d81"]').catch(() => {});
+  // Doppio clic: deve nascere UNA azienda
+  await p.locator('[role="dialog"] button[type="submit"]').dblclick();
+  await p.waitForURL(/\/azienda\//, { timeout: 60000 }).catch(() => {});
+  const aziendaX = new URL(p.url()).pathname;
+  await chiudiGuida(p);
+  const eseguito = await p.evaluate(() => Boolean(window.__xss));
+  atteso(
+    !eseguito && !xss,
+    "HTML nel nome dell'azienda: mostrato, non eseguito",
+    "HTML nel nome dell'azienda ESEGUITO",
+  );
+  atteso(
+    (await p.locator("main").innerText()).includes("<img src=x"),
+    "il nome compare letterale, con accenti ed emoji",
+  );
+  await vai("/portafoglio");
+  const righeDopo = await p.locator('[data-tour="tabella-portafoglio"] tbody tr').count();
+  atteso(
+    righeDopo === righePrima + 1,
+    "doppio clic su «Crea»: una sola azienda",
+    `doppio clic su «Crea»: ${righeDopo - righePrima} aziende`,
+  );
+  // Nome lunghissimo: niente scorrimento orizzontale
+  await p.locator('[data-tour="nuova-azienda"]').first().click();
+  await p.waitForSelector('[role="dialog"]');
+  await p.fill("#nome", "Società Cooperativa ".repeat(14).trim());
+  await p.check('input[name="modulo-gdpr"]');
+  await p.locator('[role="dialog"] button[type="submit"]').click();
+  await p.waitForURL(/\/azienda\//, { timeout: 60000 }).catch(() => {});
+  await chiudiGuida(p);
+  const largo = await p.evaluate(
+    () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+  );
+  atteso(
+    !largo,
+    "nome di 280 caratteri: la scheda non sborda",
+    "nome di 280 caratteri: la scheda sborda in orizzontale",
+  );
+  await vai("/portafoglio");
+  const largo2 = await p.evaluate(
+    () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+  );
+  atteso(
+    !largo2,
+    "nome di 280 caratteri: il portafoglio non sborda",
+    "nome di 280 caratteri: il portafoglio sborda",
+  );
+  await scatta(p, "nomi-lunghi");
+  // Note con HTML
+  await vai(`${aziendaX}/gdpr`);
+  await apriAdempimento(0);
+  await pannello()
+    .locator('textarea[placeholder^="Annotazioni"]')
+    .fill(`<script>window.__xss2=1</script><b>grassetto?</b>`);
+  await pannello().getByRole("button", { name: "Salva le note" }).click();
+  await p.waitForTimeout(2000);
+  await p.keyboard.press("Escape");
+  await vai(`${aziendaX}/gdpr`);
+  await apriAdempimento(0);
+  atteso(!(await p.evaluate(() => Boolean(window.__xss2))), "HTML nelle note: non eseguito");
+  // Evidenza con nome accentato
+  const accentato = join(cartella, "Verbale OdV n°3 – àèì.pdf");
+  writeFileSync(accentato, "%PDF-1.4\n% accentato\n%%EOF\n");
+  const ev = pannello().locator('[data-tour="evidenze"]');
+  await ev.locator('input[type="file"]').setInputFiles(accentato);
+  await ev.getByRole("button", { name: "Allega", exact: true }).click();
+  await p.waitForTimeout(3500);
+  const linkAcc = ev.locator('a[href^="/api/evidenze/"]').first();
+  atteso(
+    (await linkAcc.count()) > 0 && /n°3/.test(await ev.innerText()),
+    "evidenza con accenti allegata e in elenco",
+    "evidenza con accenti: non compare in elenco",
+  );
+  if (await linkAcc.count()) {
+    const r = await scarica(await linkAcc.getAttribute("href"));
+    atteso(
+      r.stato === 200 && /filename/.test(r.disposizione),
+      `download con nome accentato (${r.disposizione.slice(0, 90)})`,
+      `download accentato: ${r.stato} ${r.disposizione}`,
+    );
+  }
+  await p.keyboard.press("Escape");
+  // Relazione e PDF di un'azienda con HTML nel nome
+  await vai(`${aziendaX}/relazioni`);
+  await p.locator('[data-tour="genera-relazione"]').click();
+  await p.waitForTimeout(6000);
+  const pdfX = await p
+    .locator('a[href^="/api/relazioni/"]')
+    .first()
+    .getAttribute("href")
+    .catch(() => null);
+  if (pdfX) {
+    const r = await scarica(pdfX);
+    atteso(
+      r.stato === 200 && r.testa.startsWith("%PDF-"),
+      "PDF della relazione con HTML nel nome: generato",
+      `PDF con HTML nel nome: ${r.stato}`,
+    );
+  } else ko("relazione dell'azienda con HTML nel nome non generata");
+  const fx = await scarica(`/api/fascicolo/${aziendaX.split("/").pop()}/garante`);
+  atteso(fx.stato === 200 && fx.testa.startsWith("%PDF-"), "fascicolo con HTML nel nome: generato");
+  // Formula nel CSV
+  await vai(`${aziendaA}/registro/trattamento`);
+  await p.locator('[data-tour="apri-voce"]').click();
+  const m = p.locator("form").filter({ has: p.locator('input[name="titolo"]') });
+  await m.locator('input[name="titolo"]').fill('=HYPERLINK("http://esempio.invalid";"clic")');
+  await m.locator('input[name="conosciutoIl"]').fill("2026-11-01T09:00");
+  for (const sel of await m.locator("select").all()) {
+    const v = await sel.locator("option").evaluateAll((o) => o.map((x) => x.value).filter(Boolean));
+    if (v[0]) await sel.selectOption(v[0]);
+  }
+  for (const c of await m.locator("input[required]:not([type=hidden])").all())
+    if ((await c.inputValue()) === "") await c.fill("prova");
+  await m.locator('button[type="submit"]').click();
+  await p.waitForTimeout(3000);
+  const csvH = await p.locator('a[href*="/esporta"]').first().getAttribute("href");
+  const csv = await scarica(csvH);
+  atteso(
+    csv.testo.includes("'=HYPERLINK"),
+    "formula nel titolo: nel CSV diventa testo",
+    `formula nel CSV non neutralizzata: ${csv.testo.slice(0, 200)}`,
+  );
+  // Ricerca: scrivi e vai
+  await vai("/cruscotto");
+  await p.keyboard.press("Control+k");
+  await p.locator('[data-tour="palette"] input').fill("Beta");
+  await p.waitForTimeout(1500);
+  await p.keyboard.press("Enter");
+  await p.waitForURL(/\/azienda\//, { timeout: 10000 }).catch(() => {});
+  atteso(
+    p.url().includes("/azienda/"),
+    "Ctrl+K «Beta» + Invio porta all'azienda",
+    `Ctrl+K + Invio non porta all'azienda (${p.url()})`,
+  );
+  // Indietro e avanti
+  await vai("/portafoglio");
+  await p.locator('[data-tour="tabella-portafoglio"] tbody tr a').first().click();
+  await p.waitForURL(/\/azienda\//, { timeout: 15000 });
+  await p.goBack({ waitUntil: "networkidle" });
+  atteso(
+    new URL(p.url()).pathname === "/portafoglio" &&
+      (await p.locator('[data-tour="tabella-portafoglio"]').isVisible()),
+    "«indietro» torna al portafoglio intatto",
+  );
+  await p.goForward({ waitUntil: "networkidle" });
+  atteso(p.url().includes("/azienda/"), "«avanti» riporta alla scheda");
+  // Nascondi i primi passi
+  await vai("/cruscotto");
+  const pp = p.locator('[data-tour="primi-passi"]');
+  if (await pp.isVisible().catch(() => false)) {
+    await pp.getByRole("button", { name: /Nascondi/ }).click();
+    await p.waitForTimeout(2500);
+    await p.reload({ waitUntil: "networkidle" });
+    atteso(
+      !(await pp.isVisible().catch(() => false)),
+      "«Nascondi i primi passi» li toglie, anche ricaricando",
+      "«Nascondi i primi passi» non li toglie",
+    );
+  } else ok("primi passi già completati e spariti da soli");
+  // Telefono
+  const tel = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    locale: "it-IT",
+  });
+  await tel.addCookies(await ctx.cookies());
+  const t = await tel.newPage();
+  sorveglia(t, "telefono");
+  for (const u of [
+    "/cruscotto",
+    "/portafoglio",
+    aziendaA,
+    `${aziendaA}/gdpr`,
+    `${aziendaA}/registro/violazione`,
+    "/scadenzario",
+    `${aziendaA}/relazioni`,
+    "/impostazioni",
+  ]) {
+    await t.goto(`${BASE}${u}`, { waitUntil: "networkidle" });
+    await chiudiGuida(t);
+    const sborda = await t.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    );
+    atteso(!sborda, `telefono ${u}: niente scorrimento orizzontale`, `telefono ${u}: la pagina sborda`);
+  }
+  await t.goto(`${BASE}${aziendaA}/gdpr`, { waitUntil: "networkidle" });
+  await chiudiGuida(t);
+  await t.locator('[data-tour="apri-adempimento"]').first().tap();
+  await t.locator('[data-tour="dettaglio-adempimento"]').waitFor({ timeout: 15000 });
+  await t.locator('[data-tour="stato-in-corso"]').tap();
+  await t.waitForTimeout(2000);
+  atteso(
+    !/errore/i.test(await ricevuta(t.locator('[data-tour="dettaglio-adempimento"]'))),
+    "telefono: cambio di stato dal pannello",
+  );
+  await scatta(t, "telefono-pannello");
+  await t.goto(`${BASE}/cruscotto`, { waitUntil: "networkidle" });
+  await chiudiGuida(t);
+  const menu = t.locator('button[aria-label="Apri la navigazione"]');
+  if (await menu.count()) {
+    await menu.tap();
+    await t.waitForTimeout(600);
+    await t.locator('a[href="/scadenzario"]:visible').first().tap();
+    await t.waitForURL(/scadenzario/, { timeout: 10000 }).catch(() => {});
+    atteso(t.url().includes("/scadenzario"), "telefono: il menu porta allo scadenzario");
+  } else ko("telefono: nessun pulsante del menu");
+  await tel.close();
+  // Solo tastiera
+  const kc = await nuovoContesto();
+  const k = await kc.newPage();
+  await k.goto(`${BASE}/accedi`, { waitUntil: "networkidle" });
+  for (let i = 0; i < 10 && !(await k.evaluate(() => document.activeElement?.id === "email")); i++)
+    await k.keyboard.press("Tab");
+  await k.keyboard.type(EMAIL);
+  await k.keyboard.press("Tab");
+  await k.keyboard.type(PASSWORD);
+  await k.keyboard.press("Enter");
+  await k.waitForURL(/cruscotto/, { timeout: 20000 }).catch(() => {});
+  atteso(
+    k.url().includes("/cruscotto"),
+    "accesso solo da tastiera",
+    `accesso da tastiera fallito (${k.url()})`,
+  );
+  await kc.close();
+});
+
 await blocco("16 · Uscita", async () => {
   await vai("/cruscotto");
   await p.locator('[data-tour="esci"]').first().click();
@@ -1360,6 +1631,34 @@ await blocco("16 · Uscita", async () => {
   atteso(p.url().includes("/accedi"), "«Esci» riporta all'accesso");
   await p.goto(`${BASE}/cruscotto`, { waitUntil: "networkidle" });
   atteso(p.url().includes("/accedi"), "dopo l'uscita il cruscotto non è più raggiungibile");
+});
+
+await blocco("18 · Limite dei tentativi d'accesso", async () => {
+  attendiErrori = true;
+  const c = await nuovoContesto();
+  const q = await c.newPage();
+  let messaggio = "";
+  for (let i = 0; i < 12; i++) {
+    await q.goto(`${BASE}/accedi`, { waitUntil: "domcontentloaded" });
+    await q.fill("#email", "nessuno@esempio.invalid");
+    await q.fill("#password", `sbagliata-${i}-xxxxxx`);
+    await q.locator('button[type="submit"]').first().click();
+    await q.waitForTimeout(900);
+    messaggio = (
+      await q
+        .locator('[role="alert"]')
+        .first()
+        .innerText()
+        .catch(() => "")
+    ).trim();
+  }
+  atteso(
+    /troppi|tentativ|riprova|attendi/i.test(messaggio),
+    `dopo 12 tentativi: «${messaggio}»`,
+    `dopo 12 tentativi nessun blocco: «${messaggio}»`,
+  );
+  await c.close();
+  attendiErrori = false;
 });
 
 await browser.close();

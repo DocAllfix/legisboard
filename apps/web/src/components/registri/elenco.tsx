@@ -59,8 +59,18 @@ export function ElencoRegistro({
   const [apriModulo, setApriModulo] = useState(false);
   const [aperta, setAperta] = useState<string | null>(null);
 
-  const [nuova, azioneApri, aprendo] = useActionState<EsitoRegistro | null, FormData>(apriVoce, null);
-  // Dopo un invio respinto, i campi tornano con ciò che si era scritto.
+  // Dopo un invio respinto, i campi tornano con ciò che si era scritto. React rimette i
+  // `defaultValue` nei campi di testo ma NON nelle tendine: la «natura» di una violazione
+  // tornava vuota e il secondo invio si fermava in silenzio sul campo obbligatorio
+  // _(2026-11-14, dal collaudo)_. Quindi a ogni esito respinto il modulo si RICOSTRUISCE
+  // (cambia la `key`), e nasce già con i valori inviati.
+  const [nuova, azioneApri, aprendo] = useActionState<
+    (EsitoRegistro & { tentativo?: number }) | null,
+    FormData
+  >(async (prima, dati) => {
+    const esito = await apriVoce(prima, dati);
+    return esito.ok ? esito : { ...esito, tentativo: (prima?.tentativo ?? 0) + 1 };
+  }, null);
   const scritto = (campo: string) => (nuova && !nuova.ok ? (nuova.valori?.[campo] ?? "") : "");
   const [chiusura, azioneAssolvi, chiudendo] = useActionState<EsitoRegistro | null, FormData>(
     assolviVoce,
@@ -121,7 +131,11 @@ export function ElencoRegistro({
         ) : null}
 
         {apriModulo && modificabile ? (
-          <form action={azioneApri} className="mt-4 space-y-4 border-t border-border-subtle pt-4">
+          <form
+            key={`apri-${nuova && !nuova.ok ? (nuova.tentativo ?? 0) : 0}`}
+            action={azioneApri}
+            className="mt-4 space-y-4 border-t border-border-subtle pt-4"
+          >
             <input type="hidden" name="aziendaId" value={aziendaId} />
             <input type="hidden" name="tipo" value={def.tipo} />
 
@@ -377,8 +391,10 @@ export function ElencoRegistro({
                     </form>
                   ) : null}
 
+                  {/* La `key` sullo stato ricostruisce il modulo quando cambia: React rimetteva nella
+                      tendina il valore vecchio dopo il cambio _(2026-11-14, dal collaudo)_. */}
                   {modificabile ? (
-                    <form action={azioneStato} className="flex items-center gap-2">
+                    <form key={v.stato} action={azioneStato} className="flex items-center gap-2">
                       <input type="hidden" name="voceId" value={v.id} />
                       <span className="text-nota text-muted-foreground">Stato</span>
                       <select

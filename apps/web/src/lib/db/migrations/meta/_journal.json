@@ -57,6 +57,13 @@
       "when": 1789736384686,
       "tag": "0007_eminent_mattie_franklin",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794648683814,
+      "tag": "0008_strong_jane_foster",
+      "breakpoints": true
     }
   ]
 }

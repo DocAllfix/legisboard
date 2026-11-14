@@ -3,6 +3,7 @@ import { Building2 } from "lucide-react";
 import { Vuoto } from "@/components/ui/vuoto";
 import { DOMINI, ETICHETTE_DOMINIO } from "@legisboard/engine";
 import { portafoglio } from "@/features/portafoglio/dati";
+import { requireStudio } from "@/features/auth/guards";
 import { Suspense } from "react";
 import { TabellaPortafoglio } from "@/components/portafoglio/tabella";
 import { NuovaAzienda } from "@/components/portafoglio/nuova-azienda";
@@ -12,6 +13,9 @@ export const dynamic = "force-dynamic";
 
 export default async function PaginaPortafoglio() {
   const { righe } = await portafoglio();
+  // Chi è in sola lettura non vede il comando: il server lo rifiuterebbe comunque, ma un
+  // pulsante che porta a un errore è peggio di un pulsante che non c'è _(2026-11-14)_.
+  const puoCreare = (await requireStudio()).ruolo !== "viewer";
 
   // I totali si calcolano sulle righe già risolte: nessuna seconda formula, nessun secondo
   // giro di query. Se un numero qui non tornasse con la tabella sotto, sarebbe un difetto
@@ -32,7 +36,7 @@ export default async function PaginaPortafoglio() {
             <em>e</em> ancora valido.
           </p>
         </div>
-        <NuovaAzienda />
+        {puoCreare ? <NuovaAzienda /> : null}
       </header>
 
       {righe.length > 0 ? (
@@ -71,7 +75,7 @@ export default async function PaginaPortafoglio() {
 
       <div className="mt-3">
         {righe.length === 0 ? (
-          <VuotoPortafoglio />
+          <VuotoPortafoglio puoCreare={puoCreare} />
         ) : (
           // Come assessment e scadenzario: la tabella legge i filtri dall indirizzo con
           // `useSearchParams`, che vuole un confine di sospensione attorno.
@@ -118,12 +122,16 @@ function mediana(righe: readonly { conformita: { percentuale: number | null } | 
   return valori.length % 2 === 1 ? valori[meta]! : Math.round((valori[meta - 1]! + valori[meta]!) / 2);
 }
 
-function VuotoPortafoglio() {
+function VuotoPortafoglio({ puoCreare }: { puoCreare: boolean }) {
   return (
     // L'ancoraggio del giro «portafoglio vuoto»: c'è solo quando non c'è niente, ed è così che la
     // guida sceglie quale giro aprire (vedi `quando` in `lib/tour/passi.ts`).
     <div data-tour="portafoglio-vuoto">
-      <Vuoto icona={Building2} titolo="Il portafoglio è vuoto" azione={<NuovaAzienda />}>
+      <Vuoto
+        icona={Building2}
+        titolo="Il portafoglio è vuoto"
+        azione={puoCreare ? <NuovaAzienda /> : undefined}
+      >
         Aggiungi la prima azienda assistita. Scegliendo i moduli, gli adempimenti dei decreti selezionati
         vengono creati subito: {DOMINI.map((d) => ETICHETTE_DOMINIO[d].breve).join(", ")}.
       </Vuoto>
