@@ -10,6 +10,7 @@ import {
 import { db } from "@/lib/db";
 import { clientCompany, companyModule, registro, user } from "@/lib/db/schema";
 import { requireStudio } from "@/features/auth/guards";
+import { daOraItaliana } from "@/lib/ora-italiana";
 
 // LA LETTURA DEI REGISTRI.
 //
@@ -45,8 +46,8 @@ function validitaDi(def: DefinizioneRegistro, dettagli: Record<string, unknown>)
   const campo = def.campi.find((c) => c.tipo === "data" && /scadenz|valid/i.test(c.chiave));
   const valore = campo ? dettagli[campo.chiave] : null;
   if (typeof valore !== "string" || valore.length < 8) return null;
-  const d = new Date(valore);
-  return Number.isNaN(d.getTime()) ? null : d;
+  // Mezzanotte italiana, non UTC: vedi `lib/ora-italiana.ts`.
+  return daOraItaliana(valore.slice(0, 10));
 }
 
 export async function registroDi(aziendaId: string, tipo: string) {

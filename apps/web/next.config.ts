@@ -76,7 +76,9 @@ const nextConfig: NextConfig = {
   // Il valore combacia con `DIMENSIONE_MASSIMA`: se un giorno divergono, vince il piu'
   // piccolo e il messaggio d'errore torna a mentire.
   experimental: {
-    serverActions: { bodySizeLimit: "25mb" },
+    // 26 e non 25: il file può arrivare a 25 MB, e il modulo che lo trasporta pesa qualcosa
+    // in più. Con 25 un documento di 24,9 MB veniva respinto prima di arrivare all'azione.
+    serverActions: { bodySizeLimit: "26mb" },
   },
 
   poweredByHeader: false,

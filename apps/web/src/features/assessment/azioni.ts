@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
 import { assessment, auditLog, instanceHistory, obligationInstance } from "@/lib/db/schema";
 import { bloccoDemo, requireConsulente } from "@/features/auth/guards";
 import { invalidaDati } from "@/lib/cache";
+import { giornoItaliano } from "@/lib/ora-italiana";
 
 // Le modifiche a un adempimento.
 //
@@ -147,6 +148,12 @@ export async function impostaUltimaEsecuzione(
     // `scomponi` rifiuta il 30 febbraio: una data di calendario impossibile non entra.
     const parti = scomponi(pulita);
     if (!parti) return { ok: false, errore: "Data non valida. Formato atteso: AAAA-MM-GG." };
+    // Un'esecuzione non può essere nel futuro: una data in avanti sposterebbe la scadenza di
+    // anni e il cruscotto direbbe «in regola» per qualcosa che non è stato fatto
+    // _(2026-11-14, dal collaudo: «2030-01-01» veniva accettata)_.
+    if (pulita > giornoItaliano(new Date())) {
+      return { ok: false, errore: "L'ultima esecuzione non può essere nel futuro." };
+    }
   }
   const valore = pulita === "" ? null : pulita;
 

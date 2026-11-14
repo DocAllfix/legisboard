@@ -8,6 +8,7 @@ import { db } from "@/lib/db";
 import { auditLog, clientCompany, companyModule, registro } from "@/lib/db/schema";
 import { bloccoDemo, requireConsulente } from "@/features/auth/guards";
 import { invalidaDati } from "@/lib/cache";
+import { annoItaliano, daOraItaliana } from "@/lib/ora-italiana";
 
 // APRIRE, AGGIORNARE, CHIUDERE una voce di registro.
 //
@@ -26,7 +27,12 @@ import { invalidaDati } from "@/lib/cache";
 
 export type EsitoRegistro =
   | { readonly ok: true; readonly id: string; readonly numero: string }
-  | { readonly ok: false; readonly errore: string };
+  | {
+      readonly ok: false;
+      readonly errore: string;
+      /** I campi inviati, per rimetterli nel modulo: React lo svuota dopo ogni invio. */
+      readonly valori?: Readonly<Record<string, string>>;
+    };
 
 /** Estrae e valida i campi propri del tipo dalla `FormData`. */
 function dettagliDa(tipo: string, dati: FormData): { valori: Record<string, unknown>; mancanti: string[] } {
@@ -67,7 +73,25 @@ function dettagliDa(tipo: string, dati: FormData): { valori: Record<string, unkn
   return { valori, mancanti };
 }
 
-export async function apriVoce(_precedente: EsitoRegistro | null, dati: FormData): Promise<EsitoRegistro> {
+/**
+ * Apre una voce. Se qualcosa non va, l'esito porta indietro i campi inviati _(2026-11-14)_.
+ *
+ * React azzera un modulo dopo ogni invio, anche respinto: chi sbagliava la data di una
+ * violazione si ritrovava il modulo vuoto e doveva riscrivere tutto. Trovato dal collaudo
+ * completo; lo stesso difetto era già stato chiuso su «Nuova azienda», con lo stesso rimedio.
+ */
+export async function apriVoce(precedente: EsitoRegistro | null, dati: FormData): Promise<EsitoRegistro> {
+  const esito = await apriVoceSenzaValori(precedente, dati);
+  if (esito.ok) return esito;
+  const valori: Record<string, string> = {};
+  for (const [k, v] of dati.entries()) if (typeof v === "string") valori[k] = v;
+  return { ...esito, valori };
+}
+
+async function apriVoceSenzaValori(
+  _precedente: EsitoRegistro | null,
+  dati: FormData,
+): Promise<EsitoRegistro> {
   const ctx = await requireConsulente();
   const bloccata = await bloccoDemo("apri una voce di registro");
   if (bloccata) return bloccata;
@@ -96,9 +120,10 @@ export async function apriVoce(_precedente: EsitoRegistro | null, dati: FormData
   const titolo = String(dati.get("titolo") ?? "").trim();
   if (titolo.length < 3) return { ok: false, errore: "Il titolo è obbligatorio." };
 
+  // In ORA ITALIANA, non nel fuso del server: vedi `lib/ora-italiana.ts`.
   const conosciuto = String(dati.get("conosciutoIl") ?? "").trim();
-  const conosciutoIl = conosciuto ? new Date(conosciuto) : new Date();
-  if (Number.isNaN(conosciutoIl.getTime())) {
+  const conosciutoIl = conosciuto ? daOraItaliana(conosciuto) : new Date();
+  if (!conosciutoIl) {
     return { ok: false, errore: `«${def.etichettaData}» non è una data valida.` };
   }
   // Una data futura sul fatto che fa decorrere un termine sposta la scadenza in avanti: è
@@ -112,7 +137,7 @@ export async function apriVoce(_precedente: EsitoRegistro | null, dati: FormData
     return { ok: false, errore: `Campi obbligatori mancanti: ${mancanti.join(", ")}.` };
   }
 
-  const avvenuto = String(dati.get("avvenutoIl") ?? "").trim();
+  const avvenuto = daOraItaliana(String(dati.get("avvenutoIl") ?? ""));
   const id = randomUUID();
 
   const numero = await db.transaction(async (tx) => {
@@ -122,7 +147,7 @@ export async function apriVoce(_precedente: EsitoRegistro | null, dati: FormData
       .where(and(eq(registro.clientCompanyId, aziendaId), eq(registro.tipo, tipo)))
       .orderBy(desc(registro.creatoIl))
       .limit(1);
-    const anno = conosciutoIl.getFullYear();
+    const anno = annoItaliano(conosciutoIl);
     const precedente = Number((ultima[0]?.n ?? "").split("/")[0]) || 0;
     const n = `${precedente + 1}/${anno}`;
     await tx.insert(registro).values({
@@ -137,7 +162,7 @@ export async function apriVoce(_precedente: EsitoRegistro | null, dati: FormData
           .trim()
           .slice(0, 4000) || null,
       conosciutoIl,
-      avvenutoIl: avvenuto ? new Date(avvenuto) : null,
+      avvenutoIl: avvenuto,
       dettagli: valori,
       apertoDa: ctx.userId,
     });

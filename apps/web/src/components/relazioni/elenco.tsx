@@ -33,10 +33,10 @@ const AMBITI: readonly { valore: string; etichetta: string }[] = [
 
 /** Gli organi che possono presentarsi, e cosa guardano. Il testo vive nel documento. */
 const ORGANI_ELENCO = [
-  { chiave: "garante", breve: "Garante privacy" },
-  { chiave: "ispettorato", breve: "Ispettorato del Lavoro" },
-  { chiave: "asl", breve: "ASL" },
-  { chiave: "giudiziaria", breve: "Autorità giudiziaria / OdV" },
+  { chiave: "garante", breve: "Garante privacy", dominio: "gdpr" },
+  { chiave: "ispettorato", breve: "Ispettorato del Lavoro", dominio: "d81" },
+  { chiave: "asl", breve: "ASL", dominio: "d81" },
+  { chiave: "giudiziaria", breve: "Autorità giudiziaria / OdV", dominio: "d231" },
 ] as const;
 
 const nomeAmbito = (a: string) =>
@@ -45,9 +45,12 @@ const nomeAmbito = (a: string) =>
 export function ElencoRelazioni({
   aziendaId,
   elenco,
+  moduliAttivi,
   modificabile,
 }: {
   aziendaId: string;
+  /** Si propongono solo gli ambiti e i fascicoli dei decreti attivi sull'azienda _(2026-11-14)_. */
+  moduliAttivi: readonly string[];
   elenco: readonly RigaRelazione[];
   modificabile: boolean;
 }) {
@@ -82,7 +85,7 @@ export function ElencoRelazioni({
               defaultValue="suite"
               className="mt-1 h-9 rounded-md border border-border bg-surface px-2.5 text-sm"
             >
-              {AMBITI.map((a) => (
+              {AMBITI.filter((a) => a.valore === "suite" || moduliAttivi.includes(a.valore)).map((a) => (
                 <option key={a.valore} value={a.valore}>
                   {a.etichetta}
                 </option>
@@ -117,7 +120,7 @@ export function ElencoRelazioni({
           annotazioni: chi verifica non vuole essere convinto, vuole controllare.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
-          {ORGANI_ELENCO.map((o) => (
+          {ORGANI_ELENCO.filter((o) => moduliAttivi.includes(o.dominio)).map((o) => (
             <a
               key={o.chiave}
               href={`/api/fascicolo/${aziendaId}/${o.chiave}`}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Download, FileCheck2, Paperclip, Trash2 } from "lucide-react";
 import { caricaEvidenza, eliminaEvidenza, type EsitoEvidenza } from "@/features/evidenze/azioni";
 import { pesoLeggibile, type Evidenza } from "@/features/evidenze/tipi";
@@ -26,6 +26,12 @@ import { Input } from "@/components/ui/input";
 
 const ACCETTATI = ".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.pptx";
 
+// Lo stesso limite del server (`DIMENSIONE_MASSIMA` in `lib/storage`), ripetuto qui perché
+// quel modulo non si può importare nel browser. Il controllo qui NON è cortesia _(2026-11-14)_:
+// un file oltre il limite del corpo delle azioni non arriva nemmeno all'azione, e la pagina
+// cadeva su «Questa pagina non si è caricata» invece di dire cosa non andava.
+const LIMITE_BYTE = 25 * 1024 * 1024;
+
 export function Evidenze({
   istanzaId,
   elenco,
@@ -49,7 +55,12 @@ export function Evidenze({
   // duplica quello del genitore e che può restare indietro. Dopo ogni azione è il pannello
   // a rileggere l'elenco e a ripassarlo qui, quindi qui non c'è niente da ricordare.
 
-  const errore = (carica && !carica.ok && carica.errore) || (rimozione && !rimozione.ok && rimozione.errore);
+  const [troppoGrande, setTroppoGrande] = useState<string | null>(null);
+
+  const errore =
+    troppoGrande ||
+    (carica && !carica.ok && carica.errore) ||
+    (rimozione && !rimozione.ok && rimozione.errore);
 
   return (
     <section className="space-y-3 border-t border-border pt-4" data-tour="evidenze">
@@ -116,7 +127,21 @@ export function Evidenze({
       )}
 
       {modificabile ? (
-        <form action={azioneCarica} className="space-y-2 rounded-lg border border-border p-3">
+        <form
+          action={azioneCarica}
+          onSubmit={(e) => {
+            const scelto = (e.currentTarget.elements.namedItem("file") as HTMLInputElement | null)
+              ?.files?.[0];
+            if (scelto && scelto.size > LIMITE_BYTE) {
+              e.preventDefault();
+              const mb = (scelto.size / 1024 / 1024).toFixed(1).replace(".", ",");
+              setTroppoGrande(
+                `Il file pesa ${mb} MB e il limite è 25 MB. Allega il documento, non l'archivio completo.`,
+              );
+            } else setTroppoGrande(null);
+          }}
+          className="space-y-2 rounded-lg border border-border p-3"
+        >
           <input type="hidden" name="istanzaId" value={istanzaId} />
           <div>
             <label htmlFor={`file-${istanzaId}`} className="text-nota font-medium">

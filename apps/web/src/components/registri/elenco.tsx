@@ -14,6 +14,7 @@ import type { VoceRegistro } from "@/features/registri/dati";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { giornoItaliano } from "@/lib/ora-italiana";
 
 // UN REGISTRO, undici volte.
 //
@@ -59,6 +60,8 @@ export function ElencoRegistro({
   const [aperta, setAperta] = useState<string | null>(null);
 
   const [nuova, azioneApri, aprendo] = useActionState<EsitoRegistro | null, FormData>(apriVoce, null);
+  // Dopo un invio respinto, i campi tornano con ciò che si era scritto.
+  const scritto = (campo: string) => (nuova && !nuova.ok ? (nuova.valori?.[campo] ?? "") : "");
   const [chiusura, azioneAssolvi, chiudendo] = useActionState<EsitoRegistro | null, FormData>(
     assolviVoce,
     null,
@@ -127,6 +130,7 @@ export function ElencoRegistro({
                 <span className="text-xs font-medium">Oggetto</span>
                 <Input
                   name="titolo"
+                  defaultValue={scritto("titolo")}
                   required
                   className="mt-1"
                   placeholder="In due parole, di cosa si tratta"
@@ -140,7 +144,13 @@ export function ElencoRegistro({
                     accorto, che può essere ieri sera o venerdì scorso. Un campo precompilato
                     con l'ora corrente invita ad accettarlo, e su un termine di 72 ore quella
                     disattenzione sposta la scadenza di giorni. Meglio obbligare a dirlo. */}
-                <Input name="conosciutoIl" type="datetime-local" required className="mt-1" />
+                <Input
+                  name="conosciutoIl"
+                  type="datetime-local"
+                  defaultValue={scritto("conosciutoIl")}
+                  required
+                  className="mt-1"
+                />
                 {def.termine.tipo === "ore" ? (
                   <span className="mt-1 block text-micro leading-relaxed text-muted-foreground">
                     Il termine decorre da QUI, non dal momento in cui il fatto è avvenuto: l&apos;art. 33 dice
@@ -153,7 +163,12 @@ export function ElencoRegistro({
             {def.termine.tipo === "ore" ? (
               <label className="block sm:w-1/2">
                 <span className="text-xs font-medium">Avvenuto il (se noto)</span>
-                <Input name="avvenutoIl" type="datetime-local" className="mt-1" />
+                <Input
+                  name="avvenutoIl"
+                  type="datetime-local"
+                  defaultValue={scritto("avvenutoIl")}
+                  className="mt-1"
+                />
                 <span className="mt-1 block text-micro text-muted-foreground">
                   Serve alla ricostruzione dei fatti, non al calcolo del termine.
                 </span>
@@ -171,7 +186,7 @@ export function ElencoRegistro({
                     <select
                       name={`d_${c.chiave}`}
                       required={c.obbligatorio}
-                      defaultValue=""
+                      defaultValue={scritto(`d_${c.chiave}`)}
                       className="mt-1 h-9 w-full rounded-md border border-border bg-surface px-2.5 text-sm"
                     >
                       <option value="">—</option>
@@ -184,17 +199,24 @@ export function ElencoRegistro({
                   ) : c.tipo === "testo-lungo" ? (
                     <textarea
                       name={`d_${c.chiave}`}
+                      defaultValue={scritto(`d_${c.chiave}`)}
                       rows={3}
                       className="mt-1 w-full rounded-md border border-border bg-surface px-2.5 py-2 text-sm"
                     />
                   ) : c.tipo === "booleano" ? (
                     <span className="mt-1 flex h-9 items-center">
-                      <input type="checkbox" name={`d_${c.chiave}`} className="size-4 accent-primary" />
+                      <input
+                        type="checkbox"
+                        name={`d_${c.chiave}`}
+                        defaultChecked={scritto(`d_${c.chiave}`) === "on"}
+                        className="size-4 accent-primary"
+                      />
                     </span>
                   ) : (
                     <Input
                       name={`d_${c.chiave}`}
                       type={c.tipo === "numero" ? "number" : c.tipo === "data" ? "date" : "text"}
+                      defaultValue={scritto(`d_${c.chiave}`)}
                       required={c.obbligatorio}
                       className="mt-1"
                     />
@@ -212,6 +234,7 @@ export function ElencoRegistro({
               <span className="text-xs font-medium">Descrizione</span>
               <textarea
                 name="descrizione"
+                defaultValue={scritto("descrizione")}
                 rows={3}
                 className="mt-1 w-full rounded-md border border-border bg-surface px-2.5 py-2 text-sm"
               />
@@ -289,7 +312,7 @@ export function ElencoRegistro({
                 <span className="text-sm font-medium">{v.titolo}</span>
                 <span className="ml-auto flex items-center gap-2">
                   <span className="font-mono text-nota text-muted-foreground">
-                    {formattaIt(v.conosciutoIl.toISOString().slice(0, 10))}
+                    {formattaIt(giornoItaliano(v.conosciutoIl))}
                   </span>
                   <button
                     type="button"
@@ -327,7 +350,7 @@ export function ElencoRegistro({
 
                   {v.assoltoIl ? (
                     <p className="rounded-lg bg-surface-sunken p-3 text-nota leading-relaxed">
-                      <b>{def.termine.obbligo}</b> · {formattaIt(v.assoltoIl.toISOString().slice(0, 10))}
+                      <b>{def.termine.obbligo}</b> · {formattaIt(giornoItaliano(v.assoltoIl))}
                       <span className="mt-1 block text-muted-foreground">{v.esito}</span>
                     </p>
                   ) : modificabile ? (

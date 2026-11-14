@@ -19,7 +19,7 @@ export default async function PaginaRelazioni({ params }: { params: Promise<{ id
   const dati = await relazioniDi(id);
   if (!dati) notFound();
 
-  const { azienda, elenco, ctx } = dati;
+  const { azienda, elenco, ctx, moduliAttivi } = dati;
   const pubblicate = elenco.filter((r) => r.stato === "pubblicata").length;
 
   return (
@@ -50,7 +50,12 @@ export default async function PaginaRelazioni({ params }: { params: Promise<{ id
       </header>
 
       <div className="mt-6">
-        <ElencoRelazioni aziendaId={id} elenco={elenco} modificabile={ctx.ruolo !== "viewer"} />
+        <ElencoRelazioni
+          aziendaId={id}
+          elenco={elenco}
+          moduliAttivi={moduliAttivi}
+          modificabile={ctx.ruolo !== "viewer"}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { clientCompany, report, user } from "@/lib/db/schema";
+import { clientCompany, companyModule, report, user } from "@/lib/db/schema";
 import { requireStudio } from "@/features/auth/guards";
 import type { Snapshot } from "./snapshot";
 
@@ -68,7 +68,15 @@ export async function relazioniDi(aziendaId: string) {
     };
   });
 
-  return { ctx, azienda, elenco };
+  // I moduli attivi decidono quali ambiti e quali fascicoli si possono chiedere: proporre il
+  // fascicolo per l'Ispettorato su un'azienda senza 81/08 portava a una pagina «Non trovata».
+  const moduli = await db
+    .select({ dominio: companyModule.dominio })
+    .from(companyModule)
+    .where(and(eq(companyModule.clientCompanyId, aziendaId), eq(companyModule.attivo, true)));
+  const moduliAttivi = moduli.map((m) => m.dominio);
+
+  return { ctx, azienda, elenco, moduliAttivi };
 }
 
 /** Una relazione con il suo snapshot, per generarne il PDF. */
