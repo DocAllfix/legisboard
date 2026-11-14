@@ -36,7 +36,7 @@ export function IndiceRegistri({
             <PastigliaDominio dominio={dominio} />
             <span className="text-xs text-muted-foreground">{ETICHETTE_DOMINIO[dominio].norma}</span>
           </div>
-          <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {registri.map((r) => {
               const s = sommario.get(r.tipo);
               return (

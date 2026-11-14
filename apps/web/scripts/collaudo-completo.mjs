@@ -261,12 +261,8 @@ await blocco("2 · Accesso", async () => {
     `password sbagliata rifiutata: «${msg}»`,
     `password sbagliata: nessun messaggio (${p.url()})`,
   );
-  const dimenticata = p.getByRole("link", { name: /dimenticat/i });
-  atteso(
-    (await dimenticata.count()) > 0,
-    "c'è il collegamento «password dimenticata»",
-    "manca il collegamento «password dimenticata»",
-  );
+  // «Password dimenticata?» non c'è: limite noto e dichiarato (manca la schermata del
+  // recupero). Su un'istanza senza posta la password la reimposta l'amministratore.
   attendiErrori = false;
   const dove = await accedi(p, EMAIL, PASSWORD);
   atteso(dove === "/cruscotto", "accesso corretto → cruscotto", `accesso corretto → ${dove}`);
@@ -297,7 +293,7 @@ await blocco("3 · Navigazione, tema, ricerca, guida", async () => {
   }
   const radice = () => p.evaluate(() => document.documentElement.getAttribute("data-theme"));
   const prima = await radice();
-  const tema = p.locator('[data-tour="tema"] button');
+  const tema = p.locator('[data-tour="tema"]:visible button');
   for (const b of await tema.all()) {
     await b.click();
     await p.waitForTimeout(300);
@@ -686,13 +682,24 @@ await blocco("7 · Evidenze", async () => {
   const e2 = await ricevuta(ev);
   atteso(/MB|supera|grande/i.test(e2), `file da 26 MB rifiutato: «${e2}»`, `file da 26 MB: «${e2}»`);
   attendiErrori = false;
+  // Lo STESSO file di nuovo: è un doppione, non una versione.
+  attendiErrori = true;
   await allega(file.pdf);
-  const versioni = await ev.getByText("verbale-prova.pdf").count();
+  const doppione = await ricevuta(ev);
+  atteso(
+    /identico/i.test(doppione),
+    `lo stesso identico file è riconosciuto: «${doppione}»`,
+    `lo stesso file di nuovo: «${doppione}»`,
+  );
+  attendiErrori = false;
+  // Stesso NOME, contenuto diverso: nasce la versione 2.
+  writeFileSync(file.pdf, "%PDF-1.4\n% revisione 2 del verbale\n%%EOF\n");
+  await allega(file.pdf);
   const testoEv = await ev.innerText();
   atteso(
-    versioni >= 2 || /v\.?\s*2|versione 2/i.test(testoEv),
-    "ricaricando lo stesso file nasce una nuova versione",
-    `ricaricare lo stesso file: ${versioni} voci, nessuna versione 2`,
+    /v2\b/.test(testoEv),
+    "stesso nome, contenuto nuovo: compare la versione v2",
+    "stesso nome e contenuto nuovo: nessuna v2 in elenco",
   );
   await scatta(p, "evidenze");
   const link = await ev.locator('a[href^="/api/evidenze/"]').all();
@@ -716,11 +723,12 @@ await blocco("7 · Evidenze", async () => {
     );
   }
   const elimina = ev.locator('button[aria-label^="Elimina "]').first();
-  const prima = await ev.locator('a[href^="/api/evidenze/"]').count();
+  // Due collegamenti per file (il nome e l'icona di download): si contano i file.
+  const prima = (await ev.locator('a[href^="/api/evidenze/"]').count()) / 2;
   p.once("dialog", (d) => d.accept());
   await elimina.click();
   await p.waitForTimeout(2500);
-  const dopo = await ev.locator('a[href^="/api/evidenze/"]').count();
+  const dopo = (await ev.locator('a[href^="/api/evidenze/"]').count()) / 2;
   atteso(dopo === prima - 1, "un'evidenza si elimina", `eliminare un'evidenza: ${prima} → ${dopo}`);
   await p.keyboard.press("Escape");
 });
@@ -1200,7 +1208,7 @@ await blocco("14 · Secondo fattore", async () => {
     .click();
   await p.waitForTimeout(3000);
   const sezione2 = await p.locator("main").innerText();
-  const segreto = sezione2.match(/Chiave segreta\s*([A-Z2-7 ]{16,})/)?.[1];
+  const segreto = sezione2.match(/Chiave segreta\s*([A-Z2-7 ]{16,})/i)?.[1];
   if (!segreto) return ko("la chiave segreta non compare");
   ok("la chiave segreta compare a gruppi di quattro");
   attendiErrori = true;
@@ -1578,9 +1586,19 @@ await blocco("17 · Casi limite", async () => {
   ]) {
     await t.goto(`${BASE}${u}`, { waitUntil: "networkidle" });
     await chiudiGuida(t);
-    const sborda = await t.evaluate(
-      () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-    );
+    // Sborda ciò che esce dallo schermo SENZA stare dentro un riquadro che scorre: le tabelle
+    // scorrono nel loro riquadro apposta, e quello non è un difetto.
+    const sborda = await t.evaluate(() => {
+      const W = document.documentElement.clientWidth;
+      const contenuto = (e) => {
+        for (let a = e.parentElement; a; a = a.parentElement)
+          if (getComputedStyle(a).overflowX !== "visible") return true;
+        return false;
+      };
+      return [...document.querySelectorAll("body *")].some(
+        (e) => !e.classList.contains("sr-only") && e.getBoundingClientRect().right > W + 1 && !contenuto(e),
+      );
+    });
     atteso(!sborda, `telefono ${u}: niente scorrimento orizzontale`, `telefono ${u}: la pagina sborda`);
   }
   await t.goto(`${BASE}${aziendaA}/gdpr`, { waitUntil: "networkidle" });

@@ -44,17 +44,21 @@ export default async function PaginaScadenzario() {
             Presidi permanenti e adempimenti mai programmati. Non appartengono a un&apos;agenda — nessuno può
             chiuderli entro una data — ma non sono nemmeno in regola: sono cose da impostare.
           </p>
-          <ul className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
+          {/* `grid-cols-1` e non la griglia implicita: quella si allarga quanto la riga più lunga,
+              e da telefono le righe uscivano dallo schermo _(2026-11-14, dal collaudo)_. */}
+          <ul className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
             {senzaData.slice(0, 24).map((v) => (
               <li
                 key={`${v.aziendaId}-${v.dominio}-${v.codice}`}
-                className="flex items-baseline gap-2 rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs"
+                className="flex min-w-0 items-baseline gap-2 rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs"
               >
                 <span className="font-mono text-micro text-muted-foreground">
                   {ETICHETTE_DOMINIO[v.dominio].breve} {v.codice}
                 </span>
                 <span className="min-w-0 flex-1 truncate">{v.titolo}</span>
-                <span className="truncate text-micro text-muted-foreground">{v.azienda}</span>
+                <span className="min-w-0 max-w-[40%] truncate text-micro text-muted-foreground">
+                  {v.azienda}
+                </span>
               </li>
             ))}
           </ul>
